@@ -163,6 +163,30 @@ Instructions for building high-quality ReactJS applications with modern patterns
 - Implement proper color contrast ratios
 - Test with screen readers and accessibility tools
 
+
+## Commit Convention
+
+* Push Origin develop branch only or feature branches.
+
+**Prefix commits with conventional commits format**. Use the following format:
+
+```
+feat(auth): add Google OAuth flow
+```
+
+| Type     | Use case             |
+| -------- | -------------------- |
+| feat     | new feature          |
+| fix      | bug fix              |
+| docs     | documentation only   |
+| style    | formatting, no logic |
+| refactor | code restructure     |
+| perf     | performance          |
+| test     | add/adjust tests     |
+| chore    | tooling, infra       |
+| ci       | CI config            |
+| build    | build tooling        |
+
 ## Clean Architecture Implementation
 
 ### Process
