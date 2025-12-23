@@ -267,42 +267,7 @@ pnpm fix  # This runs biome check --fix ./src
 
 To maintain a clear and consistent commit history, use the **Conventional Commits** standard. This format helps identify the purpose of each change and facilitates automatic changelog generation.
 
-### Commit Format
 
-The basic format must start with the branch ID number, preceded by `#`, followed by the rules of **Conventional Commits**.
-
-#### Example Format
-If the branch name is `feature/232574`, the commit must start with: `#232574 feat: description of the change`
-
-#### Rules
-1. The prefix `#<ID>` must match the branch number.
-2. After the prefix, follow the **Conventional Commits** format.
-
-### Commit Process (Required Steps)
-
-**Before creating any commit, always follow these steps:**
-
-1. **Verify the current branch** to obtain the ID number:
-   ```bash
-   git branch | grep '\*'
-   ```
-   Extract the ID from the branch name (e.g., `feature/249517` → use `249517`)
-
-2. **Check the staged changes** to understand what was modified:
-   ```bash
-   git status
-   git diff --cached
-   ```
-
-3. **Create a descriptive message** based on the actual changes made, following the format:
-   ```
-   #<BRANCH_ID> <type>(<scope>): <description>
-   ```
-
-4. **Execute the commit** with the correct branch ID and descriptive message:
-   ```bash
-   git commit -m "#249517 fix(account): improve account name validation error message"
-   ```
 
 **This ensures every commit has the correct branch ID and an accurate description of the changes.**
 
