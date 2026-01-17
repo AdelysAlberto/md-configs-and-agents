@@ -2110,12 +2110,40 @@ exit 0
 4. **Pure Functions**: Prefer functions without side effects
 5. **Arrow Functions**: Use as default function syntax
 
+### React 19+ Rules
+- ❌ **DO NOT import React for JSX** - Not needed in React 17+ with new JSX Transform
+- ✅ **ONLY import specific hooks/types** when needed
+
+```tsx
+// ❌ WRONG - Unnecessary in React 19
+import React from 'react';
+
+export const MyComponent = () => {
+  return <div>Hello</div>;
+};
+
+// ✅ CORRECT - No React import needed for JSX
+export const MyComponent = () => {
+  return <div>Hello</div>;
+};
+
+// ✅ CORRECT - Import only what you need
+import { useState, useEffect } from 'react';
+import type { FC } from 'react';
+
+export const MyComponent: FC = () => {
+  const [count, setCount] = useState(0);
+  return <div>{count}</div>;
+};
+```
+
 ### TypeScript Rules
 - ❌ **Never use `any`** - use specific types or `unknown`
 - ✅ Use `interface` for object shapes, `type` for unions
 - ✅ Enable strict mode in tsconfig.json
 - ✅ Define types first, then implement (Type-Driven Development)
-- ✅ Use React built-in types: `React.FC`, `React.ComponentProps`, `React.ReactNode`
+- ✅ Use React built-in types when needed: `FC`, `ComponentProps`, `ReactNode`
+- ✅ Import types with `import type { ... }` for better tree-shaking
 
 ### Component Design
 - ✅ **Components under 200 lines** - if exceeded, refactor
@@ -2123,6 +2151,7 @@ exit 0
 - ✅ **Extract calculations to utils** - pure functions in `src/utils/`
 - ❌ **Avoid multiple `useEffect`** in one component
 - ✅ **Single Responsibility Principle** - each component does one thing
+- ❌ **No `import React from 'react'`** - unnecessary in React 19
 
 ### Comments & Documentation
 - ❌ **No inline comments** for obvious code
@@ -2662,6 +2691,7 @@ The project initialization is complete when:
 - **No deprecated packages:** Always use latest stable versions, verify with `pnpm outdated` and `pnpm audit`
 - **Typography:** Use Poppins from Google Fonts as default font family
 - **NO classes, constructors, or `this`** - Functional programming only
+- **React 19+ imports:** ❌ DO NOT `import React from 'react'` - unnecessary with new JSX Transform
 
 ### Styling Approach (CHOOSE ONE):
 - **🚨 CRITICAL DECISION:** Choose CSS Modules + BEM **OR** Tailwind CSS, **NEVER BOTH**
