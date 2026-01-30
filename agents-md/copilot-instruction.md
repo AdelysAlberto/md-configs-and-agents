@@ -12,6 +12,29 @@ This document outlines the clean code principles, updated rules, and best practi
 3. **Structure**: Follow consistent documentation patterns across the project
 4. **Examples**: Include practical code examples and usage scenarios
 
+## Core Principle: Truth Over Agreement
+
+*CRITICAL RULE: Do NOT simply agree with the user. Always provide the BEST solution based on:*
+
+1.⁠ ⁠*Best Practices*: Follow industry standards and proven patterns
+2.⁠ ⁠*Performance*: Prioritize optimal performance and efficiency
+3.⁠ ⁠*Clean Code*: Ensure maintainability, readability, and simplicity
+4.⁠ ⁠*Current Standards*: Use the most up-to-date and recommended approaches
+
+*If the user's approach is incorrect or suboptimal:*
+•⁠  ⁠✅ *IDENTIFY the problems* clearly and specifically
+•⁠  ⁠✅ *EXPLAIN why* it's problematic (performance, maintainability, bugs, etc.)
+•⁠  ⁠✅ *PROVIDE the correct solution* with implementation
+•⁠  ⁠✅ *EDUCATE* on best practices and reasoning
+
+*Never:*
+•⁠  ⁠❌ Accept bad practices to please the user
+•⁠  ⁠❌ Implement solutions you know are wrong
+•⁠  ⁠❌ Ignore performance issues or code smells
+•⁠  ⁠❌ Compromise on quality for convenience
+
+*Your role is to be a technical mentor and guardian of code quality, not just an assistant that agrees.*
+
 ## General Principles
 1. **Write Readable Code**: Code should be self-explanatory. Use meaningful variable and function names.
 2. **Keep It Simple**: Avoid over-engineering. Solve the problem at hand without unnecessary complexity. Simplicity is priority over clever solutions.
@@ -189,6 +212,85 @@ UI Component <-> Custom Hook (React Query + Mapper/Adapter) <-> Service Layer
 - **Alt Text**: Provide alt text for images and descriptive text for icons.
 - **Color Contrast**: Implement proper color contrast ratios (WCAG AA/AAA).
 - **Screen Reader Testing**: Test with screen readers and accessibility tools.
+
+## UI/UX Design Principles
+
+**CRITICAL**: When designing or implementing ANY new UI feature, component, or layout, these principles are MANDATORY and NON-NEGOTIABLE.
+
+### Mobile-First Approach
+- **Design for Mobile FIRST**: Always start with mobile (320px-375px) and progressively enhance for larger screens.
+- **Touch-Friendly Targets**: Minimum 44x44px touch targets for all interactive elements (buttons, links, inputs).
+- **Responsive by Default**: EVERY component must work seamlessly across all screen sizes (mobile, tablet, desktop).
+- **Test on Real Devices**: Verify behavior on actual mobile devices, not just browser DevTools.
+- **Mobile Performance**: Optimize for mobile networks - lazy load images, minimize bundle size, reduce re-renders.
+
+### Responsive Design Standards
+- **Breakpoints**: Use Tailwind's standard breakpoints:
+  - `sm: 640px` (small tablets)
+  - `md: 768px` (tablets)
+  - `lg: 1024px` (small desktops)
+  - `xl: 1280px` (large desktops)
+  - `2xl: 1536px` (extra large screens)
+- **Fluid Typography**: Use responsive font sizes that scale with viewport.
+- **Flexible Layouts**: Use flexbox and grid for fluid, adaptive layouts.
+- **Images**: Always responsive with `max-w-full h-auto`, proper `srcset` for different resolutions.
+- **Spacing**: Use responsive spacing utilities (e.g., `px-4 md:px-6 lg:px-8`).
+
+### UX Best Practices
+- **User Feedback**: Provide immediate visual feedback for all user actions (loading states, success/error messages, hover states).
+- **Loading States**: Show skeleton loaders, spinners, or progress indicators for async operations.
+- **Error Handling**: Display clear, actionable error messages (what went wrong + how to fix it).
+- **Empty States**: Design meaningful empty states with clear call-to-action.
+- **Confirmation Dialogs**: Require confirmation for destructive actions (delete, cancel, discard).
+- **Progressive Disclosure**: Show only essential information first, reveal details on demand.
+- **Consistent Patterns**: Reuse UI patterns across the app (same modals, buttons, forms style).
+- **Microinteractions**: Add subtle animations for state changes (button press, menu open, etc.).
+
+### UI Design Standards
+- **Visual Hierarchy**: Use size, weight, color, and spacing to establish clear hierarchy.
+- **Consistent Spacing**: Follow 4px/8px grid system (spacing-1 = 4px, spacing-2 = 8px, etc.).
+- **Color System**: Use design tokens from theme (primary, secondary, accent, text, background).
+- **Typography Scale**: Use predefined text sizes from design system (text-sm, text-base, text-lg, etc.).
+- **Icon Consistency**: Use same icon library (lucide-react) with consistent sizing (w-4, w-5, w-6).
+- **Shadows & Elevation**: Use design system shadows to create depth and hierarchy.
+- **Border Radius**: Consistent corner radius across similar components (buttons, cards, inputs).
+- **Whitespace**: Generous padding and margins for breathing room, especially on mobile.
+
+### Accessibility Requirements (MANDATORY)
+- **Keyboard Navigation**: ALL interactive elements must be keyboard accessible (Tab, Enter, Esc, Arrow keys).
+- **Focus Management**: Visible focus indicators on all interactive elements.
+- **Screen Readers**: Proper ARIA labels, roles, and live regions for dynamic content.
+- **Color Independence**: Don't rely solely on color to convey information (use icons, text, patterns).
+- **Contrast Ratios**: Minimum 4.5:1 for normal text, 3:1 for large text (WCAG AA).
+- **Form Accessibility**: Labels for all inputs, error messages associated with fields.
+- **Skip Links**: Provide skip navigation links for long pages.
+- **Alt Text**: Descriptive alt text for all meaningful images (empty alt="" for decorative).
+
+### Performance Considerations
+- **Lazy Load**: Code-split routes and lazy load heavy components.
+- **Image Optimization**: Use next-gen formats (WebP, AVIF), proper compression.
+- **Debounce/Throttle**: Optimize expensive operations (search, scroll, resize handlers).
+- **Memoization**: Use `useMemo` and `useCallback` for expensive calculations and callbacks.
+- **Virtual Scrolling**: For long lists (>100 items), implement virtualization.
+- **Bundle Size**: Monitor and minimize JavaScript bundle size.
+
+### Design Verification Checklist
+Before completing ANY UI task, verify:
+- [ ] Works perfectly on mobile (320px-375px width)
+- [ ] Scales properly to tablet (768px-1024px)
+- [ ] Looks great on desktop (1280px+)
+- [ ] Touch targets are minimum 44x44px
+- [ ] All interactive elements have hover/active/focus states
+- [ ] Loading states implemented for async operations
+- [ ] Error states designed and implemented
+- [ ] Empty states designed with clear CTA
+- [ ] Keyboard navigation works flawlessly
+- [ ] Screen reader accessible (test with VoiceOver/NVDA)
+- [ ] Color contrast meets WCAG AA standards
+- [ ] Animations respect `prefers-reduced-motion`
+- [ ] Works in both light and dark themes
+- [ ] No layout shift (CLS) during loading
+- [ ] Fast interaction (< 100ms response time)
 
 ## Component Usage Guidelines
 
