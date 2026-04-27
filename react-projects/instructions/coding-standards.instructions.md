@@ -58,6 +58,7 @@ import { User } from "@/types/user.types"; // falta 'type'
 
 - ✅ Siempre validar con **Zod** antes de enviar
 - ✅ Mostrar error por campo, no solo toast general
+- ✅ **Zod v4** — usar validators standalone: `z.email()`, `z.url()`, `z.uuid()` — ❌ NO `z.string().email()` (deprecated)
 - ❌ No enviar formularios sin validación client-side
 
 ## Seguridad
