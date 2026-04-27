@@ -2,7 +2,6 @@
 
 > CSR · React 19 · React Router 7 · Bun · TypeScript strict · TailwindCSS 4
 >
-> Para contexto de negocio, dominios, glosario y flujos → [`project-context.instructions.md`](.github/instructions/project-context.instructions.md)
 
 ---
 
@@ -36,6 +35,7 @@
 10. **Validar con Zod** antes de enviar formularios → `coding-standards.instructions.md`
 11. **Cero errores** — Verificar con `get_errors` antes de entregar → `verification-checklist.instructions.md`
 12. **Bun, no Node.js** — `bun install`, `bun run`, no npm/yarn/pnpm → `config-setup.instructions.md`
+13. **UI Literals / i18n** — All user-visible text MUST be defined in `src/locales/en/`. Never hardcode UI strings in JSX. Check if literal exists first; create it if not. Language: **English only**. → `i18n.instructions.md`
 
 ---
 
@@ -50,19 +50,10 @@
 | [`state-management.instructions.md`](.github/instructions/state-management.instructions.md) | `src/store/**`, `src/hooks/**`, `src/providers/**` | Zustand, TanStack Query, sessionStorage |
 | [`coding-standards.instructions.md`](.github/instructions/coding-standards.instructions.md) | `src/**/*.ts`, `src/**/*.tsx` | TypeScript, naming, imports, seguridad |
 | [`config-setup.instructions.md`](.github/instructions/config-setup.instructions.md) | `package.json`, `tsconfig.json`, `biome.json`, `build.ts` | Bun, Biome, TS config, scripts |
-| [`ux-design.instructions.md`](.github/instructions/ux-design.instructions.md) | `src/pages/**`, `src/layouts/**` | Patrones UX, estados, accesibilidad |
+| [`ux.instructions.md`](.github/instructions/ux.instructions.md) | `src/pages/**`, `src/layouts/**` | Patrones UX, estados, accesibilidad |
 | [`verification-checklist.instructions.md`](.github/instructions/verification-checklist.instructions.md) | `**` | Checklist post-tarea, comandos |
+| [`i18n.instructions.md`](.github/instructions/i18n.instructions.md) | `src/**` | UI literals, i18n setup, locales structure |
 | [`project-context.instructions.md`](.github/instructions/project-context.instructions.md) | `**` | Contexto de negocio, dominios, glosario, flujos |
-
----
-
-## Archivos de Referencia en `.github/`
-
-| Archivo | Propósito |
-|---|---|
-| `CLAUDE.md` | Reglas específicas para Bun runtime |
-| `project-init-prompt.md` | Template genérico de inicialización (NO aplica a este proyecto) |
-| `copilot-instructions-backup.md` | Backup del archivo original monolítico |
 
 ---
 
@@ -89,14 +80,16 @@ bun run dev            # Dev server (port 3000)
 bun run build          # Build producción
 ```
 
----
 
-## Referencias
+### **Before Completing Task**
+1. ✅ Run all verification commands listed above
+2. ✅ Fix all errors and warnings found
+3. ✅ Review changed files one more time
+4. ✅ Ensure ALL checklist items are completed
+5. ✅ Verify i18n translations are properly created
+6. ✅ Confirm no sensitive data is logged
+7. ✅ Commit changes with descriptive message in English following Conventional Commits
 
-| Documento | Link |
-|---|---|
-| Backoffice Overview | [../Docu/Backoffice/00-BACKOFFICE-OVERVIEW.md](../../Docu/Backoffice/00-BACKOFFICE-OVERVIEW.md) |
-| Development Plan | [../Docu/Backoffice/01-DEVELOPMENT-PLAN.md](../../Docu/Backoffice/01-DEVELOPMENT-PLAN.md) |
-| Project Overview | [../../Docu/00-PROJECT-OVERVIEW.md](../../Docu/00-PROJECT-OVERVIEW.md) |
-| Auth Module | [../../Docu/01-AUTH-REGISTRO.md](../../Docu/01-AUTH-REGISTRO.md) |
-| Security | [../../Docu/11-SEGURIDAD.md](../../Docu/11-SEGURIDAD.md) |
+> **CRITICAL**: Do not mark a task as complete until ALL verification items pass. This is non-negotiable and mandatory for every single task.
+
+> **Mantra**: Prioritize high-performance and clean code. Use modern standards (ES2022+), but favor simplicity and stability over novelty. Strictly avoid deprecated or legacy patterns. For every technical decision, choose the path that minimizes cognitive complexity and optimizes resource usage, ensuring code remains maintainable, robust, and efficient.
