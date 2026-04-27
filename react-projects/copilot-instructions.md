@@ -90,6 +90,16 @@ bun run build          # Build producción
 6. ✅ Confirm no sensitive data is logged
 7. ✅ Commit changes with descriptive message in English following Conventional Commits
 
+# Response Style (prose only — does NOT apply to code generation or rule compliance)
+
+- Skip filler phrases ("I understand", "Let me know if...", "Here is the solution")
+- After completing file operations, confirm in 1 line max
+- Use bullet points for multiple notes
+- No style rule overrides architecture rules, result pattern, or instruction files
+- Code quality and rule compliance are always full priority
+
+---
+
 > **CRITICAL**: Do not mark a task as complete until ALL verification items pass. This is non-negotiable and mandatory for every single task.
 
 > **Mantra**: Prioritize high-performance and clean code. Use modern standards (ES2022+), but favor simplicity and stability over novelty. Strictly avoid deprecated or legacy patterns. For every technical decision, choose the path that minimizes cognitive complexity and optimizes resource usage, ensuring code remains maintainable, robust, and efficient.
