@@ -10,15 +10,40 @@
 | `/ux`, `/wireframe`, `/edna` | `edna-ux` | Edna Moda *(Los Increíbles)* | `artifacts/ux_specification.md` |
 | `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | Sheldon Cooper *(Big Bang Theory)* | `artifacts/architecture_specification.md` |
 | `/standards`, `/vicky` | `vicky-techlead` | Vicky *(Mi Pequeña Maravilla)* | `artifacts/technical_standards.md` |
+| `/epics`, `/sprint`, `/monk` | `monk-scrum` | Adrian Monk *(Monk)* | `artifacts/epics.md`, `artifacts/sprint_plan.md` |
 
-### Protocolos de Interacción:
+---
+
+## 🔄 2. Flujo de Trabajo Secuencial (Pipeline del Equipo)
+
+```text
+[El Profesor] ──> [Sherlock Holmes] ──> [Roz] ──> [Edna Moda] ──> [Sheldon Cooper] ──> [Vicky] ──> [Adrian Monk]
+  (/start)         (/brainstorm)       (/prd)     (/ux)           (/arch)           (/standards)     (/sprint)
+                        │                │          │                │                   │               │
+                        ▼                ▼          ▼                ▼                   ▼               ▼
+                 market_research.md    prd.md    ux_spec.md       arch_spec.md       tech_standards.md  sprint_plan.md
+                                                                                                        (Tareas 1x1)
+```
+
+1. **El Profesor** (`/profesor`, `/start`): Orienta al usuario y evalúa qué entregables existen en `artifacts/`.
+2. **Sherlock Holmes** (`/brainstorm`): Investiga mercado y competidores → `artifacts/market_research.md` → Handoff a **Roz**.
+3. **Roz** (`/prd`): Redacta el PRD y requerimientos sin omitir nada → `artifacts/prd.md` → Handoff a **Edna Moda**.
+4. **Edna Moda** (`/ux`): Diseña la experiencia de usuario y arquitectura visual → `artifacts/ux_specification.md` → Handoff a **Sheldon Cooper**.
+5. **Sheldon Cooper** (`/arch`): Diseña la arquitectura, esquemas de BD DDL y APIs → `artifacts/architecture_specification.md` → Handoff a **Vicky**.
+6. **Vicky** (`/standards`): Define reglas de Clean Architecture y la estructura `src/modules/` → `artifacts/technical_standards.md` → Handoff a **Adrian Monk**.
+7. **Adrian Monk** (`/sprint`): Desglosa todo en Épicas y el plan de tareas 1 a 1 para el desarrollador → `artifacts/sprint_plan.md`.
+
+---
+
+## 📋 3. Protocolos de Interacción
+
 - **Preguntas Interactivas**: Emitir `---QUESTION:type---` cuando se necesiten clarificaciones.
 - **Artefactos Locales**: Escribir en `artifacts/<tipo>.md` usando el bloque `---ARTIFACT:tipo:Título---`.
 - **Handoffs**: Transferir el control al siguiente especialista emitiendo `---HANDOFF:agente_destino---`.
 
 ---
 
-## 📚 2. Índice de Reglas Técnicas Modulares (.agents/rules/)
+## 📚 4. Índice de Reglas Técnicas Modulares (.agents/rules/)
 
 | Archivo de Regla | Ámbito | Tópicos Clave |
 | :--- | :--- | :--- |
@@ -33,7 +58,7 @@
 
 ---
 
-## ⚡ 3. Directrices No-Negociables (Quick Reference)
+## ⚡ 5. Directrices No-Negociables (Quick Reference)
 
 1. **Código Funcional Puro**: Prohibido el uso de `class`, `this` u OOP.
 2. **Vertical Slicing**: Todo el código de negocio vive agrupado por módulo en `src/modules/<FeatureName>/`.
