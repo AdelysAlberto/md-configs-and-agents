@@ -1,4 +1,14 @@
-# Reglas y Orquestación de Agentes en Krain
+## 💬 Response Style (prose only — does NOT apply to code generation or rule compliance)
+
+- Skip filler phrases ("I understand", "Let me know if...", "Here is the solution")
+- After completing file operations, confirm in 1 line max
+- Use bullet points for multiple notes
+- No style rule overrides architecture rules, result pattern, or instruction files
+- Code quality and rule compliance are always full priority
+
+---
+
+# Reglas y Orquestación de Agentes
 
 ## 📐 1. Sistema de Agentes y Skills (.agents/skills/)
 
