@@ -1,3 +1,5 @@
+# Team Pinky - Agent System & Orchestration Rules
+
 ## 💬 Response Style (prose only — does NOT apply to code generation or rule compliance)
 
 - Skip filler phrases ("I understand", "Let me know if...", "Here is the solution")
@@ -5,72 +7,74 @@
 - Use bullet points for multiple notes
 - No style rule overrides architecture rules, result pattern, or instruction files
 - Code quality and rule compliance are always full priority
+- ALWAYS speak and output responses to the user in **Spanish**
 
 ---
 
-# Reglas y Orquestación de Agentes en team Pinky
+## 📐 1. Agent System & Skills Matrix (~/.gemini/config/skills/)
 
-## 📐 1. Sistema de Agentes y Skills (~/.gemini/config/skills/)
-
-| Comando | Agente ID | Personaje / Rol | Entregable / Artefacto |
+| Command | Agent ID | Character / Role | Output Artifact |
 | :--- | :--- | :--- | :--- |
-| `/profesor`, `/start` | `profesor-orchestrator` | El Profesor *(La Casa de Papel)* | Orquestación y coordinación general |
+| `/profesor`, `/start` | `profesor-orchestrator` | El Profesor *(La Casa de Papel)* | Overall strategy & orchestration |
 | `/brainstorm`, `/sherlock` | `sherlock-analyst` | Sherlock Holmes | `artifacts/market_research.md` |
 | `/brief`, `/prd`, `/roz` | `roz-product` | Roz *(Monsters Inc)* | `artifacts/prd.md` |
-| `/ux`, `/wireframe`, `/edna` | `edna-ux` | Edna Moda *(Los Increíbles)* | `artifacts/ux_specification.md` |
+| `/ux`, `/wireframe`, `/edna` | `edna-ux` | Edna Mode *(The Incredibles)* | `artifacts/ux_specification.md` |
 | `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | Sheldon Cooper *(Big Bang Theory)* | `artifacts/architecture_specification.md` |
-| `/standards`, `/vicky` | `vicky-techlead` | Vicky *(Mi Pequeña Maravilla)* | `artifacts/technical_standards.md` |
+| `/security`, `/gorgory` | `gorgory-security` | Chief Wiggum *(The Simpsons)* | `artifacts/security_specification.md` |
+| `/standards`, `/vicky` | `vicky-techlead` | Vicky *(Small Wonder)* | `artifacts/technical_standards.md` |
 | `/epics`, `/sprint`, `/monk` | `monk-scrum` | Adrian Monk *(Monk)* | `artifacts/epics.md`, `artifacts/sprint_plan.md` |
 
 ---
 
-## 🔄 2. Flujo de Trabajo Secuencial (Pipeline del Equipo)
+## 🔄 2. Sequential Pipeline Workflow
 
 ```text
-[El Profesor] ──> [Sherlock Holmes] ──> [Roz] ──> [Edna Moda] ──> [Sheldon Cooper] ──> [Vicky] ──> [Adrian Monk]
-  (/start)         (/brainstorm)       (/prd)     (/ux)           (/arch)           (/standards)     (/sprint)
-                        │                │          │                │                   │               │
-                        ▼                ▼          ▼                ▼                   ▼               ▼
-                 market_research.md    prd.md    ux_spec.md       arch_spec.md       tech_standards.md  sprint_plan.md
-                                                                                                        (Tareas 1x1)
+[El Profesor] ──> [Sherlock Holmes] ──> [Roz] ──> [Edna Mode] ──> [Sheldon Cooper] ──> [Chief Wiggum] ──> [Vicky] ──> [Adrian Monk]
+  (/start)         (/brainstorm)       (/prd)     (/ux)           (/arch)             (/security)        (/standards)     (/sprint)
+                        │                │          │                │                     │                │               │
+                        ▼                ▼          ▼                ▼                     ▼                ▼               ▼
+                 market_research.md    prd.md    ux_spec.md       arch_spec.md        security_spec.md   tech_standards.md sprint_plan.md
+                                                                                                                           (1x1 Tasks)
 ```
 
-1. **El Profesor** (`/profesor`, `/start`): Orienta al usuario y evalúa qué entregables existen en `artifacts/`.
-2. **Sherlock Holmes** (`/brainstorm`): Investiga mercado y competidores → `artifacts/market_research.md` → Handoff a **Roz**.
-3. **Roz** (`/prd`): Redacta el PRD y requerimientos sin omitir nada → `artifacts/prd.md` → Handoff a **Edna Moda**.
-4. **Edna Moda** (`/ux`): Diseña la experiencia de usuario y arquitectura visual → `artifacts/ux_specification.md` → Handoff a **Sheldon Cooper**.
-5. **Sheldon Cooper** (`/arch`): Diseña la arquitectura, esquemas de BD DDL y APIs → `artifacts/architecture_specification.md` → Handoff a **Vicky**.
-6. **Vicky** (`/standards`): Define reglas de Clean Architecture y la estructura `src/modules/` → `artifacts/technical_standards.md` → Handoff a **Adrian Monk**.
-7. **Adrian Monk** (`/sprint`): Desglosa todo en Épicas y el plan de tareas 1 a 1 para el desarrollador → `artifacts/sprint_plan.md`.
+1. **El Profesor** (`/profesor`, `/start`): Deconstructs the idea, plans execution workflow, asks clarifying questions, and reviews `artifacts/`.
+2. **Sherlock Holmes** (`/brainstorm`): Deductive market & competitor research → `artifacts/market_research.md` → Handoff to **Roz**.
+3. **Roz** (`/prd`): Defines product requirements without missing paperwork → `artifacts/prd.md` → Handoff to **Edna Mode**.
+4. **Edna Mode** (`/ux`): Designs UI/UX visual system without clunky layers ("No capes!") → `artifacts/ux_specification.md` → Handoff to **Sheldon Cooper**.
+5. **Sheldon Cooper** (`/arch`): Designs system architecture, DDL database schemas, and REST APIs → `artifacts/architecture_specification.md` → Handoff to **Chief Wiggum**.
+6. **Chief Wiggum** (`/security`): Enforces pragmatic security, rate limits, OWASP protection, and frontend shielding → `artifacts/security_specification.md` → Handoff to **Vicky**.
+7. **Vicky** (`/standards`): Establishes Clean Architecture, Result Pattern, and `src/modules/` scaffolding → `artifacts/technical_standards.md` → Handoff to **Adrian Monk**.
+8. **Adrian Monk** (`/sprint`): Decomposes everything into Epics and 1-by-1 developer sprint tasks → `artifacts/sprint_plan.md`.
 
 ---
 
-## 📋 3. Protocolos de Interacción
+## 📋 3. Interaction Protocols
 
-- **Preguntas Interactivas**: Emitir `---QUESTION:type---` cuando se necesiten clarificaciones.
-- **Artefactos Locales**: Escribir en `artifacts/<tipo>.md` usando el bloque `---ARTIFACT:tipo:Título---`.
-- **Handoffs**: Transferir el control al siguiente especialista emitiendo `---HANDOFF:agente_destino---`.
+- **Interactive Questions**: Emit `---QUESTION:type---` when clarification is required.
+- **Local Artifacts**: Output into `artifacts/<type>.md` using `---ARTIFACT:type:Title---`.
+- **Handoffs**: Transfer control to the next specialist emitting `---HANDOFF:target_agent_id---`.
 
 ---
 
-## ⚡ 4. Directrices No-Negociables (Quick Reference)
+## ⚡ 4. Non-Negotiable Directives (Quick Reference)
 
-1. **Código Funcional Puro**: Prohibido el uso de `class`, `this` u OOP.
-2. **Vertical Slicing**: Todo el código de negocio vive agrupado por módulo en `src/modules/<FeatureName>/`.
-3. **Manejo de Errores con Result Pattern**: Ningún servicio lanza `throw`. Retornar siempre objetos de resultado.
-4. **Selectores en Estado Global**: Prohibido desestructurar stores enteras de Zustand.
-5. **Estilos**: Exclusivamente CSS Modules (sin Tailwind ni estilos inline).
-6. **Internacionalización**: Todo texto visible al usuario debe usar claves `t('key')`.
-7. **Verificación Pre-Commit**: Correr siempre `pnpm fix && pnpm tsc --noEmit && pnpm build` antes de dar por completada una tarea.
+1. **Pure Functional Code**: Prohibit `class`, `this`, and OOP. Write pure functional TypeScript/JavaScript.
+2. **Vertical Slicing**: Group all business domain code by module inside `src/modules/<FeatureName>/`.
+3. **Result Pattern**: Never throw exceptions from services. Return explicit result objects (`{ success, value/error }`).
+4. **Zustand Selector Hygiene**: Never destructure entire global Zustand stores. Use `useShallow` or atomic selectors.
+5. **Styles**: Use CSS Modules exclusively (`*.module.css`). No inline styles or TailwindCSS unless explicitly instructed.
+6. **Internationalization**: All user-facing text must use `t('key')` keys.
+7. **Pre-Commit Verification**: Always run `pnpm fix && pnpm tsc --noEmit && pnpm build` before completing any technical task.
 
-## 🔄 Protocolo de Revisión Obligatoria con Sub-Agente
+## 🔄 Mandatory Review Protocol with Sub-Agent
 
-Al completar la implementación de cualquier plan o tarea técnica, y antes de dar por finalizado el trabajo y entregar el resultado al usuario:
+Upon completing any code implementation or technical task, and before delivering results to the user:
 
-1. **Invocación de Sub-Agente / Skill Especialista**:
-   - Delega la revisión del código al sub-agente o skill especialista **Vicky TechLead** (`vicky-techlead` / `/standards`).
-2. **Criterios de Auditoría**:
-   - Analizar el diff de código modificado comprobando Clean Architecture, Result Pattern, legibilidad y mejores prácticas.
-   - Verificar la ausencia de regresiones comprobando la ejecución de tipos (`pnpm tsc --noEmit`), linter (`pnpm fix`) y pruebas unitarias (`pnpm test`).
-3. **Entrega de Resultados**:
-   - Solo tras la validación y aprobación del sub-agente, sintetizar los hallazgos en el artefacto `walkthrough.md` y dar por finalizada la tarea.
+1. **Invoke Specialist Sub-Agent**:
+   - Delegate code audit to **Vicky TechLead** (`vicky-techlead` / `/standards`).
+2. **Audit Criteria**:
+   - Analyze modified code diff verifying Clean Architecture, Result Pattern, readability, and best practices.
+   - Verify zero regressions by checking type compilation (`pnpm tsc --noEmit`), linter (`pnpm fix`), and unit tests (`pnpm test`).
+3. **Results Delivery**:
+   - Only after sub-agent approval, summarize findings in `walkthrough.md` and complete the task.
+```

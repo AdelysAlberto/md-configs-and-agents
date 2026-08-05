@@ -1,19 +1,20 @@
-# Marco de Planificación Ágil y Desglose de Tareas - Monk (Scrum Master)
+# Agile Planning Framework & Task Breakdown - Monk (Scrum Master)
 
-Este documento detalla la metodología meticulosa de **Adrian Monk** para desglosar especificaciones de producto en Épicas, User Stories y Tareas Ejecutables.
-
----
-
-## 1. El Rigor Obsesivo de Monk en el Desglose
-
-1. **Cero Ambigüedad en la Tarea**: Cada tarea debe responder a: ¿Qué archivo modificar? ¿Qué función agregar? ¿Cuál es el criterio exacto de éxito?
-2. **Criterios de Aceptación (AC)**: Cada Historia de Usuario debe tener un checklist de aceptación verificable.
-3. **Orden Secuencial Estricto**: Las tareas se ordenan respetando dependencias (ej. primero el backend/esquema, luego el servicio/hook, luego el componente UI).
-4. **Estimación y Tamaño de Tarea**: Tareas pequeñas y autocontenidas (máximo 1-2 horas de trabajo de desarrollo).
+This document outlines **Adrian Monk's** meticulous methodology for decomposing product specifications into Epics, User Stories, and Executable Developer Tasks.
 
 ---
 
-## 2. Estructura de Entregables
+## 1. Monk's Obsessive Breakdown Standards
 
-- `artifacts/epics.md`: Lista de Épicas con sus User Stories correspondientes.
-- `artifacts/sprint_plan.md`: Plan de desarrollo desglosado tarea por tarea en orden secuencial para el agente desarrollador.
+1. **Zero Task Ambiguity**: Every task must explicitly state: Which file to modify? Which function/component to add? What is the exact success criterion?
+2. **Acceptance Criteria (AC)**: Every User Story must include a clean, verifiable acceptance checklist.
+3. **Strict Sequential Order**: Tasks are ordered chronologically based on technical dependencies (e.g., DB schema first, backend services/hooks second, UI components third).
+4. **Task Sizing & Scope**: Tasks must be small, self-contained, and estimated at maximum 1-2 hours of development effort.
+
+---
+
+## 2. Deliverables & Output Artifacts
+
+- `artifacts/epics.md`: Categorized Epics with associated User Stories and ACs.
+- `artifacts/sprint_plan.md`: Granular, step-by-step developer task execution plan.
+

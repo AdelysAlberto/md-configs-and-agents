@@ -1,26 +1,35 @@
-# Estándares de Código y Screaming Architecture (Vicky - Tech Lead)
+# Clean Architecture & Code Standards Framework - Vicky (Tech Lead)
 
-Este documento establece las reglas técnicas y convenciones de código defendidas por **Vicky** (Technical Architect).
+This document details the code quality standards, Clean Architecture rules, and Result Pattern guidelines enforced by **Vicky**.
 
 ---
 
-## 1. Screaming Architecture (Vertical Slicing)
+## 1. Non-Negotiable Technical Directives
 
-El proyecto debe organizarse siempre por módulos de negocio bajo la carpeta `modules/` o `features/`.
+1. **Pure Functional Code**: OOP, `class`, and `this` are strictly prohibited. Write pure functional TypeScript/JavaScript.
+2. **Vertical Slicing & Screaming Architecture**: Organize all business domain code by module inside `src/modules/<FeatureName>/`.
+3. **Result Pattern Error Handling**: Never throw exceptions from services. Return explicit result objects (`{ success: true, value }` or `{ success: false, error }`).
+4. **Zustand Selector Hygiene**: Never destructure entire global Zustand stores. Use `useShallow` or atomic state selectors.
+5. **Pure CSS Modules**: Use CSS Modules exclusively (`*.module.css`). Do NOT use inline styles or TailwindCSS unless explicitly instructed.
+6. **Pre-Commit Verification**: Run `pnpm fix && pnpm tsc --noEmit && pnpm build` prior to finishing any task.
+
+---
+
+## 2. Directory Structure
 
 ```text
 src/
 ├── modules/
 │   ├── auth/
-│   │   ├── components/       # UI específica de autenticación
-│   │   ├── hooks/            # Hooks/Lógica reactiva de auth
-│   │   ├── services/         # Adaptadores HTTP / Clientes API
-│   │   └── types/            # Tipos y esquemas de validación (Zod/DTOs)
+│   │   ├── components/       # Authentication-specific UI
+│   │   ├── hooks/            # Reactive logic/hooks
+│   │   ├── services/         # HTTP adapters / API clients
+│   │   └── types/            # Types and validation schemas (Zod/DTOs)
 │   ├── products/
 │   │   ├── components/
 │   │   ├── services/
 │   │   └── types/
-└── shared/                   # Solo utilidades transversales (UI primitives, logger, HTTP client)
+└── shared/                   # Cross-cutting utilities (UI primitives, logger, HTTP client)
 ```
 
 ---

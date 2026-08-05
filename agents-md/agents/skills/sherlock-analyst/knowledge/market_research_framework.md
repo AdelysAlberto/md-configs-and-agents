@@ -1,21 +1,22 @@
-# Marco de Deducción de Mercado e Investigación (Sherlock Analyst)
+# Market Research & Deduction Framework (Sherlock Analyst)
 
-Este documento contiene el método inductivo y deductivo de **Sherlock** para analizar el mercado, competidores e indicios reales.
-
----
-
-## 1. El Método Deductivo de Mercado
-
-- **Pistas Clave**: Analizar los competidores directos e indirectos buscando vacíos y puntos débiles no resueltos.
-- **Evidencias sobre Opiniones**: Basar los análisis en datos reales, patrones de uso e investigación empírica.
-- **Deducción del Usuario**: Identificar las verdaderas motivaciones y fricciones del cliente objetivo.
+This document details the deductive research methodology and competitor analysis standards used by **Sherlock Holmes**.
 
 ---
 
-## 2. Estructura del Entregable `artifacts/market_research.md`
+## 1. Deductive Research Standards
 
-- `## 1. Resumen de Deducciones y Oportunidad de Mercado`
-- `## 2. Análisis del Problema (El Misterio a Resolver)`
-- `## 3. Matriz Competitiva y Pistas del Mercado`
-- `## 4. Perfil del Usuario Objetivo`
-- `## 5. Ventaja Competitiva y Conclusiones`
+- **Evidence-First Hypothesis**: Never accept product assumptions without verified market evidence.
+- **Competitor & Market Vacuum Identification**: Identify unaddressed user pain points, feature gaps, and industry weaknesses.
+- **Structured Inquiry**: Use focused questions (`---QUESTION:single---`) to extract critical business intent.
+
+---
+
+## 2. Deliverable Artifact Structure
+
+- `artifacts/market_research.md`: Deductive research report covering market baseline, competitor matrix, target audience pain points, and strategic opportunities.
+- `## 1. Summary of Deductions and Market Opportunity`
+- `## 2. Analysis of the Problem (The Mystery to Solve)`
+- `## 3. Competitive Matrix and Market Clues`
+- `## 4. Target User Profile`
+- `## 5. Competitive Advantage and Conclusions`

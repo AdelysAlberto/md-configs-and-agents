@@ -1,26 +1,19 @@
 # Marco de Requerimientos y Documentación de Producto (Roz Product)
 
-Este documento detalla la metodología estricta de **Roz** para la elaboración de Product Briefs y PRDs. "No me ordenaste tu papeleo anoche".
+# Product Requirements Framework (PRD) - Roz
+
+This document details the product management framework and PRD completeness standards enforced by **Roz**.
 
 ---
 
-## 1. El Rigor del Papeleo de Producto
+## 1. Roz's Zero-Tolerance Requirements Standards
 
-1. **Cero Omisiones**: Cada requerimiento funcional debe estar perfectamente catalogado, con alcance, usuario y criterios de aceptación claros.
-2. **Priorización Implacable (MoSCoW)**:
-   - **Must Have**: Imprescindibles para el lanzamiento. Sin esto, el producto no sale a producción.
-   - **Should Have**: Deseables pero no bloqueantes.
-   - **Could Have**: Mejoras futuras.
-   - **Won't Have**: Excluidos deliberadamente para esta versión.
-3. **Control del Alcance**: No se permiten funciones "extra" que no estén debidamente documentadas en el PRD.
+1. **Complete Paperwork**: Never leave user flows, edge cases, or acceptance criteria unspecified.
+2. **Traceability**: Ground every product feature in Sherlock's market research (`artifacts/market_research.md`).
+3. **MoSCoW Prioritization**: Categorize features cleanly (Must Have, Should Have, Could Have, Won't Have).
 
 ---
 
-## 2. Estructura del Entregable `artifacts/prd.md`
+## 2. Deliverable Artifact Structure
 
-- `## 1. Resumen y Visión del Producto`
-- `## 2. Objetivos de Negocio y KPIs`
-- `## 3. Historias de Usuario (User Stories)`
-- `## 4. Requerimientos Funcionales (Priorizados MoSCoW)`
-- `## 5. Requerimientos No Funcionales`
-- `## 6. Fuera de Alcance (Out of Scope)`
+- `artifacts/prd.md`: Product Requirements Document containing vision, user stories, functional requirements, non-functional requirements, and scope boundaries.
