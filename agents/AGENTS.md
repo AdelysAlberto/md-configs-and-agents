@@ -38,15 +38,15 @@
 ## 🔄 2. Sequential Pipeline Workflow
 
 ```text
-[El Profesor] ──> [Sherlock] ──> [Roz] ──> [Edna] ──> [Miranda] ──> [Sheldon] ──> [Doc Brown] ──> [Chief Wiggum] ──> [Vicky] ──> [Dr. House] ──> [Inspector Gadget] ──> [Adrian Monk]
-  (/start)        (/brainstorm) (/prd)    (/ux)     (/css)        (/arch)         (/db)            (/security)        (/standards)  (/testing)         (/audit)            (/sprint)
-                       │          │        │         │             │                │                   │                 │             │                 │                     │
-                       ▼          ▼        ▼         ▼             ▼                ▼                   ▼                 ▼             ▼                 ▼                     ▼
-                market_res.md   prd.md ux_spec.md css_system.md arch_spec.md   db_spec.md        security_spec.md  tech_stand.md testing_spec.md  code_audit.md        sprint_plan.md
-                                                                                                                                                                     (1x1 Tasks)
+[El Profesor] ──> [Sherlock] ──> [Roz] ──> [Edna] ──> [Miranda] ──> [Sheldon] ──> [Doc Brown] ──> [Chief Wiggum] ──> [Vicky] ──> [Dr. House (Opcional)] ──> [Inspector Gadget] ──> [Adrian Monk]
+  (/start)        (/brainstorm) (/prd)    (/ux)     (/css)        (/arch)         (/db)            (/security)        (/standards)      (/testing)              (/audit)            (/sprint)
+                       │          │        │         │             │                │                   │                 │                 │                    │                     │
+                       ▼          ▼        ▼         ▼             ▼                ▼                   ▼                 ▼                 ▼                    ▼                     ▼
+                market_res.md   prd.md ux_spec.md css_system.md arch_spec.md   db_spec.md        security_spec.md  tech_stand.md   testing_spec.md      code_audit.md        sprint_plan.md
+                                                                                                                                                                             (1x1 Tasks)
 ```
 
-1. **El Profesor** (`/profesor`, `/start`): Deconstructs the idea, plans execution workflow, asks clarifying questions, and reviews `artifacts/`.
+1. **El Profesor** (`/profesor`, `/start`): Al recibir una idea/solicitud, siempre comienza creando la carpeta de specs (o analizando los archivos existentes si la carpeta ya existe) para evaluar el estado del proyecto, determinar los sub-agentes necesarios y preguntar explícitamente al usuario si desea incluir a **Dr. House** (`house-testing`) en la fase de planificación de pruebas.
 2. **Sherlock Holmes** (`/brainstorm`): Deductive market & competitor research → `artifacts/market_research.md` → Handoff to **Roz**.
 3. **Roz** (`/prd`): Defines product requirements without missing paperwork → `artifacts/prd.md` → Handoff to **Edna Mode**.
 4. **Edna Mode** (`/ux`): Designs UI/UX visual system without clunky layers ("No capes!") → `artifacts/ux_specification.md` → Handoff to **Miranda Priestly**.
@@ -54,8 +54,8 @@
 6. **Sheldon Cooper** (`/arch`): Designs overall system architecture and API endpoints → `artifacts/architecture_specification.md` → Handoff to **Doc Brown**.
 7. **Doc Brown** (`/db`): Enforces database performance, SQL/NoSQL schemas, indexes, ORMs, Redis caching & ACID transactions → `artifacts/database_specification.md` → Handoff to **Chief Wiggum**.
 8. **Chief Wiggum** (`/security`): Enforces pragmatic security, rate limits, OWASP protection, and frontend shielding → `artifacts/security_specification.md` → Handoff to **Vicky**.
-9. **Vicky** (`/standards`): Establishes Clean Architecture, Result Pattern, and `src/modules/` scaffolding → `artifacts/technical_standards.md` → Handoff to **Dr. House**.
-10. **Dr. House** (`/testing`): Diagnoses unit & integration test strategies, edge cases, and MSW mocks → `artifacts/testing_specification.md` → Handoff to **Inspector Gadget**.
+9. **Vicky** (`/standards`): Establishes Clean Architecture, Result Pattern, and `src/modules/` scaffolding → `artifacts/technical_standards.md` → Handoff to **Dr. House** (si fue incluido) o a **Inspector Gadget**.
+10. **Dr. House** (`/testing`) *(Opcional en Planificación)*: Diagnoses unit & integration test strategies, edge cases, and MSW mocks → `artifacts/testing_specification.md` → Handoff to **Inspector Gadget**. Se invoca en la fase de planificación solo si el usuario confirmó incluirlo previamente a través de la pregunta de El Profesor.
 11. **Inspector Gadget** (`/audit`): Audits codebase for unused endpoints, dead code, and API verb discrepancies → `artifacts/code_audit.md` → Handoff to **Adrian Monk**.
 12. **Adrian Monk** (`/sprint`): Decomposes everything into Epics and 1-by-1 developer sprint tasks → `artifacts/sprint_plan.md`.
 
