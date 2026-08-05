@@ -9,27 +9,105 @@ applyTo: "*.json, *.ts, tsconfig*.json, vite.config.ts, eslint.config.js, packag
 
 # Config & Setup
 
-## Tech Stack Versions
+## Tech Stack Versions & Scaffolding Rule
 
-| Tool | Version |
+- **Always Install Latest Stable Versions (`@latest`)**: When scaffolding or creating a new project, NEVER hardcode outdated or static version numbers into `package.json`. Always use `@latest` or standard CLI generators (e.g. `pnpm create astro@latest`, `npm create vite@latest`).
+- **Dynamic Dependency Resolution**: Run `pnpm add <package>@latest` or `pnpm add -D <package>@latest` to resolve current stable packages at runtime.
+
+| Tool | Version Strategy |
 |---|---|
-| React | 18.2.0 |
-| TypeScript | 5.7.2 |
-| Vite | 5.0.10 |
-| React Router | 6.26.1 |
-| Zustand | 4.5.4 |
-| TanStack Query | 5.79.0 |
-| Zod | 3.24.1 |
-| ESLint | 9.18.0 |
-| Vitest | 3.2.0 |
-| Axios | 1.9.0 |
-| i18next | 23.7.11 |
-| Node.js | 20+ |
-| Package manager | pnpm |
+| React / React DOM | `@latest` (v19+) |
+| TypeScript | `@latest` (v5.x+) |
+| Vite / Astro | `@latest` |
+| State & Query (Zustand, React Query) | `@latest` |
+| Validation & Testing (Zod, Vitest) | `@latest` |
+| Node.js | `>=20.0.0` (LTS) |
+| Package Manager | `pnpm` (`@latest`) |
 
 ## Linter & Formatter (Biome)
 
-This project uses **Biome** as the primary linter and formatter.
+This project uses **Biome** (`@biomejs/biome@latest`) as the primary linter and formatter.
+
+When initializing a project, ALWAYS generate `biome.json` using this default template:
+
+```json
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.5/schema.json",
+  "files": {
+    "includes": ["src/**/*", "!**/*.svg", "!dist/**/*", "!node_modules/**/*"]
+  },
+  "css": {
+    "parser": {
+      "cssModules": true
+    }
+  },
+  "formatter": {
+    "attributePosition": "multiline",
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "asNeeded",
+      "bracketSpacing": false,
+      "jsxQuoteStyle": "double",
+      "quoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "es5"
+    },
+    "globals": [
+      "describe", "it", "test", "expect", "beforeEach", "afterEach",
+      "beforeAll", "afterAll", "jest", "vi", "vitest", "process", "meta"
+    ]
+  },
+  "json": {
+    "formatter": {
+      "trailingCommas": "none"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "a11y": {
+        "noLabelWithoutControl": "off",
+        "noStaticElementInteractions": "off",
+        "useFocusableInteractive": "off",
+        "useKeyWithClickEvents": "off",
+        "useSemanticElements": "off",
+        "useValidAnchor": "off",
+        "noSvgWithoutTitle": "off"
+      },
+      "complexity": {
+        "noForEach": "off",
+        "noImportantStyles": "off"
+      },
+      "correctness": {
+        "noUndeclaredVariables": "error",
+        "noUnusedImports": "error",
+        "noUnusedVariables": "warn",
+        "useExhaustiveDependencies": "off",
+        "useImportExtensions": "off",
+        "useUniqueElementIds": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "style": {
+        "noDescendingSpecificity": "off",
+        "noInferrableTypes": "off",
+        "useImportType": "error"
+      }
+    }
+  },
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
+}
+```
 
 Config file: `biome.json`
 
