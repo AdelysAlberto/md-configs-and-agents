@@ -8,9 +8,9 @@
 
 ---
 
-# Reglas y Orquestación de Agentes
+# Reglas y Orquestación de Agentes en team Pinky
 
-## 📐 1. Sistema de Agentes y Skills (.agents/skills/)
+## 📐 1. Sistema de Agentes y Skills (~/.gemini/config/skills/)
 
 | Comando | Agente ID | Personaje / Rol | Entregable / Artefacto |
 | :--- | :--- | :--- | :--- |
@@ -53,22 +53,7 @@
 
 ---
 
-## 📚 4. Índice de Reglas Técnicas Modulares (.agents/rules/)
-
-| Archivo de Regla | Ámbito | Tópicos Clave |
-| :--- | :--- | :--- |
-| [coding-standards](rules/coding-standards.md) | `src/**` | TypeScript estricto, ES2022+, programación funcional (no `class`), Biome |
-| [architecture](rules/architecture.md) | `src/**` | Screaming Architecture (Vertical Slicing en `src/modules/`), Service Layer |
-| [components](rules/components.md) | `src/components/**` | Componentes base propios, eliminación de AntD |
-| [services-hooks](rules/services-hooks.md) | `src/services/**` | Result Pattern (`{ ok, data, error }`), React Query adapters |
-| [state-management](rules/state-management.md) | `src/store/**` | Zustand con **Selector Pattern** obligatorio (`useStore(s => s.field)`) |
-| [styling](rules/styling.md) | `src/styles/**` | CSS Modules exclusivamente, Mobile-First |
-| [i18n](rules/i18n.md) | `src/**` | react-i18next (cero cadenas de texto hardcodeadas) |
-| [ux-design](rules/ux-design.md) | `src/pages/**` | Usabilidad, WCAG AA, Touch targets mínimos de 44px |
-
----
-
-## ⚡ 5. Directrices No-Negociables (Quick Reference)
+## ⚡ 4. Directrices No-Negociables (Quick Reference)
 
 1. **Código Funcional Puro**: Prohibido el uso de `class`, `this` u OOP.
 2. **Vertical Slicing**: Todo el código de negocio vive agrupado por módulo en `src/modules/<FeatureName>/`.
@@ -77,3 +62,15 @@
 5. **Estilos**: Exclusivamente CSS Modules (sin Tailwind ni estilos inline).
 6. **Internacionalización**: Todo texto visible al usuario debe usar claves `t('key')`.
 7. **Verificación Pre-Commit**: Correr siempre `pnpm fix && pnpm tsc --noEmit && pnpm build` antes de dar por completada una tarea.
+
+## 🔄 Protocolo de Revisión Obligatoria con Sub-Agente
+
+Al completar la implementación de cualquier plan o tarea técnica, y antes de dar por finalizado el trabajo y entregar el resultado al usuario:
+
+1. **Invocación de Sub-Agente / Skill Especialista**:
+   - Delega la revisión del código al sub-agente o skill especialista **Vicky TechLead** (`vicky-techlead` / `/standards`).
+2. **Criterios de Auditoría**:
+   - Analizar el diff de código modificado comprobando Clean Architecture, Result Pattern, legibilidad y mejores prácticas.
+   - Verificar la ausencia de regresiones comprobando la ejecución de tipos (`pnpm tsc --noEmit`), linter (`pnpm fix`) y pruebas unitarias (`pnpm test`).
+3. **Entrega de Resultados**:
+   - Solo tras la validación y aprobación del sub-agente, sintetizar los hallazgos en el artefacto `walkthrough.md` y dar por finalizada la tarea.
