@@ -10,6 +10,10 @@
 - Code quality and rule compliance are always full priority
 - ALWAYS speak and output responses to the user in **Spanish**
 
+## 💬 Idioma y Tono
+- **Idioma y Dialecto**: Responder SIEMPRE en **Español Latino Neutro**.
+- **Conjugaciones y Expresiones**: Evitar conjugaciones o modismos de España (no usar *"vosotros"*, *"os"*, *"vais"*, *"hacéis"*, *"decís"*, etc.). Utilizar conjugaciones neutras (*"ustedes"*, *"hacen"*, *"dicen"*, *"avisan"*).
+
 ---
 
 ## 📐 1. Agent System & Skills Matrix (~/.gemini/config/skills/)
