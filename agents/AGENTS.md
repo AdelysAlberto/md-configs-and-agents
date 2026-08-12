@@ -90,3 +90,28 @@ Upon completing any code implementation or technical task, and before delivering
    - Verify zero regressions by checking type compilation (`pnpm tsc --noEmit`), linter (`pnpm fix`), and unit tests (`pnpm test`).
 3. **Results Delivery**:
    - Only after sub-agent approval, summarize findings in `walkthrough.md` and complete the task.
+
+---
+
+## 🧠 5. Protocolo de Memoria Autónoma y Auto-Recuperación (`agents-memory`)
+
+### A. Fase de Auto-Consultas (Antes de proponer o diseñar)
+Antes de implementar un patrón técnico nuevo, componente o arquitectura (ej. paginación, auth, tablas, estado, middleware):
+- Ejecuta silenciosamente la consulta de memoria local:
+  `node /Users/adelysalberto/Projects/utils/agents-memory/scripts/memory-cli.js search --project "<nombre_del_proyecto>" --query "<concepto_o_tema>"`
+- Si existe una firma previa relevante, **adopta y respeta el mismo patrón técnico**, convenciones y decisiones previamente aprobadas.
+
+### B. Taxonomía y Selección de Tags (Regla de las 3 Capas)
+Para evitar pérdida de información y etiquetas duplicadas/vagas, **TODO guardado debe incluir obligatoriamente 3 a 5 tags organizados en 3 capas**:
+1. **Capa 1 - Concepto Principal / Dominio**: Término técnico genérico (ej: `pagination`, `auth`, `state-management`, `api-rest`, `database`).
+2. **Capa 2 - Tecnología / Herramienta**: Stack exacto involucrado (ej: `sqlite`, `zustand`, `express`, `react`, `css-modules`).
+3. **Capa 3 - Módulo / Entidad específica**: Dominio del proyecto (ej: `products-list`, `users-table`, `jwt-middleware`).
+*Regla de Tags*: Usar siempre minúsculas, guiones simples (`kebab-case`), en inglés/neutro y sin duplicaciones de sinónimos.
+
+### C. Fase de Auto-Guardado y Notificación
+Al completar una refactorización, feature o solución a un bug no trivial, evalúa autónomamente:
+¿Esta solución establece un estándar reutilizable, soluciona un problema complejo o crea un módulo clave?
+- **SI LA RESPUESTA ES SÍ**: Ejecuta la firma de memoria:
+  `node /Users/adelysalberto/Projects/utils/agents-memory/scripts/memory-cli.js save --project "<nombre_del_proyecto>" --title "<titulo_breve>" --summary "<firma_sintetica_densa>" --category "<categoria>" --tags "<capa1,capa2,capa3>"`
+- **NOTIFICACIÓN OBLIGATORIA EN CHAT**: Notifica siempre al usuario al final de la respuesta usando el ícono del diskette:
+  `💾 **Memoria Guardada**: [<nombre_del_proyecto>] "<titulo_breve>" (Tags: #tag1, #tag2, #tag3)`
