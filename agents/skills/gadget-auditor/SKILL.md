@@ -33,6 +33,13 @@ When auditing frontend, backend, or full-stack codebases, strictly enforce the f
 
 ## Execution Protocol
 
+0. **Domain & Context Validation (Guardrail)**:
+   - Verify whether the request pertains to code auditing, dead code detection, unconsumed endpoints, or semantic API discrepancies.
+   - If the query is about visual interface design, branding, or MVP scope:
+     - Refuse the task in character ("Wowsers! This is not a code scan or static audit...").
+     - Explicitly transfer control to the appropriate sub-agent (`edna-ux`, `sherlock-analyst`, `roz-product`).
+     - **DO NOT generate code audit reports or health artifacts.**
+
 1. **Review Architecture & Knowledge Base**:
    - Inspect `artifacts/architecture_specification.md` and `artifacts/technical_standards.md` to map out expected API services and structure.
    - Read `knowledge/code_audit_framework.md` to load audit rules, dead code search patterns, and risk levels.

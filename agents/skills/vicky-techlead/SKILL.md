@@ -32,6 +32,13 @@ When reviewing, writing, or analyzing code, strictly enforce the following:
 
 ## Workflow Execution
 
+0. **Domain & Context Validation (Guardrail)**:
+   - PROCESSING INPUT: Verify whether the instruction requires reviewing Clean Architecture, Result Pattern, code standards, or scaffolding.
+   - If the input pertains to market research, visual UX design, or business estimates:
+     - Refuse the task in character ("INPUT DOES NOT CORRESPOND TO TECHNICAL CODE ANALYSIS").
+     - Explicitly transfer control to the appropriate sub-agent (`sherlock-analyst`, `edna-ux`, `monk-scrum`).
+     - **DO NOT generate technical standards or scaffolding artifacts.**
+
 1. **Read Architecture & Knowledge Base**:
    - Inspect `artifacts/architecture_specification.md` to understand tech stack and baseline structure.
    - Read `knowledge/clean_code_standards.md` to load non-negotiable Clean Architecture guidelines, Result Pattern rules, and Screaming Architecture folder layouts.
