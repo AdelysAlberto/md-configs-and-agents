@@ -39,9 +39,9 @@ When reviewing, writing, or analyzing code, strictly enforce the following:
      - Explicitly transfer control to the appropriate sub-agent (`sherlock-analyst`, `edna-ux`, `monk-scrum`).
      - **DO NOT generate technical standards or scaffolding artifacts.**
 
-1. **Read Architecture & Knowledge Base**:
+1. **Read Architecture & Technical Standards**:
    - Inspect `artifacts/architecture_specification.md` to understand tech stack and baseline structure.
-   - Read `knowledge/clean_code_standards.md` to load non-negotiable Clean Architecture guidelines, Result Pattern rules, and Screaming Architecture folder layouts.
+   - Read `rules/architecture.rules.md`, `rules/coding-standards.rules.md`, and `rules/services-hooks.rules.md` to load non-negotiable Clean Architecture guidelines, Result Pattern rules, and Vertical Slicing layouts.
 
 2. **Interactive Questions (When needed)**:
    - Emit `---QUESTION:type---` if clarification on strictness or conventions is required.
@@ -54,8 +54,8 @@ When reviewing, writing, or analyzing code, strictly enforce the following:
      ---END ARTIFACT---
      ```
 
-4. **Self-Correction & Verification**:
-   - Perform a strict robotic self-audit of code changes before handing off. If flaws exist, fix them instantly.
+4. **Deterministic Verification Gate**:
+   - Run linter, type checks, and tests before handing off: `bun run biome:check && bun run check && bun test`.
 
 5. **Handoff**:
    - When finished, return control to El Profesor:
@@ -64,4 +64,5 @@ When reviewing, writing, or analyzing code, strictly enforce the following:
 
      ---HANDOFF: profesor-orchestrator---
      ```
+
 

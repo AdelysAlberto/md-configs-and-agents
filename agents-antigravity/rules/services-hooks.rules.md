@@ -1,121 +1,90 @@
 ---
-trigger: model_decision
+description: 'API Services, Result Pattern, and Error Handling standards'
+applyTo: 'src/**/services/**, src/**/hooks/**'
 ---
 
-<!-- Adaptado para Antigravity -->
+# Services & Result Pattern Standards
+
+## 1. Core Invariants
+- **Never Throw Exceptions**: Service functions must never throw unhandled errors. Always return a typed `Result<T, E>`.
+- **Vertical Placement**: Services belong to their feature slice: `src/modules/<FeatureName>/services/`.
+- **Pure Functional**: Functions must be standalone, exportable, and free of `class` or `this`.
+
 ---
-applyTo: "src/services/**, src/hooks/**, src/adapters/**"
----
 
-# Services & Hooks
-
-## HTTP Architecture
-
-HTTP is handled via Axios through:
-- `src/infrastructure/http/privateRequest.ts` — authenticated requests (includes auth headers, 401/403 handling)
-- `src/infrastructure/http/publicRequest.ts` — unauthenticated requests
-- `src/services/api/` — URL builders and endpoint definitions per domain
-- TanStack Query (`useQuery`, `useMutation`) — for all data fetching in components
-
-## Service Pattern
-
-Services define typed URL builders — they do NOT make fetch calls directly:
+## 2. Result Type Definition
 
 ```typescript
-// src/services/api/accounts.api.ts
-export const accountApi = {
-  getAccount: (id: string) => `${envs.API.API_URL}/v1/accounts/${id}`,
-  updateAccount: (id: string) => `${envs.API.API_URL}/v1/accounts/${id}`,
+// src/shared/types/result.ts
+export type Result<T, E = Error> =
+  | { success: true; data: T }
+  | { success: false; error: E };
+```
+
+---
+
+## 3. Service Pattern Implementation
+
+```typescript
+// src/modules/users/services/user.service.ts
+import type { Result } from '@/shared/types/result';
+import type { User } from '../types';
+
+export const fetchUserProfile = async (userId: string): Promise<Result<User>> => {
+  try {
+    const response = await fetch(`/api/v1/users/${userId}`);
+    if (!response.ok) {
+      return {
+        success: false,
+        error: new Error(`Failed to fetch user (${response.status})`),
+      };
+    }
+    const data: User = await response.json();
+    return { success: true, data };
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err : new Error('Unknown network error'),
+    };
+  }
 };
 ```
 
-Always import `envs` from `src/utils/envs.ts` for URL construction.
+---
 
-## Custom Hook Pattern (MANDATORY for every service)
-
-For every data-fetching operation, create a custom hook using TanStack Query with Axios:
+## 4. Custom Hook Consumption
 
 ```typescript
-// src/hooks/useGetAccount.hook.ts
-import { useQuery } from '@tanstack/react-query';
-import { privateRequest } from 'src/infrastructure/http/privateRequest';
-import { accountApi } from 'src/services/api/accounts.api';
+// src/modules/users/hooks/useUserProfile.ts
+import { useEffect, useState } from 'react';
+import { fetchUserProfile } from '../services/user.service';
+import type { User } from '../types';
 
-interface IUseGetAccountParams {
-  accountId: string;
-}
+export const useUserProfile = (userId: string) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-const useGetAccount = ({ accountId }: IUseGetAccountParams) => {
-  return useQuery({
-    queryKey: ['account', accountId],
-    queryFn: () => privateRequest({ url: accountApi.getAccount(accountId) }),
-    enabled: !!accountId,
-  });
-};
+  useEffect(() => {
+    let isCancelled = false;
+    setIsLoading(true);
 
-export default useGetAccount;
-```
+    fetchUserProfile(userId).then((result) => {
+      if (isCancelled) return;
+      if (result.success) {
+        setUser(result.data);
+        setError(null);
+      } else {
+        setError(result.error);
+      }
+      setIsLoading(false);
+    });
 
-## Mutation Pattern
+    return () => {
+      isCancelled = true;
+    };
+  }, [userId]);
 
-```typescript
-// src/hooks/useUpdateAccount.hook.ts
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { privateRequest } from 'src/infrastructure/http/privateRequest';
-import { accountApi } from 'src/services/api/accounts.api';
-
-const useUpdateAccount = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: (data: IUpdateAccountPayload) =>
-      privateRequest({ url: accountApi.updateAccount(data.id), method: 'PUT', data }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['account'] });
-    },
-  });
+  return { user, error, isLoading };
 };
 ```
-
-## Query Keys Convention
-
-Use consistent query key arrays:
-```typescript
-['entity', id]          // single resource
-['entity', 'list']      // collection
-['entity', id, 'sub']   // nested resource
-```
-
-## Error Handling in Hooks
-
-- Throw errors in `queryFn` — TanStack Query catches them
-- Use `useErrorStore` for global error display
-- Never swallow errors silently
-
-## Adapters
-
-Adapters (`src/adapters/`) transform API response shapes to UI-ready types:
-
-```typescript
-// src/adapters/AdapterAccount.ts
-import type { IApiAccount } from 'src/interfaces/api/account';
-import type { IAccount } from 'src/interfaces/account';
-
-const AdapterAccount = (raw: IApiAccount): IAccount => ({
-  id: raw.accountId,
-  name: raw.displayName,
-  balance: raw.currentBalance ?? 0,
-});
-
-export default AdapterAccount;
-```
-
-## Rules Summary
-
-| Rule | Requirement |
-|---|---|
-| Data fetching | Always via `useQuery` / `useMutation` |
-| URL construction | Always via `src/services/api/` + `envs.ts` |
-| Every service | Must have a corresponding custom hook |
-| Response shaping | Use adapters in `src/adapters/` |
-| Auth tokens | Managed by TanStack Query config — do not manually attach |

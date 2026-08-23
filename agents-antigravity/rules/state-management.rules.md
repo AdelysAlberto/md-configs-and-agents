@@ -1,125 +1,66 @@
 ---
-trigger: model_decision
+description: 'Zustand 5+ and global state management standards'
+applyTo: 'src/**/state/**, src/**/store/**, src/**/stores/**'
 ---
 
-<!-- Adaptado para Antigravity -->
+# State Management Standards (Zustand 5+)
+
+## 1. Core Invariants
+- **Zustand for UI/Client State Only**: Never use Zustand to cache server data (use TanStack Query or dedicated Result services).
+- **Selector Hygiene**: Never destructure an entire store without selectors. Use atomic selectors or `useShallow`.
+- **Pure Functional Stores**: No classes, no `this`.
+
 ---
-applyTo: "src/states/**, src/hooks/**"
----
 
-# State Management
-
-## Two Types of State
-
-| Type | Tool | Location |
-|---|---|---|
-| Server/async state | TanStack Query | `src/hooks/` via `useQuery`/`useMutation` |
-| Client/global UI state | Zustand | `src/store/` |
-
-Never use TanStack Query for UI state. Never use Zustand for server data.
-
-## Zustand Store Pattern
-
-All stores follow a functional pattern — no classes. Stores live in `src/states/`:
+## 2. Store Structure & Creation
 
 ```typescript
-// src/states/example/useExample.state.ts
+// ✅ GOOD: Feature slice inside src/modules/<FeatureName>/state/useFeatureStore.ts
 import { create } from 'zustand';
+import { useShallow } from 'zustand/react/shallow';
 
-interface IExampleState {
+interface FeatureState {
   isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
+  activeId: string | null;
+  setIsOpen: (isOpen: boolean) => void;
+  setActiveId: (id: string | null) => void;
   reset: () => void;
 }
 
-const initialState = { isOpen: false };
+const initialState = {
+  isOpen: false,
+  activeId: null,
+};
 
-export const useExampleStore = create<IExampleState>((set) => ({
+export const useFeatureStore = create<FeatureState>((set) => ({
   ...initialState,
   setIsOpen: (isOpen) => set({ isOpen }),
+  setActiveId: (activeId) => set({ activeId }),
   reset: () => set(initialState),
 }));
 ```
 
-## Key Stores
+---
 
-| Store | Location | Purpose |
-|---|---|---|
-| `useAuthStore` | `src/states/global/useAuth.store.ts` | Authentication state, user session |
-| `theme.state.ts` | `src/states/theme.state.ts` | UI theme state |
-| `localStorage.ts` | `src/infrastructure/store/localStorage.ts` | Persistent localStorage helpers |
-| `sessionStorage.ts` | `src/infrastructure/store/sessionStorage.ts` | Persistent sessionStorage helpers |
+## 3. Selector Usage
 
-## useAuthStore — Authentication
-
-Always use `useAuthStore` for checking auth state — never read raw tokens from storage:
-
+### ❌ BAD (Full Store Destructuring - Triggers Infinite/Unnecessary Re-renders)
 ```typescript
-// ✅ CORRECT
-import { useAuthStore } from 'src/states/global/useAuth.store';
-const { readWrite, readOnly } = useAuthStore();
-
-// ❌ WRONG
-const token = localStorage.getItem('token');
+// ❌ BAD: Re-renders component whenever ANY field in the store changes
+const { isOpen, setIsOpen } = useFeatureStore();
 ```
 
-## useErrorStore — Global Errors
-
+### ✅ GOOD (Atomic Selectors or useShallow)
 ```typescript
-import { useErrorStore } from 'src/store/useErrorStore.store';
+// ✅ GOOD: Atomic selector (preferred for single values)
+const isOpen = useFeatureStore((state) => state.isOpen);
+const setIsOpen = useFeatureStore((state) => state.setIsOpen);
 
-const { setError, clearError } = useErrorStore();
-
-// Display a global error
-setError({ message: 'Something went wrong', code: 500 });
+// ✅ GOOD: useShallow for multiple subscribed properties
+const { isOpen, activeId } = useFeatureStore(
+  useShallow((state) => ({
+    isOpen: state.isOpen,
+    activeId: state.activeId,
+  }))
+);
 ```
-
-## Zustand Rules
-
-- **Name stores with `use` prefix** — `useMyFeature`, not `myFeatureStore`
-- Always expose a `reset()` action that restores initial state
-- Keep store slices small and feature-scoped
-- No derived state in store — compute it in the component or with `useMemo`
-- Prefer separate stores over one massive global store
-
-## Consuming Zustand (CRITICAL for v5+)
-
-When reading state from a Zustand store inside a component, **you MUST use `useShallow`** if you are returning an object or an array. Returning new objects/arrays from a selector without `useShallow` will cause infinite re-renders (`Maximum update depth exceeded`) in Zustand 5+.
-
-```tsx
-import { useShallow } from 'zustand/react/shallow';
-
-// ❌ WRONG — Returns a new object every time, causing infinite re-renders
-const { isOpen, setIsOpen } = useExampleStore((state) => ({ 
-  isOpen: state.isOpen, 
-  setIsOpen: state.setIsOpen 
-}));
-
-// ✅ CORRECT — Using useShallow for objects
-const { isOpen, setIsOpen } = useExampleStore(useShallow((state) => ({ 
-  isOpen: state.isOpen, 
-  setIsOpen: state.setIsOpen 
-})));
-
-// ✅ CORRECT — Selecting a single primitive value doesn't need useShallow
-const isOpen = useExampleStore((state) => state.isOpen);
-const setIsOpen = useExampleStore((state) => state.setIsOpen);
-```
-
-## Persistence
-
-Use the helpers in `src/infrastructure/store/` for persisting state:
-
-```typescript
-// ❌ WRONG — direct localStorage
-localStorage.setItem('key', JSON.stringify(data));
-
-// ✅ CORRECT — use storage helper
-import { getStorage, setStorage } from 'src/infrastructure/store/localStorage';
-```
-
-## TanStack Query Config
-
-- Use `queryClient.invalidateQueries()` after mutations to keep server state fresh
-- Set appropriate `staleTime` and `gcTime` per use case
-- See `.github/instructions/services-hooks.instructions.md` for query patterns

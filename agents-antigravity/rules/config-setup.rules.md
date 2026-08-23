@@ -7,6 +7,7 @@ applyTo: "*.json, *.ts, tsconfig*.json, vite.config.ts, eslint.config.js, packag
 
 ## Tech Stack Versions & Scaffolding Rule
 
+- **Pinned Exact Versions**: In `package.json`, wildcards (`^`, `~`) are strictly prohibited. Always pin exact versions (e.g. `"react": "19.0.0"`).
 - **Always Install Latest Stable Versions (`@latest`)**: When scaffolding or creating a new project, NEVER hardcode outdated or static version numbers into `package.json`. Always use `@latest` or standard CLI generators (e.g. `pnpm create astro@latest`, `npm create vite@latest`).
 - **Dynamic Dependency Resolution**: Run `pnpm add <package>@latest` or `pnpm add -D <package>@latest` to resolve current stable packages at runtime.
 
@@ -28,7 +29,7 @@ When initializing a project, ALWAYS generate `biome.json` using this default tem
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.5/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.9/schema.json",
   "files": {
     "includes": ["src/**/*", "!**/*.svg", "!dist/**/*", "!node_modules/**/*"]
   },

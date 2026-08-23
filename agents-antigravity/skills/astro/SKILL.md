@@ -132,6 +132,57 @@ npx astro add vercel --yes
 
 [Other Community adapters](https://astro.build/integrations/2/?search=&categories%5B%5D=adapters)
 
+---
+
+## Modular Component Architecture & Scalability
+
+En Astro, el patrón por defecto es el **Single File Component (SFC)** (Frontmatter `---` con JS/TS en el servidor, plantilla HTML en medio y `<style>` scoped abajo). Esto es excelente para componentes pequeños o medianos, pero cuando un componente crece (> 100-150 líneas), se deben aplicar patrones modulares:
+
+### 1. Descomposición en Subcomponentes
+Dividir componentes monolíticos en piezas atómicas y especializadas:
+```text
+src/components/Navbar/
+├── Navbar.astro             # Componente orquestador
+├── NavbarBrand.astro        # Logo y enlace principal
+├── NavbarNav.astro          # Enlaces de navegación desktop
+└── NavbarMobileMenu.astro   # Menú desplegable e interactividad mobile
+```
+
+### 2. Extracción de CSS a CSS Modules
+Evita que el bloque `<style>` infle el archivo `.astro`:
+```astro
+---
+// src/components/Navbar/Navbar.astro
+import styles from './Navbar.module.css';
+---
+<header class={styles.navbar}>
+  <div class={styles.container}>...</div>
+</header>
+```
+
+### 3. Extracción de Scripts de Cliente
+En lugar de incrustar `<script>` en línea largos, extraer la interactividad del DOM a archivos TypeScript modulares:
+```astro
+---
+// src/components/Navbar/Navbar.astro
+---
+<header id="v-navbar">...</header>
+
+<script src="./navbar.client.ts"></script>
+```
+
+### 4. Astro Islands para Estado Cliente Complejo
+Si el componente requiere estado reactivo complejo (como dropdowns animados con teclado, formularios con validación en tiempo real o filtros interactivos), se recomienda crear un componente React (`.tsx`) e hidratarlo mediante directivas de cliente:
+```astro
+---
+import { InteractiveNavbar } from './InteractiveNavbar';
+---
+<!-- Se hidrata solo cuando es visible o al cargar -->
+<InteractiveNavbar client:load />
+```
+
+---
+
 ## Resources
 
 - [Docs](https://docs.astro.build)

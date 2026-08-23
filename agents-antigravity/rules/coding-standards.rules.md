@@ -1,125 +1,65 @@
-<!-- Adaptado para Antigravity -->
 ---
-applyTo: "src/**/*.ts, src/**/*.tsx, src/**/*.js, src/**/*.jsx"
+description: 'Pure functional TypeScript, Biome, and coding standards'
+applyTo: 'src/**/*.ts, src/**/*.tsx'
 ---
 
-# Coding Standards
+# Universal Coding Standards
 
-## Core Principle: Truth Over Agreement
+## 1. Radical Simplicity & Technical Honesty
+- **Simplicity First**: Always prioritize the simplest, most readable solution. Avoid over-engineering, speculative layers, abstractions for future use cases, or unnecessary complexity.
+- **Technical Honesty ("Say I don't know")**: Never invent solutions, fake APIs, or hallucinate non-existent features. If a requirement is ambiguous or a capability is unverified, acknowledge it explicitly and ask rather than guessing.
 
-Do NOT agree with the user when their approach is incorrect. Always provide the BEST solution:
-- ✅ Identify problems clearly, explain why, provide the correct solution, educate
-- ❌ Never accept bad practices, implement wrong solutions, or ignore code smells
+---
 
-## Functional Programming — MANDATORY
-
-This project is **strictly functional**. No OOP constructs allowed:
+## 2. Functional Programming Invariant (Zero OOP)
+This codebase is **strictly functional**. Object-oriented structures are prohibited.
+- **Banned**: `class`, `this`, `constructor`, `extends` (on classes), `implements`.
+- **Allowed**: Pure functions, closures, function composition, factory functions.
 
 ```typescript
-// ❌ WRONG — class-based
+// ❌ BAD: OOP / Class-based
 class UserService {
-  constructor(private http: Http) {}
-  getUser() { return this.http.get('/user'); }
+  constructor(private http: HttpClient) {}
+  getUser(id: string) { return this.http.get(`/users/${id}`); }
 }
 
-// ✅ CORRECT — functional
-const getUser = () => http.get('/user');
+// ✅ GOOD: Pure functional
+export const getUser = (http: HttpClient) => (id: string) => http.get(`/users/${id}`);
 ```
 
-Banned: `class`, `constructor`, `this`, `extends`, `implements` (except for interfaces/types).
+---
 
-## TypeScript Rules
+## 2. Pinned Exact Dependencies (Zero Caret / Tilde)
+In `package.json`, wildcards (`^`, `~`) are strictly forbidden. Always pin exact versions to ensure deterministic, reproducible builds.
 
-- **Never use `any`** — use specific types or `unknown`
-- Prefer `interface` for object shapes, `type` for unions/aliases
-- Use `strict: true` in tsconfig (already configured)
-- Use generics for reusable type-safe functions
-- Prefer union types over `enum`
-- Never use `React.FC` — this project avoids it for consistency; use direct function declarations
+```json
+// ❌ BAD
+"dependencies": {
+  "react": "^19.0.0",
+  "zustand": "~5.0.0"
+}
 
-```typescript
-// ❌ WRONG
-const fn = (data: any) => data.value;
-enum Status { Active = 'active' }
-
-// ✅ CORRECT
-const fn = <T extends { value: string }>(data: T) => data.value;
-type Status = 'active' | 'inactive';
+// ✅ GOOD
+"dependencies": {
+  "react": "19.0.0",
+  "zustand": "5.0.3"
+}
 ```
 
-## React Patterns
+---
 
-- **No usar `import React from "react"`**: React 18+ y Vite usan el nuevo transformador JSX (`jsx-runtime`), por lo que no es necesario importar React en todos los archivos. Solo importa los hooks o utilidades específicas que necesites (`import { useState, useEffect } from "react"`).
+## 3. TypeScript Rules
+- **Zero `any`**: Use explicit generics or `unknown` with type guards.
+- **Types vs Interfaces**: Use `interface` for extensible object shapes and `type` for unions/primitives.
+- **Enums Prohibited**: Use TypeScript union literals (e.g. `type Status = 'idle' | 'loading' | 'success' | 'error'`).
+- **No `React.FC`**: Type props directly in function signatures.
 
-## Comments and Documentation
+---
 
-- **No inline `//` comments** — use JSDoc only
-- All JSDoc in English
-
-```typescript
-// ❌ WRONG — inline comment
-const x = value + 1; // increment by 1
-
-// ✅ CORRECT — JSDoc
-/** Increments the balance by the given amount. */
-const incrementBalance = (balance: number, amount: number) => balance + amount;
-```
-
-## Variables and Declarations
-
-- Use `const` by default, `let` when reassignment is needed, never `var`
-- Use optional chaining `?.` and nullish coalescing `??` — never explicit null/undefined checks when avoidable
-
-```typescript
-// ❌ WRONG
-var name = user && user.profile ? user.profile.name : 'Guest';
-
-// ✅ CORRECT
-const name = user?.profile?.name ?? 'Guest';
-```
-
-## Modern JavaScript (ES2022+)
-
-- Arrow functions, destructuring, spread, template literals
-- `map`, `filter`, `reduce` over imperative `for` loops
-- ESM modules (`import`/`export`), no CommonJS `require`
-- Node.js built-in imports must use `node:` prefix
-
-```typescript
-// ❌ WRONG
-import { readFile } from 'fs';
-
-// ✅ CORRECT
-import { readFile } from 'node:fs';
-```
-
-## Security (OWASP Top 10)
-
-- Sanitize all user inputs before rendering or processing
-- Never store sensitive data in localStorage/sessionStorage
-- Use HTTPS for all API calls
-- Never expose secrets or tokens in client-side code
-- Validate at system boundaries using Zod schemas
-
-## Error Handling
-
-- Always wrap async operations in try/catch or use `.catch()`
-- Provide meaningful error messages — use `useErrorStore` for global errors
-- Use Error Boundaries for React component-level errors
-
-## Function Size
-
-- Max ~20 lines per function — break down longer logic into composable helpers
-- Single Responsibility Principle: one function = one concern
-
-## ESLint Auto-fixes
-
-Run before every commit:
+## 4. Deterministic Pre-Delivery Gate
+Before marking any technical task as done, verify:
 ```bash
-pnpm lint   # eslint --fix
+bun run biome:check && bun run check && bun test
+# OR
+pnpm fix && pnpm tsc --noEmit && pnpm test
 ```
-
-Auto-fix patterns:
-- Remove unused imports
-- Add `node:` prefix to Node.js builtins
-- See `.github/instructions/config-setup.instructions.md` for full ESLint config details

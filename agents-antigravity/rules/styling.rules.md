@@ -91,19 +91,36 @@ Use mobile-first CSS with breakpoints as custom properties:
 }
 ```
 
-## Accessibility in Styles
+## Interactive UI Components & Transitions (Dropdowns, Navbars, Modals)
 
-- Ensure color contrast ratio of at least 4.5:1 for normal text (WCAG AA)
-- Never use color alone to convey meaning — pair with icons or text
-- Don't remove `outline` on focus without providing an alternative focus indicator
+When building interactive UI components (mobile menus, dropdowns, dialogs, hamburger menus):
+
+1. **BEM Naming Standard**: Follow `.block__element--modifier` strictly (e.g. `.v-navbar__hamburger--active`, `.v-navbar__mobile-menu--open`).
+2. **GPU-Accelerated Smooth Transitions**:
+   - Always animate `opacity` and `transform` (`translateY`, `scale`).
+   - **Never animate `height: auto` or toggle abruptly with `display: none` without transition states**. Use `opacity: 0; pointer-events: none; transform: translateY(-10px); transition: all 0.25s ease-in-out;` and toggle to `opacity: 1; pointer-events: auto; transform: translateY(0);`.
+3. **Backdrop and Glassmorphism**: Use design tokens (`var(--backdrop-blur)`) with `-webkit-backdrop-filter` fallback and semi-transparent RGBA/HSLA backgrounds.
+4. **Accessible States**: Sync visual modifier classes with ARIA attributes (`aria-expanded="true"`, `aria-hidden="false"`, `aria-label`).
+5. **Mobile-First Breakpoints**: Ensure responsive elements have explicit media query definitions for desktop vs mobile layouts (e.g. hiding desktop nav and displaying hamburger under `@media (max-width: 860px)`).
 
 ```css
-/* ❌ WRONG — removes focus visibility */
-* { outline: none; }
+/* ✅ CORRECT — Smooth Dropdown / Mobile Menu pattern */
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+}
 
-/* ✅ CORRECT — custom focus style */
-:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+.menu--open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 ```
