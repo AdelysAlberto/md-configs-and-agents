@@ -1,0 +1,80 @@
+{
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never",
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "biome.enabled": true,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.DS_Store/**": true,
+    "**/.hg/**": true,
+    "**/.svn/**": true,
+    "**/.yarn/cache/**": true,
+    "**/bower_components": true,
+    "**/bower_components/**": true,
+    "**/CVS": true,
+    "**/CVS/**": true,
+    "**/tmp": true,
+    "**/tmp/**": true,
+    "**/__pycache__": true,
+    "**/node_modules": true
+  },
+  "mcp": {
+    "inputs": [
+      {
+        "type": "promptString",
+        "id": "gitlab_token",
+        "description": "GitLab Personal Access Token",
+        "password": true
+      },
+      {
+        "type": "promptString",
+        "id": "gitlab_url",
+        "description": "GitLab API URL (optional)",
+        "default": "https://gitlab.com/api/v4"
+      }
+    ],
+    "servers": {
+      "gitlab": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+        "env": {
+          "GITLAB_PERSONAL_ACCESS_TOKEN": "ACCESS_TOKEN",
+          "GITLAB_API_URL": "https://git.gonkar.com/api/v4"
+        }
+      },
+      "mysql": {
+        "command": "npx",
+        "args": ["-y", "@f4ww4z/mcp-mysql-server"],
+        "env": {
+          "MYSQL_HOST": "your_host",
+          "MYSQL_USER": "your_user",
+          "MYSQL_PASSWORD": "your_password",
+          "MYSQL_DATABASE": "your_database"
+        }
+      }
+    }
+  }
+}
