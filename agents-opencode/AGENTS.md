@@ -20,20 +20,20 @@
 
 ## 📐 1. Agent System & Skills Matrix
 
-| Command | Agent ID | Character / Role | Output Artifact |
-| :--- | :--- | :--- | :--- |
-| `/profesor`, `/start` | `profesor-orchestrator` | El Profesor *(La Casa de Papel)* | Overall strategy & orchestration |
-| `/brainstorm`, `/sherlock` | `sherlock-analyst` | Sherlock Holmes | `artifacts/market_research.md` |
-| `/brief`, `/prd`, `/roz` | `roz-product` | Roz *(Monsters Inc)* | `artifacts/prd.md` |
-| `/ux`, `/wireframe`, `/edna` | `edna-ux` | Edna Mode *(The Incredibles)* | `artifacts/ux_specification.md` |
-| `/css`, `/miranda` | `miranda-css` | Miranda Priestly *(The Devil Wears Prada)* | `artifacts/css_design_system.md` |
-| `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | Sheldon Cooper *(Big Bang Theory)* | `artifacts/architecture_specification.md` |
-| `/db`, `/doc` | `doc-database` | Doc Brown *(Back to the Future)* | `artifacts/database_specification.md` |
-| `/security`, `/gorgory` | `gorgory-security` | Chief Wiggum *(The Simpsons)* | `artifacts/security_specification.md` |
-| `/standards`, `/vicky` | `vicky-techlead` | Vicky *(Small Wonder)* | `artifacts/technical_standards.md` |
-| `/testing`, `/house` | `house-testing` | Dr. Gregory House *(House M.D.)* | `artifacts/testing_specification.md` |
-| `/audit`, `/gadget` | `gadget-auditor` | Inspector Gadget | `artifacts/code_audit.md` |
-| `/epics`, `/sprint`, `/monk` | `monk-scrum` | Adrian Monk *(Monk)* | `artifacts/epics.md`, `artifacts/sprint_plan.md` |
+| Agent ID | Character / Role | Output Artifact |
+| :--- | :--- | :--- |
+| `profesor-orchestrator` | El Profesor *(La Casa de Papel)* | Overall strategy & orchestration |
+| `sherlock-analyst` | Sherlock Holmes | `artifacts/market_research.md` |
+| `roz-product` | Roz *(Monsters Inc)* | `artifacts/prd.md` |
+| `edna-ux` | Edna Mode *(The Incredibles)* | `artifacts/ux_specification.md` |
+| `miranda-css` | Miranda Priestly *(The Devil Wears Prada)* | `artifacts/css_design_system.md` |
+| `sheldon-architect` | Sheldon Cooper *(Big Bang Theory)* | `artifacts/architecture_specification.md` |
+| `doc-database` | Doc Brown *(Back to the Future)* | `artifacts/database_specification.md` |
+| `gorgory-security` | Chief Wiggum *(The Simpsons)* | `artifacts/security_specification.md` |
+| `vicky-techlead` | Vicky *(Small Wonder)* | `artifacts/technical_standards.md` |
+| `house-testing` | Dr. Gregory House *(House M.D.)* | `artifacts/testing_specification.md` |
+| `gadget-auditor` | Inspector Gadget | `artifacts/code_audit.md` |
+| `monk-scrum` | Adrian Monk *(Monk)* | `artifacts/epics.md`, `artifacts/sprint_plan.md` |
 
 ---
 
@@ -102,4 +102,4 @@ Upon completing any code implementation or technical task, and before delivering
 ## 🧠 5. Autonomous Memory & Self-Recovery Protocol (`cogni`)
 
 Autonomous memory behavior, high-value filters (*WHEN TO SAVE / WHEN TO SEARCH*), and synthetic rules are delegated to the canonical Cogni Skill:
-`~/.gemini/config/skills/cogni/SKILL.md` (or `/cogni`).
+`~/.config/opencode/skills/cogni/SKILL.md` (or `/cogni`).
