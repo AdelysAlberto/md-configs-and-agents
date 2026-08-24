@@ -1,4 +1,5 @@
 ---
+trigger: model_decision
 description: 'API Services, Result Pattern, and Error Handling standards'
 applyTo: 'src/**/services/**, src/**/hooks/**'
 ---

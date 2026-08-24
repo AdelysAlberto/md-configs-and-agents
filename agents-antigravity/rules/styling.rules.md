@@ -1,9 +1,6 @@
 ---
 trigger: model_decision
----
-
-<!-- Adaptado para Antigravity -->
----
+description: 'CSS Modules, BEM, design tokens, responsive layout and transition standards'
 applyTo: "src/**/*.css, src/**/*.scss, src/styles/**, src/components/**"
 ---
 

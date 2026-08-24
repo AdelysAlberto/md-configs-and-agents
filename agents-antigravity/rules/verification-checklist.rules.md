@@ -1,4 +1,5 @@
 ---
+trigger: model_decision
 description: 'Pre-completion deterministic verification checklist'
 applyTo: '**'
 ---

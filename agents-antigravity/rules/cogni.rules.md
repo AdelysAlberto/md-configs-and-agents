@@ -1,3 +1,9 @@
+---
+trigger: model_decision
+description: 'Cogni Memory Invariants, preflight search and postflight save standards'
+applyTo: '**'
+---
+
 # 🧠 Cogni Memory Invariants
 
 ## 🔍 1. Preflight Search (Mandatory)

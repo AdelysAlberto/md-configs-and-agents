@@ -1,4 +1,5 @@
 ---
+trigger: model_decision
 description: 'Pure functional TypeScript, Biome, and coding standards'
 applyTo: 'src/**/*.ts, src/**/*.tsx'
 ---

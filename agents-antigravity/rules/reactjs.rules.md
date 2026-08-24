@@ -1,4 +1,5 @@
 ---
+trigger: model_decision
 description: 'React Clean Code standards, pure functional components, and Biome'
 applyTo: '**/*.tsx, **/*.ts'
 ---

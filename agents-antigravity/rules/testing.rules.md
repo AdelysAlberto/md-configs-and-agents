@@ -1,9 +1,6 @@
 ---
 trigger: model_decision
----
-
-<!-- Adaptado para Antigravity -->
----
+description: 'Vitest, React Testing Library, MSW, and testing strategy standards'
 applyTo: "src/**/__tests__/**, src/**/*.test.ts, src/**/*.test.tsx, src/test/**"
 ---
 

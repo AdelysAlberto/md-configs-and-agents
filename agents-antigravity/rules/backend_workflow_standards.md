@@ -1,4 +1,10 @@
-# 🛠️ Rule: Backend Workflow & Clean Standards (Adely's Golden Standards)
+---
+trigger: model_decision
+description: 'Backend Workflow & Clean Standards for Node.js, Bun, Fastify and Express'
+applyTo: 'src/**/*.ts, src/providers/**, src/modules/**'
+---
+
+# Rule: Backend Workflow & Clean Standards (Adely's Golden Standards)
 
 > **ESTÁNDAR OBLIGATORIO DE DESARROLLO BACKEND:** Aplica a todo desarrollo backend en Node.js, Bun, Fastify y Express.
 

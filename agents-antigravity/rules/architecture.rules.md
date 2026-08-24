@@ -1,4 +1,5 @@
 ---
+trigger: model_decision
 description: 'Vertical Slicing and Clean Architecture standards'
 applyTo: 'src/**'
 ---

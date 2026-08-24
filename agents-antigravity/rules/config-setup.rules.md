@@ -1,6 +1,7 @@
-<!-- Adaptado para Antigravity -->
 ---
-applyTo: "*.json, *.ts, tsconfig*.json, vite.config.ts, eslint.config.js, package.json"
+trigger: model_decision
+description: 'Configuration, setup, dependencies, Biome and linter standards'
+applyTo: '*.json, *.ts, tsconfig*.json, vite.config.ts, eslint.config.js, package.json, biome.json'
 ---
 
 # Config & Setup

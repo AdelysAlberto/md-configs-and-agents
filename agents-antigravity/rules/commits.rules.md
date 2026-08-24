@@ -1,6 +1,7 @@
-<!-- Adaptado para Antigravity -->
 ---
-applyTo: "**"
+trigger: model_decision
+description: 'Conventional commits and Git workflow standards'
+applyTo: '**'
 ---
 
 # Git Commits
