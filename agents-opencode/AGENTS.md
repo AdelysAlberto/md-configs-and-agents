@@ -33,6 +33,7 @@
 | `vicky-techlead` | Vicky *(Small Wonder)* | `artifacts/technical_standards.md` |
 | `house-testing` | Dr. Gregory House *(House M.D.)* | `artifacts/testing_specification.md` |
 | `gadget-auditor` | Inspector Gadget | `artifacts/code_audit.md` |
+| `tio-bob` | Tio Bob *(Robert C. Martin)* | `artifacts/mr_review.md` |
 | `monk-scrum` | Adrian Monk *(Monk)* | `artifacts/epics.md`, `artifacts/sprint_plan.md` |
 
 ---

@@ -26,6 +26,7 @@
 | `/standards`, `/vicky` | `vicky-techlead` | Clean Architecture & Scaffolding | [`skills/vicky-techlead/SKILL.md`](skills/vicky-techlead/SKILL.md) |
 | `/testing`, `/house` | `house-testing` | Unit, integration & MSW tests | [`skills/house-testing/SKILL.md`](skills/house-testing/SKILL.md) |
 | `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`skills/gadget-auditor/SKILL.md`](skills/gadget-auditor/SKILL.md) |
+| `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Reviewer de codigo, MR/PR y cambios en stage | [`skills/tio-bob/SKILL.md`](skills/tio-bob/SKILL.md) |
 | `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`skills/monk-scrum/SKILL.md`](skills/monk-scrum/SKILL.md) |
 
 ### Technical Domain Rules (Auto-applied by File Context)
