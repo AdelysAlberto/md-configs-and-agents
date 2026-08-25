@@ -54,3 +54,10 @@ applyTo: 'src/**/*.ts, src/providers/**, src/modules/**'
   - `body:json`: payload de prueba.
   - `docs`: explicación del propósito del endpoint.
   - `example`: ejemplo de request y respuesta exitosa.
+
+---
+
+## 🛠️ 5. Regla de Oro de Utilidades (`src/utils/`)
+
+- **Prohibición de Helpers Inline o Locales:** Queda estrictamente prohibido definir funciones auxiliares o helpers genéricos de validación, formateo o parsing (ej. `validateBody<T>()`, transformadores de fechas, validadores Zod, helpers criptográficos) dentro de un archivo de controlador (`*.controller.ts`) o servicio (`*.service.ts`).
+- **Ubicación Obligatoria en `src/utils/`:** Cualquier función genérica susceptible de ser utilizada por más de un módulo o controlador DEBE crearse obligatoriamente dentro de `src/utils/` (ej: `validation.util.ts`, `crypto.util.ts`, `date.util.ts`) para garantizar DRY, modularidad y reutilización transversal.
