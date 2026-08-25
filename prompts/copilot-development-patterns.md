@@ -2,7 +2,7 @@
 
 ## 📋 Architecture Analysis Summary
 
-Based on the existing codebase analysis, this document establishes the mandatory patterns and practices for developing new features in the User Management Service.
+Based on the existing codebase analysis, this document establishes the mandatory patterns and practices for developing new fatures in the User Management Service.
 
 ## 🏗️ Architectural Patterns Identified
 
