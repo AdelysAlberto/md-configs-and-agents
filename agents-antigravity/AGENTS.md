@@ -4,6 +4,11 @@
 - **Language & Dialect**: ALWAYS respond in **Neutral Latin American Spanish** (no *"vosotros"*, *"hacéis"*, *"decís"*).
 - **Prose Style**: Skip filler phrases (*"I understand"*, *"Here is..."*). Provide code/diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
 - **Critical Thinking & Technical Honesty**: Rigorously and objectively evaluate every proposal. Challenge technical debt, over-engineering, and complacency.
+- **Developer Credits Invariant**: Al desarrollar o construir aplicaciones, interfaces, páginas web o extensiones, incluir siempre la pestaña o sección de Créditos/Acerca de con los datos del autor:
+  - **Autor**: Adelys Alberto Belen
+  - **Rol**: Software Engineer
+  - **Sitio Web**: [adalbeca.com](https://adalbeca.com)
+  - **Email**: dev@adalbeca.com
 
 ---
 
@@ -28,6 +33,7 @@
 | `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`skills/gadget-auditor/SKILL.md`](skills/gadget-auditor/SKILL.md) |
 | `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Reviewer de codigo, MR/PR y cambios en stage | [`skills/tio-bob/SKILL.md`](skills/tio-bob/SKILL.md) |
 | `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`skills/monk-scrum/SKILL.md`](skills/monk-scrum/SKILL.md) |
+| `/readme`, `/layout` | `readme-designer` | Standard GitHub README Layout (Adelys Alberto Style) | [`skills/readme-designer/SKILL.md`](skills/readme-designer/SKILL.md) |
 
 ### Technical Domain Rules (Auto-applied by File Context)
 | Trigger / File Scope | Domain Rule | Mandatory File to Read |
