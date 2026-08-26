@@ -10,6 +10,7 @@ applyTo: 'src/**/services/**, src/**/hooks/**'
 - **Never Throw Exceptions**: Service functions must never throw unhandled errors. Always return a typed `Result<T, E>`.
 - **Vertical Placement**: Services belong to their feature slice: `src/modules/<FeatureName>/services/`.
 - **Pure Functional**: Functions must be standalone, exportable, and free of `class` or `this`.
+- **Provider Independence (Adapter Pattern / DIP)**: Services must NEVER import vendor-specific types or functions directly (e.g. `calculateValhallaRoute`, `ValhallaTrip`). Always import domain-agnostic ports exposed by `src/providers/<domain>/`.
 
 ---
 

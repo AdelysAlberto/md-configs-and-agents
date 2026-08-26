@@ -80,24 +80,22 @@ applyTo: 'src/**/*.ts, src/providers/**, src/modules/**'
 5. **Límites de Concurrencia & Protecciones (Rate Limiting & Throttling):**
    - **Rate Limiting:** Toda API expuesta debe contar con limitador de velocidad de peticiones por cliente/IP (ej. Token Bucket / Redis Rate Limiter).
    - **Concurrency Throttling:** Si se ejecutan múltiples llamadas pesadas en paralelo hacia la BD o servicios de terceros, deben acotarse mediante un control/semáforo de concurrencia máximo para evitar agotamiento de sockets y memoria.
-
-
 ---
 
-## 🏥 6. Salud del Backend, Concurrencia, Caching & Pooling (Norma Universal)
+## 7. 🔌 Patrón Adaptador de Proveedores e Inversión de Dependencias (DIP)
 
-> **REGLA DE SALUD INNEGOCIABLE:** Aplica independientemente del lenguaje o framework utilizado (TypeScript/Node/Bun, Go, Rust, Python, etc.).
+> **REGLA DE ABSTRACCIÓN DE TERCEROS Y AGRUPACIÓN POR DOMINIO:** Ningún servicio de aplicación (`src/modules/**/*.service.ts`) debe depender o importar directamente tipos, nombres o funciones específicos de un proveedor externo o vendor concreto (ej. `calculateValhallaRoute`, `ValhallaTrip`, `StripeChargeDTO`, `TwilioSmsParams`).
 
-1. **Ejecución Concurrente vs. Sequencial (Anti-Waterfall & Anti N+1):**
-   - **Prohibido el efecto cascada (Waterfall):** Si en un mismo handler/servicio se ejecutan múltiples consultas I/O o a base de datos que son independientes entre sí, **JAMÁS** deben ejecutarse secuencialmente una detrás de otra (`await q1; await q2;`). Deben ejecutarse en paralelo (ej. `Promise.all([q1, q2])` o concurrencia nativa).
-   - **Prohibido I/O dentro de bucles (Anti N+1):** Queda estrictamente prohibido realizar consultas a BD o llamadas API internas dentro de un bucle `for`, `map` o `forEach`. Deben agregarse mediante `IN (...)`, `JOIN` o batching.
-2. **No Bloqueo de Hilo Principal (Non-Blocking Event Loop):**
-   - Cada llamada HTTP debe ser asíncrona no bloqueante. Las operaciones de cálculo intensivo (CPU-bound) deben delegarse a hilos secundarios (Worker Threads) o colas asíncronas en segundo plano.
-3. **Connection Pooling Obligatorio:**
-   - Todo cliente o driver de base de datos relacional (PostgreSQL, MySQL, SQLite/Turso, etc.) **DEBE** configurarse con un Pool de Conexiones explícito (definir `max`, `idleTimeout`, `connectionTimeout`). Prohibido abrir/cerrar conexiones directas por cada petición HTTP.
-4. **Caché Estratégico (Cache-Aside & TTL):**
-   - Datos de alta frecuencia de lectura y baja frecuencia de actualización deben almacenarse en memoria (RAM / Redis) implementando el patrón *Cache-Aside* con un TTL (Time-To-Live) obligatorio.
-5. **Límites de Concurrencia & Protecciones (Rate Limiting & Throttling):**
-   - **Rate Limiting:** Toda API expuesta debe contar con limitador de velocidad de peticiones por cliente/IP (ej. Token Bucket / Redis Rate Limiter).
-   - **Concurrency Throttling:** Si se ejecutan múltiples llamadas pesadas en paralelo hacia la BD o servicios de terceros, deben acotarse mediante un control/semáforo de concurrencia máximo para evitar agotamiento de sockets y memoria.
+1. **Estructura de Proveedores Agrupados por Dominio:**
+   - Todos los proveedores de servicios se organizan en `src/providers/<domain>/` (ej: `src/providers/routing/`, `src/providers/payment/`, `src/providers/email/`).
+   - La raíz del dominio expone la capa adaptadora agnóstica (`services/`, `interfaces/`, `index.ts`).
+2. **Subdirectorio de Proveedores Concretos (`src/providers/<domain>/providers/<vendor>/`):**
+   - Las implementaciones concretas de proveedores/vendors de un dominio residen en su subdirectorio `providers/<vendor>/` (ej: `src/providers/routing/providers/valhalla/`, `src/providers/payment/providers/stripe/`, `src/providers/email/providers/resend/`).
+   - Esto evita la acumulación desordenada de carpetas en la raíz de `src/providers/`.
+3. **Capa Adaptadora Agnóstica (Puerto / Adapter):**
+   - La capa adaptadora en `src/providers/<domain>/services/` recibe las peticiones de los módulos de negocio, delega en la implementación del vendor activo (`src/providers/<domain>/providers/<vendor>/`) y traduce la respuesta hacia DTOs agnósticos.
+4. **Reemplazo Transparente de Proveedores (Zero Breakage):**
+   - Agregar o cambiar un proveedor (ej: agregar OSRM en `src/providers/routing/providers/osrm/`) **DEBE** ser transparente para la capa de negocio (`src/modules/`), requiriendo cero cambios en los servicios de aplicación.
+
+
 
