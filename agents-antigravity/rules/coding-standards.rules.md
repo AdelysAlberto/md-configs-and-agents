@@ -57,10 +57,32 @@ In `package.json`, wildcards (`^`, `~`) are strictly forbidden. Always pin exact
 
 ---
 
-## 4. Deterministic Pre-Delivery Gate
-Before marking any technical task as done, verify:
-```bash
-bun run biome:check && bun run check && bun test
-# OR
-pnpm fix && pnpm tsc --noEmit && pnpm test
+## 5. Lookup Dictionary Pattern Over `switch` Statement
+Prefer declarative Lookup Dictionaries (`Record<string, T>`) over imperative `switch(string)` or multiple `if/else` conditionals for factory functions, state mappers, or strategy selection.
+
+- **Performance**: Constant `O(1)` hash lookup vs `O(N)` sequential string comparison.
+- **Maintainability (SOLID - Open/Closed)**: Adding new keys is declarative and risk-free without mutating control flow logic.
+
+```typescript
+// ❌ BAD: Imperative switch statement
+switch (key) {
+  case "openai":
+  case "chatgpt":
+    return openaiProvider;
+  case "gemini":
+  default:
+    return geminiProvider;
+}
+
+// ✅ GOOD: Declarative Lookup Dictionary (O(1))
+const PROVIDER_MAP: Record<string, AIProviderInterface> = {
+  openai: openaiProvider,
+  chatgpt: openaiProvider,
+  gemini: geminiProvider,
+};
+
+export const getAIProvider = (key?: string): AIProviderInterface => {
+  return PROVIDER_MAP[key?.toLowerCase().trim() || "gemini"] ?? geminiProvider;
+};
 ```
+
