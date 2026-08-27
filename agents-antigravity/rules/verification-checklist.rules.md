@@ -18,6 +18,7 @@ Run through this checklist and execute deterministic verification before marking
 - [ ] CSS Modules used exclusively (`*.module.css`) with design tokens.
 - [ ] All user-facing text wrapped in `t('key')` i18n keys.
 - [ ] Exact dependency versions pinned in `package.json` (no `^` or `~`).
+- [ ] **Mandatory Drizzle Migrations**: Every DB schema change (`src/db/schema.ts`) must have a corresponding physical SQL migration file in `drizzle/*.sql` and journal entry in `drizzle/meta/_journal.json` executed autonomously via `runMigrations()`. Never rely on external MCP or manual SQL execution.
 
 ## 2. Interface & DTO UX Contract Verification
 - [ ] **Cross-reference DTO fields against Functional/UX Specs**: Verify every UI component data requirement in `artifacts/functional_specs/*.md` against the DTO return type.

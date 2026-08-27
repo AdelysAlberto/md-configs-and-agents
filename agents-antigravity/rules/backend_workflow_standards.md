@@ -97,5 +97,17 @@ applyTo: 'src/**/*.ts, src/providers/**, src/modules/**'
 4. **Reemplazo Transparente de Proveedores (Zero Breakage):**
    - Agregar o cambiar un proveedor (ej: agregar OSRM en `src/providers/routing/providers/osrm/`) **DEBE** ser transparente para la capa de negocio (`src/modules/`), requiriendo cero cambios en los servicios de aplicación.
 
+---
+
+## 8. 🗄️ Migraciones de Base de Datos Obligatorias y Autonomía sin MCP
+
+> **REGLA DE ORO DE PERSISTENCIA Y MIGRACIONES:** Prohibido depender de ejecutores SQL de terceros o servidores MCP de base de datos para alterar esquemas en producción o desarrollo.
+
+1. **Migraciones Físicas Obligatorias (`drizzle/*.sql` y `_journal.json`):**
+   - Todo cambio o adición en el esquema ORM (`src/db/schema.ts`) **DEBE** generar/crear su correspondiente archivo de migración SQL dentro del directorio de migraciones (`drizzle/XXXX_nombre.sql`) y actualizar su índice en `drizzle/meta/_journal.json`.
+2. **Autonomía Total del Servidor:**
+   - El código backend debe ser 100% independiente. En el proceso de inicialización de la aplicación (`main.ts` / `runMigrations()`), el servidor ejecuta las migraciones automáticas sobre la base de datos de destino (`migrate(db, { migrationsFolder: "./drizzle" })`), garantizando el mismo esquema en cualquier entorno (Local, CI/CD, Staging, Producción).
+
+
 
 
