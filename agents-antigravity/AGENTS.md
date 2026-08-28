@@ -41,6 +41,7 @@
 | Pre-completion Check (`**`) | Pre-Completion Verification Checklist | [`rules/verification-checklist.rules.md`](rules/verification-checklist.rules.md) |
 | React Components, Hooks, UI (`**/*.tsx`, `**/*.ts`) | React & Clean Code Standards | [`rules/reactjs.rules.md`](rules/reactjs.rules.md) |
 | Styling, CSS Modules, Tokens (`**/*.module.css`) | CSS & Design Tokens Standard | [`rules/styling.rules.md`](rules/styling.rules.md) |
+| UI Components & Design System (`src/components/**`) | UI Library & Design System | [`rules/ui-library.rules.md`](rules/ui-library.rules.md) |
 | Stores, State, Zustand (`src/**/state/**`) | State Management Guidelines | [`rules/state-management.rules.md`](rules/state-management.rules.md) |
 | API, Fetching, Result Pattern (`src/**/services/**`) | Services & Error Handling | [`rules/services-hooks.rules.md`](rules/services-hooks.rules.md) |
 | Architecture, Directory Structure (`src/**`) | Vertical Slice Standards | [`rules/architecture.rules.md`](rules/architecture.rules.md) |
@@ -48,6 +49,7 @@
 | Config & Package Setup (`*.json`, `package.json`) | Config & Dependency Setup | [`rules/config-setup.rules.md`](rules/config-setup.rules.md) |
 | Unit / Integration Tests (`**/*.test.*`) | Testing Strategy & MSW | [`rules/testing.rules.md`](rules/testing.rules.md) |
 | Commits, Git Flow | Conventional Commits Standard | [`rules/commits.rules.md`](rules/commits.rules.md) |
+| Backend & API Workflow (`src/**/*.ts`, `src/modules/**`) | Backend Workflow Standards | [`rules/backend_workflow_standards.md`](rules/backend_workflow_standards.md) |
 
 ---
 

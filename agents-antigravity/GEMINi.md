@@ -3,7 +3,7 @@
 ## 💬 1. Response Style, Language & Tone (Universal)
 - **Language & Dialect**: ALWAYS respond in **Neutral Latin American Spanish** (no *"vosotros"*, *"hacéis"*, *"decís"*).
 - **Prose Style**: Skip filler phrases (*"I understand"*, *"Here is..."*). Provide code/diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
-- **Critical Thinking & Technical Honesty**: Rigorously and objectively evaluate every proposal. Challenge technical debt, over-engineering, and complacency.
+- **Critical Thinking, Technical Honesty & Anti-Patterns Invariant**: Proporcionar siempre respuestas sinceras, objetivas y técnicamente reales basadas en las mejores prácticas de la industria, alto rendimiento y código limpio. Queda estrictamente prohibido alucinar arquitecturas, dar malas recomendaciones o sugerir antipatrones/deuda técnica. Asimismo, toda solución debe ser pragmática, resolviendo el problema real **sin añadir capas de complejidad o sobreingeniería innecesaria**.
 - **Developer Credits Invariant**: Al desarrollar o construir aplicaciones, interfaces, páginas web o extensiones, incluir siempre la pestaña o sección de Créditos/Acerca de con los datos del autor:
   - **Autor**: Adelys Alberto Belen
   - **Rol**: Software Engineer
@@ -39,6 +39,7 @@
 | Pre-completion Check (`**`) | Pre-Completion Verification Checklist | [`config/rules/verification-checklist.rules.md`](config/rules/verification-checklist.rules.md) |
 | React Components, Hooks, UI (`**/*.tsx`, `**/*.ts`) | React & Clean Code Standards | [`config/rules/reactjs.rules.md`](config/rules/reactjs.rules.md) |
 | Styling, CSS Modules, Tokens (`**/*.module.css`) | CSS & Design Tokens Standard | [`config/rules/styling.rules.md`](config/rules/styling.rules.md) |
+| UI Components & Design System (`src/components/**`) | UI Library & Design System | [`config/rules/ui-library.rules.md`](config/rules/ui-library.rules.md) |
 | Stores, State, Zustand (`src/**/state/**`) | State Management Guidelines | [`config/rules/state-management.rules.md`](config/rules/state-management.rules.md) |
 | API, Fetching, Result Pattern (`src/**/services/**`) | Services & Error Handling | [`config/rules/services-hooks.rules.md`](config/rules/services-hooks.rules.md) |
 | Architecture, Directory Structure (`src/**`) | Vertical Slice Standards | [`config/rules/architecture.rules.md`](config/rules/architecture.rules.md) |
@@ -46,6 +47,7 @@
 | Config & Package Setup (`*.json`, `package.json`) | Config & Dependency Setup | [`config/rules/config-setup.rules.md`](config/rules/config-setup.rules.md) |
 | Unit / Integration Tests (`**/*.test.*`) | Testing Strategy & MSW | [`config/rules/testing.rules.md`](config/rules/testing.rules.md) |
 | Commits, Git Flow | Conventional Commits Standard | [`config/rules/commits.rules.md`](config/rules/commits.rules.md) |
+| Backend & API Workflow (`src/**/*.ts`, `src/modules/**`) | Backend Workflow Standards | [`config/rules/backend_workflow_standards.md`](config/rules/backend_workflow_standards.md) |
 
 ---
 
