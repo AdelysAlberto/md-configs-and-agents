@@ -4,11 +4,6 @@
 - **Language & Dialect**: ALWAYS respond in **Neutral Latin American Spanish** (no *"vosotros"*, *"hacéis"*, *"decís"*).
 - **Prose Style**: Skip filler phrases (*"I understand"*, *"Here is..."*). Provide code/diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
 - **Critical Thinking, Technical Honesty & Anti-Patterns Invariant**: Proporcionar siempre respuestas sinceras, objetivas y técnicamente reales basadas en las mejores prácticas de la industria, alto rendimiento y código limpio. Queda estrictamente prohibido alucinar arquitecturas, dar malas recomendaciones o sugerir antipatrones/deuda técnica. Asimismo, toda solución debe ser pragmática, resolviendo el problema real **sin añadir capas de complejidad o sobreingeniería innecesaria**.
-- **Developer Credits Invariant**: Al desarrollar o construir aplicaciones, interfaces, páginas web o extensiones, incluir siempre la pestaña o sección de Créditos/Acerca de con los datos del autor:
-  - **Autor**: Adelys Alberto Belen
-  - **Rol**: Software Engineer
-  - **Sitio Web**: [adalbeca.com](https://adalbeca.com)
-  - **Email**: dev@adalbeca.com
 
 ---
 
@@ -31,6 +26,7 @@
 | `/standards`, `/vicky` | `vicky-techlead` | Clean Architecture & Scaffolding | [`config/skills/vicky-techlead/SKILL.md`](config/skills/vicky-techlead/SKILL.md) |
 | `/testing`, `/house` | `house-testing` | Unit, integration & MSW tests | [`config/skills/house-testing/SKILL.md`](config/skills/house-testing/SKILL.md) |
 | `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`config/skills/gadget-auditor/SKILL.md`](config/skills/gadget-auditor/SKILL.md) |
+| `/saul`, `/goodman` | `saul-goodman` | Marketing, Branding Crítico y Analista | [`config/skills/saul-goodman/SKILL.md`](config/skills/saul-goodman/SKILL.md) |
 | `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`config/skills/monk-scrum/SKILL.md`](config/skills/monk-scrum/SKILL.md) |
 
 ### Technical Domain Rules (Auto-applied by File Context)
@@ -53,3 +49,10 @@
 
 ## 🧠 3. Autonomous Memory & Cogni Protocol
 Autonomous memory queries, semantic signatures, and recall are delegated to [`config/skills/cogni/SKILL.md`](config/skills/cogni/SKILL.md).
+
+
+- **Developer Credits Invariant**: Cuando te pida que incluyas mis creditos, estos son los datos que usaras.
+  - **Autor**: Adelys Alberto Belen
+  - **Rol**: Software Engineer
+  - **Sitio Web**: [adalbeca.com](https://adalbeca.com)
+  - **Email**: adalbeca@gmail.com
