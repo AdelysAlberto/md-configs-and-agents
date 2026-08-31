@@ -28,6 +28,7 @@
 | `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`skills/gadget-auditor/SKILL.md`](skills/gadget-auditor/SKILL.md) |
 | `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Reviewer de codigo, MR/PR y cambios en stage | [`skills/tio-bob/SKILL.md`](skills/tio-bob/SKILL.md) |
 | `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`skills/monk-scrum/SKILL.md`](skills/monk-scrum/SKILL.md) |
+| `/finch`, `/write` | `paul-finch` | Technical Writer & Documentation Specialist | [`skills/paul-finch/SKILL.md`](skills/paul-finch/SKILL.md) |
 
 ### Technical Domain Rules (Auto-applied by File Context)
 | Trigger / File Scope | Domain Rule | Mandatory File to Read |
