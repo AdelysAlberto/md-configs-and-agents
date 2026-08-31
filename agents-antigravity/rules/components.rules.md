@@ -1,6 +1,7 @@
-<!-- Adaptado para Antigravity -->
 ---
-applyTo: "src/baseComponents/**, src/pages/**, src/providers/**"
+trigger: model_decision
+description: 'UI Components and design principles standards'
+applyTo: 'src/baseComponents/**, src/pages/**, src/providers/**, src/components/**'
 ---
 
 # Components

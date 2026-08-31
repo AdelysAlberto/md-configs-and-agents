@@ -1,4 +1,5 @@
 ---
+trigger: model_decision
 description: 'Vertical Slicing and Clean Architecture standards'
 applyTo: 'src/**'
 ---
@@ -52,15 +53,22 @@ src/
 
 ## 4. Anti-Patterns vs. Required Patterns
 
-### ❌ BAD (Horizontal Layering / Leaky Boundaries)
+### ❌ BAD (Horizontal Layering / Leaky Boundaries & Vendor Coupling)
 ```typescript
 // ❌ BAD: Storing all services in a root /src/services folder and deep importing
 import { getUser } from '../../../services/userService';
+
+// ❌ BAD: Domain service coupled directly to vendor-specific provider
+import { calculateValhallaRoute, type ValhallaTrip } from '@/providers/valhalla';
 ```
 
-### ✅ GOOD (Vertical Slicing / Clean Public API)
+### ✅ GOOD (Vertical Slicing & Agnostic Provider Adapter)
 ```typescript
 // ✅ GOOD: Importing from the module's public boundary
 import { UserProfileCard, useUserStore } from '@/modules/user';
+
+// ✅ GOOD: Domain service importing agnostic provider adapter port
+import { calculateRouteEngine, type RoutingTrip } from '@/providers/routing';
 ```
+
 

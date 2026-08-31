@@ -1,4 +1,5 @@
 ---
+trigger: model_decision
 description: 'Pure functional TypeScript, Biome, and coding standards'
 applyTo: 'src/**/*.ts, src/**/*.tsx'
 ---
@@ -29,7 +30,7 @@ export const getUser = (http: HttpClient) => (id: string) => http.get(`/users/${
 
 ---
 
-## 2. Pinned Exact Dependencies (Zero Caret / Tilde)
+## 3. Pinned Exact Dependencies (Zero Caret / Tilde)
 In `package.json`, wildcards (`^`, `~`) are strictly forbidden. Always pin exact versions to ensure deterministic, reproducible builds.
 
 ```json
@@ -48,7 +49,7 @@ In `package.json`, wildcards (`^`, `~`) are strictly forbidden. Always pin exact
 
 ---
 
-## 3. TypeScript Rules
+## 4. TypeScript Rules
 - **Zero `any`**: Use explicit generics or `unknown` with type guards.
 - **Types vs Interfaces**: Use `interface` for extensible object shapes and `type` for unions/primitives.
 - **Enums Prohibited**: Use TypeScript union literals (e.g. `type Status = 'idle' | 'loading' | 'success' | 'error'`).
@@ -56,7 +57,55 @@ In `package.json`, wildcards (`^`, `~`) are strictly forbidden. Always pin exact
 
 ---
 
-## 4. Deterministic Pre-Delivery Gate
+## 5. Lookup Dictionary Pattern Over `switch` Statement
+Prefer declarative Lookup Dictionaries (`Record<string, T>`) over imperative `switch(string)` or multiple `if/else` conditionals for factory functions, state mappers, or strategy selection.
+
+- **Performance**: Constant `O(1)` hash lookup vs `O(N)` sequential string comparison.
+- **Maintainability (SOLID - Open/Closed)**: Adding new keys is declarative and risk-free without mutating control flow logic.
+
+```typescript
+// ❌ BAD: Imperative switch statement
+switch (key) {
+  case "openai":
+  case "chatgpt":
+    return openaiProvider;
+  case "gemini":
+  default:
+    return geminiProvider;
+}
+
+// ✅ GOOD: Declarative Lookup Dictionary (O(1))
+const PROVIDER_MAP: Record<string, AIProviderInterface> = {
+  openai: openaiProvider,
+  chatgpt: openaiProvider,
+  gemini: geminiProvider,
+};
+
+export const getAIProvider = (key?: string): AIProviderInterface => {
+  return PROVIDER_MAP[key?.toLowerCase().trim() || "gemini"] ?? geminiProvider;
+};
+```
+
+---
+
+## 6. Strict DRY Invariant (Zero Duplication of Prompts, Logic & Strings)
+Never duplicate system prompts, magic strings, complex regex, configuration objects, or validation logic across multiple files.
+- **System Prompts & LLM Schemas**: Extract into single shared constants (e.g. `constants/aiPrompts.constant.ts`) and import across adapters.
+- **Environment Variables & Config**: Use `configEnvs` from `src/utils/env.ts` instead of scatter-reading `process.env.*`.
+
+```typescript
+// ❌ BAD: Duplicating system prompts or env reads across adapters
+const systemPrompt = "Eres un copiloto y planificador de rutas..."; // repeated in 4 files
+const key = process.env.API_KEY;
+
+// ✅ GOOD: Single source of truth constants & configEnvs
+import { AI_ROUTE_SYSTEM_PROMPT } from "../constants/aiPrompts.constant";
+import { configEnvs } from "../../../utils";
+```
+
+---
+
+## 7. Deterministic Pre-Delivery Gate
 Before marking any technical task as done, verify:
 ```bash
 bun run biome:check && bun run check && bun test

@@ -1,4 +1,5 @@
 ---
+trigger: model_decision
 description: 'Zustand 5+ and global state management standards'
 applyTo: 'src/**/state/**, src/**/store/**, src/**/stores/**'
 ---

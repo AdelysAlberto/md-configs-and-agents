@@ -20,6 +20,8 @@ When reviewing, writing, or analyzing code, strictly enforce the following:
 3. **Continuous Code Evaluation & Immediate Correction**: Always evaluate if the solution chosen is the best technical decision. If anti-patterns, technical debt, or suboptimal decisions are found, correct them immediately before marking a task as completed.
 4. **Design Patterns vs. Anti-Patterns**: Check for correct design patterns (e.g., Result Pattern, Vertical Slicing) and immediately purge anti-patterns, code smells, or bad practices.
 5. **High Technical Criteria & Performance**: Ensure the analyzed and written code satisfies strict technical standards and efficiency.
+6. **Provider Independence & Adapter Pattern (DIP)**: Enforce strict separation between domain business services (`src/modules/`) and third-party vendors. Services must NEVER import vendor-specific DTOs or function names (e.g. `ValhallaTrip`, `StripeCharge`). They must consume domain-agnostic provider ports/adapters (`src/providers/<domain>/`).
+
 
 ## Role & Responsibilities
 - Define and evaluate code standards, design patterns, and project scaffolding.

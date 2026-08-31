@@ -4,6 +4,11 @@
 - **Language & Dialect**: ALWAYS respond in **Neutral Latin American Spanish** (no *"vosotros"*, *"hacéis"*, *"decís"*).
 - **Prose Style**: Skip filler phrases (*"I understand"*, *"Here is..."*). Provide code/diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
 - **Critical Thinking & Technical Honesty**: Rigorously and objectively evaluate every proposal. Challenge technical debt, over-engineering, and complacency.
+- **Developer Credits Invariant**: Al desarrollar o construir aplicaciones, interfaces, páginas web o extensiones, incluir siempre la pestaña o sección de Créditos/Acerca de con los datos del autor:
+  - **Autor**: Adelys Alberto Belen
+  - **Rol**: Software Engineer
+  - **Sitio Web**: [adalbeca.com](https://adalbeca.com)
+  - **Email**: dev@adalbeca.com
 
 ---
 
@@ -29,6 +34,7 @@
 | `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Reviewer de codigo, MR/PR y cambios en stage | [`skills/tio-bob/SKILL.md`](skills/tio-bob/SKILL.md) |
 | `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`skills/monk-scrum/SKILL.md`](skills/monk-scrum/SKILL.md) |
 | `/finch`, `/write` | `paul-finch` | Technical Writer & Documentation Specialist | [`skills/paul-finch/SKILL.md`](skills/paul-finch/SKILL.md) |
+| `/readme`, `/layout` | `readme-designer` | Standard GitHub README Layout (Adelys Alberto Style) | [`skills/readme-designer/SKILL.md`](skills/readme-designer/SKILL.md) |
 
 ### Technical Domain Rules (Auto-applied by File Context)
 | Trigger / File Scope | Domain Rule | Mandatory File to Read |
@@ -36,6 +42,7 @@
 | Pre-completion Check (`**`) | Pre-Completion Verification Checklist | [`rules/verification-checklist.rules.md`](rules/verification-checklist.rules.md) |
 | React Components, Hooks, UI (`**/*.tsx`, `**/*.ts`) | React & Clean Code Standards | [`rules/reactjs.rules.md`](rules/reactjs.rules.md) |
 | Styling, CSS Modules, Tokens (`**/*.module.css`) | CSS & Design Tokens Standard | [`rules/styling.rules.md`](rules/styling.rules.md) |
+| UI Components & Design System (`src/components/**`) | UI Library & Design System | [`rules/ui-library.rules.md`](rules/ui-library.rules.md) |
 | Stores, State, Zustand (`src/**/state/**`) | State Management Guidelines | [`rules/state-management.rules.md`](rules/state-management.rules.md) |
 | API, Fetching, Result Pattern (`src/**/services/**`) | Services & Error Handling | [`rules/services-hooks.rules.md`](rules/services-hooks.rules.md) |
 | Architecture, Directory Structure (`src/**`) | Vertical Slice Standards | [`rules/architecture.rules.md`](rules/architecture.rules.md) |
@@ -43,6 +50,7 @@
 | Config & Package Setup (`*.json`, `package.json`) | Config & Dependency Setup | [`rules/config-setup.rules.md`](rules/config-setup.rules.md) |
 | Unit / Integration Tests (`**/*.test.*`) | Testing Strategy & MSW | [`rules/testing.rules.md`](rules/testing.rules.md) |
 | Commits, Git Flow | Conventional Commits Standard | [`rules/commits.rules.md`](rules/commits.rules.md) |
+| Backend & API Workflow (`src/**/*.ts`, `src/modules/**`) | Backend Workflow Standards | [`rules/backend_workflow_standards.md`](rules/backend_workflow_standards.md) |
 
 ---
 

@@ -1,18 +1,16 @@
-<!-- Adaptado para Antigravity -->
 ---
-applyTo: "*.json, *.ts, tsconfig*.json, vite.config.ts, eslint.config.js, package.json"
+trigger: model_decision
+description: 'Configuration, setup, dependencies, Biome and linter standards'
+applyTo: '*.json, *.ts, tsconfig*.json, vite.config.ts, eslint.config.js, package.json, biome.json'
 ---
 
 # Config & Setup
 
 ## Tech Stack Versions & Scaffolding Rule
 
-- **Pinned Exact Versions**: In `package.json`, wildcards (`^`, `~`) are strictly prohibited. Always pin exact versions (e.g. `"react": "19.0.0"`).
-- **Always Install Latest Stable Versions (`@latest`)**: When scaffolding or creating a new project, NEVER hardcode outdated or static version numbers into `package.json`. Always use `@latest` or standard CLI generators (e.g. `pnpm create astro@latest`, `npm create vite@latest`).
-- **Dynamic Dependency Resolution**: Run `pnpm add <package>@latest` or `pnpm add -D <package>@latest` to resolve current stable packages at runtime.
-
-| Tool | Version Strategy |
-|---|---|
+- **Pinned Exact Versions**: In `package.json`, wildcards (`^`, `~`) are strictly prohibited. Always pin exact versions.
+- **NEVER HARDCODE STATIC VERSIONS FROM MEMORY**: When scaffolding or writing any `package.json`, NEVER write static or pre-cached version strings from LLM memory. You MUST ALWAYS run `bun pm view <package> version` (or `bun add <package>@latest`) dynamically in the terminal at runtime to fetch the latest published GA version from npm before writing it into `package.json`.
+- **Dynamic Dependency Resolution**: Run `bun pm view <package> version` to verify real-time versions.
 | React / React DOM | `@latest` (v19+) |
 | TypeScript | `@latest` (v5.x+) |
 | Vite / Astro | `@latest` |
@@ -23,19 +21,39 @@ applyTo: "*.json, *.ts, tsconfig*.json, vite.config.ts, eslint.config.js, packag
 
 ## Linter & Formatter (Biome)
 
-This project uses **Biome** (`@biomejs/biome@latest`) as the primary linter and formatter.
+This project uses **Biome** (`@biomejs/biome@2.5.11`) as the primary linter and formatter.
+
+- **STRICT RULE - Never Reorder/Format Configuration Files (`package.json`, `tsconfig*.json`)**: Biome formatting and linter for JSON configuration files MUST be explicitly disabled/excluded in `biome.json` using `!**/package.json`, `!**/tsconfig*.json` and `"json": { "formatter": { "enabled": false }, "linter": { "enabled": false } }`.
 
 When initializing a project, ALWAYS generate `biome.json` using this default template:
 
 ```json
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.9/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.11/schema.json",
   "files": {
-    "includes": ["src/**/*", "!**/*.svg", "!dist/**/*", "!node_modules/**/*"]
+    "includes": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.css",
+      "!**/*.svg",
+      "!dist/**/*",
+      "!node_modules/**/*",
+      "!**/package.json",
+      "!**/tsconfig*.json",
+      "!**/biome.json"
+    ]
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   },
   "css": {
     "parser": {
-      "cssModules": true
+      "cssModules": true,
+      "tailwindDirectives": true
     }
   },
   "formatter": {
@@ -61,7 +79,10 @@ When initializing a project, ALWAYS generate `biome.json` using this default tem
   },
   "json": {
     "formatter": {
-      "trailingCommas": "none"
+      "enabled": false
+    },
+    "linter": {
+      "enabled": false
     }
   },
   "linter": {
@@ -102,7 +123,18 @@ When initializing a project, ALWAYS generate `biome.json` using this default tem
     "clientKind": "git",
     "enabled": true,
     "useIgnoreFile": true
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/package.json", "**/tsconfig*.json"],
+      "formatter": {
+        "enabled": false
+      },
+      "linter": {
+        "enabled": false
+      }
+    }
+  ]
 }
 ```
 
