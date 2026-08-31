@@ -1,6 +1,7 @@
 # Team Pinky - Antigravity Core Registry & Universal Invariants
 
 ## 💬 1. Response Style, Language & Tone (Universal)
+
 - **Language & Dialect**: ALWAYS respond in **Neutral Latin American Spanish** (no *"vosotros"*, *"hacéis"*, *"decís"*).
 - **Prose Style**: Skip filler phrases (*"I understand"*, *"Here is..."*). Provide code/diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
 - **Critical Thinking & Technical Honesty**: Rigorously and objectively evaluate every proposal. Challenge technical debt, over-engineering, and complacency.
@@ -8,7 +9,7 @@
   - **Autor**: Adelys Alberto Belen
   - **Rol**: Software Engineer
   - **Sitio Web**: [adalbeca.com](https://adalbeca.com)
-  - **Email**: dev@adalbeca.com
+  - **Email**: <dev@adalbeca.com>
 
 ---
 
@@ -18,6 +19,7 @@
 > **Source of Truth Principle**: Before writing, auditing, or refactoring code in a specific domain, load the exact `SKILL.md` or `rules/*.md` using `view_file`. Do NOT guess or rely on summarized memories.
 
 ### Specialized Agent Skills
+
 | Command / Trigger | Specialist | Role | Exact Skill Path |
 | :--- | :--- | :--- | :--- |
 | `/profesor`, `/start` | `profesor-orchestrator` | Overall strategy & orchestration | [`skills/profesor-orchestrator/SKILL.md`](skills/profesor-orchestrator/SKILL.md) |
@@ -27,16 +29,17 @@
 | `/css`, `/miranda` | `miranda-css` | CSS Modules, BEM & tokens | [`skills/miranda-css/SKILL.md`](skills/miranda-css/SKILL.md) |
 | `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | System architecture, DDL & APIs | [`skills/sheldon-architect/SKILL.md`](skills/sheldon-architect/SKILL.md) |
 | `/db`, `/doc` | `doc-database` | Database, ORM, Redis & indexes | [`skills/doc-database/SKILL.md`](skills/doc-database/SKILL.md) |
-| `/security`, `/gorgory` | `gorgory-security` | Security, OWASP & API shielding | [`skills/gorgory-security/SKILL.md`](skills/gorgory-security/SKILL.md) |
+| `/security`, `/gorgory` | "" | Security, OWASP & API shielding | [`skills/gorgory-security/SKILL.md`](skills/gorgory-security/SKILL.md) |
 | `/standards`, `/vicky` | `vicky-techlead` | Clean Architecture & Scaffolding | [`skills/vicky-techlead/SKILL.md`](skills/vicky-techlead/SKILL.md) |
 | `/testing`, `/house` | `house-testing` | Unit, integration & MSW tests | [`skills/house-testing/SKILL.md`](skills/house-testing/SKILL.md) |
 | `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`skills/gadget-auditor/SKILL.md`](skills/gadget-auditor/SKILL.md) |
 | `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Reviewer de codigo, MR/PR y cambios en stage | [`skills/tio-bob/SKILL.md`](skills/tio-bob/SKILL.md) |
 | `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`skills/monk-scrum/SKILL.md`](skills/monk-scrum/SKILL.md) |
 | `/finch`, `/write` | `paul-finch` | Technical Writer & Documentation Specialist | [`skills/paul-finch/SKILL.md`](skills/paul-finch/SKILL.md) |
-| `/readme`, `/layout` | `readme-designer` | Standard GitHub README Layout (Adelys Alberto Style) | [`skills/readme-designer/SKILL.md`](skills/readme-designer/SKILL.md) |
+| `/readme` | `readme` | README Designer & GitHub Layout Specialist | [`skills/readme/SKILL.md`](skills/readme/SKILL.md) |
 
 ### Technical Domain Rules (Auto-applied by File Context)
+
 | Trigger / File Scope | Domain Rule | Mandatory File to Read |
 | :--- | :--- | :--- |
 | Pre-completion Check (`**`) | Pre-Completion Verification Checklist | [`rules/verification-checklist.rules.md`](rules/verification-checklist.rules.md) |
@@ -55,4 +58,5 @@
 ---
 
 ## 🧠 3. Autonomous Memory & Cogni Protocol
+
 Autonomous memory queries, semantic signatures, and recall are delegated to [`skills/cogni/SKILL.md`](skills/cogni/SKILL.md).

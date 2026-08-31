@@ -1,5 +1,5 @@
 ---
-name: readme-designer
+name: readme
 description: Especialista en diseño y maquetación de archivos README.md profesionales para GitHub según el estándar canónico de Adelys Alberto (sin emojis en los títulos).
 ---
 
