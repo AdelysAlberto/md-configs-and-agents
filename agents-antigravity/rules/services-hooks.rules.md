@@ -7,6 +7,7 @@ applyTo: 'src/**/services/**, src/**/hooks/**'
 # Services & Result Pattern Standards
 
 ## 1. Core Invariants
+
 - **Never Throw Exceptions**: Service functions must never throw unhandled errors. Always return a typed `Result<T, E>`.
 - **Vertical Placement**: Services belong to their feature slice: `src/modules/<FeatureName>/services/`.
 - **Pure Functional**: Functions must be standalone, exportable, and free of `class` or `this`.
@@ -90,3 +91,103 @@ export const useUserProfile = (userId: string) => {
   return { user, error, isLoading };
 };
 ```
+
+---
+
+## 5. Regla Invariante: Views Nunca Invocan Services Directamente
+
+- **Prohibido**: Ninguna vista, página o componente de UI puede importar o llamar un `service` (`src/**/services/**`) directamente.
+- **Obligatorio**: Todo acceso a datos pasa por un `custom hook` (`src/**/hooks/**`) que use TanStack Query (`useQuery` / `useMutation`) y que internamente invoque el service.
+- **Flujo correcto**: `View/Component` → `useCustomHook` (TanStack Query) → `service` (Result Pattern).
+- Esto aplica sin excepción, incluso para llamadas "simples" o de un solo uso.
+
+```typescript
+// ❌ Incorrecto: la vista invoca el service directamente
+import { fetchUserProfile } from '../services/user.service';
+
+const UserPage = () => {
+  useEffect(() => {
+    fetchUserProfile(id); // Prohibido
+  }, [id]);
+  // ...
+};
+```
+
+```typescript
+// ✅ Correcto: la vista solo consume el custom hook
+import { useUserProfile } from '../hooks/useUserProfile';
+
+const UserPage = () => {
+  const { user, isLoading } = useUserProfile(id);
+  // ...
+};
+```
+
+---
+
+## 6. TanStack Query: `invalidateQueries` vs `removeQueries` vs `setQueryData`
+
+### Prioridad recomendada para agentes IA
+
+1. `setQueryData` cuando se conoce el nuevo estado (actualización instantánea, sin refetch).
+2. `invalidateQueries` después de mutaciones (Create/Update/Delete) para revalidar datos con el servidor.
+3. `removeQueries` únicamente para logout, limpieza de caché o eliminación explícita de datos sensibles.
+
+**Nunca recomendar `removeQueries` como sustituto de `invalidateQueries` tras una operación CRUD normal.**
+
+### ✅ `invalidateQueries` — datos desactualizados pero válidos
+
+```typescript
+// src/modules/users/hooks/useUpdateUser.ts
+export const useUpdateUser = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+    },
+  });
+};
+```
+
+- Mantiene los datos en caché y marca la query como `stale`.
+- Las queries activas hacen refetch en segundo plano, sin parpadeos ni estados vacíos.
+
+### ✅ `removeQueries` — eliminar datos por completo (logout, datos sensibles)
+
+```typescript
+// src/modules/auth/hooks/useLogout.ts
+export const useLogout = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      queryClient.removeQueries({ queryKey: ['user'] });
+    },
+  });
+};
+```
+
+- Elimina la query del caché sin refetch automático; la próxima solicitud actúa como nueva.
+
+### ✅ `setQueryData` — se conoce el nuevo valor exacto
+
+```typescript
+queryClient.setQueryData(['user', user.id], updatedUser);
+```
+
+### Guía de decisión
+
+| Pregunta | Acción |
+| :--- | :--- |
+| ¿Los datos siguen siendo válidos pero pueden estar desactualizados? | `invalidateQueries` |
+| ¿Los datos deben desaparecer completamente del caché? | `removeQueries` |
+| ¿Conoces exactamente el nuevo valor? | `setQueryData` |
+
+### Malas prácticas prohibidas
+
+- ❌ Usar `removeQueries` después de un UPDATE/CREATE/DELETE normal (provoca hard loading y estados vacíos temporales).
+- ❌ Usar `invalidateQueries` para limpiar datos sensibles en logout (los datos siguen en caché hasta el refetch).
+- ❌ Invalidar todo el caché sin `queryKey` (`queryClient.invalidateQueries()`), salvo necesidad explícita justificada; siempre acotar por `queryKey`.
