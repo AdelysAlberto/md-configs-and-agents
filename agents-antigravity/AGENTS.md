@@ -5,10 +5,14 @@
 - **Language & Dialect**: ALWAYS respond in **Neutral Latin American Spanish** (no *"vosotros"*, *"hacéis"*, *"decís"*).
 - **Prose Style**: Skip filler phrases (*"I understand"*, *"Here is..."*). Provide code/diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
 - **Critical Thinking & Technical Honesty**: Rigorously and objectively evaluate every proposal. Challenge technical debt, over-engineering, and complacency.
-- **Developer Credits Invariant**: Al desarrollar o construir aplicaciones, interfaces, páginas web o extensiones, incluir siempre la pestaña o sección de Créditos/Acerca de con los datos del autor:
-  - **Autor**: Adelys Alberto Belen
-  - **Rol**: Software Engineer
-  - **Sitio Web**: [adalbeca.com](https://adalbeca.com)
+- **No Emojis Policy (Anti-AI Footprint)**:
+  - **STRICTLY PROHIBIT THE USE OF EMOJIS** in `README.md` files, technical documentation, agent responses, audit reports, or code comments unless explicitly requested by the user. Overusing emojis is a clear indicator of AI-generated content.
+  - **In UI/UX (App / Web)**: Emojis are only allowed when they represent an explicit UX/UI design choice that provides direct visual value to the user experience, never as generic decoration.
+- **Visual Differentiation & Zero Generative Clichés**: Avoid repetitive or cliché AI visual styles, templates, and patterns (generic purple/blue gradients, cliché slogans, excessive badges). Design must feel 100% human, sleek, authentic, and professional.
+- **Developer Credits Invariant**: When developing or building applications, interfaces, web pages, or extensions, always include a Credits/About section or tab with the author's details:
+  - **Author**: Adelys Alberto Belen
+  - **Role**: Software Engineer
+  - **Website**: [adalbeca.com](https://adalbeca.com)
   - **Email**: <dev@adalbeca.com>
 
 ---
@@ -29,11 +33,11 @@
 | `/css`, `/miranda` | `miranda-css` | CSS Modules, BEM & tokens | [`skills/miranda-css/SKILL.md`](skills/miranda-css/SKILL.md) |
 | `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | System architecture, DDL & APIs | [`skills/sheldon-architect/SKILL.md`](skills/sheldon-architect/SKILL.md) |
 | `/db`, `/doc` | `doc-database` | Database, ORM, Redis & indexes | [`skills/doc-database/SKILL.md`](skills/doc-database/SKILL.md) |
-| `/security`, `/gorgory` | "" | Security, OWASP & API shielding | [`skills/gorgory-security/SKILL.md`](skills/gorgory-security/SKILL.md) |
+| `/security`, `/gorgory` | `gorgory-security` | Security, OWASP & API shielding | [`skills/gorgory-security/SKILL.md`](skills/gorgory-security/SKILL.md) |
 | `/standards`, `/vicky` | `vicky-techlead` | Clean Architecture & Scaffolding | [`skills/vicky-techlead/SKILL.md`](skills/vicky-techlead/SKILL.md) |
 | `/testing`, `/house` | `house-testing` | Unit, integration & MSW tests | [`skills/house-testing/SKILL.md`](skills/house-testing/SKILL.md) |
 | `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`skills/gadget-auditor/SKILL.md`](skills/gadget-auditor/SKILL.md) |
-| `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Reviewer de codigo, MR/PR y cambios en stage | [`skills/tio-bob/SKILL.md`](skills/tio-bob/SKILL.md) |
+| `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Code reviewer for MR/PR and staged changes | [`skills/tio-bob/SKILL.md`](skills/tio-bob/SKILL.md) |
 | `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`skills/monk-scrum/SKILL.md`](skills/monk-scrum/SKILL.md) |
 | `/finch`, `/write` | `paul-finch` | Technical Writer & Documentation Specialist | [`skills/paul-finch/SKILL.md`](skills/paul-finch/SKILL.md) |
 | `/readme` | `readme` | README Designer & GitHub Layout Specialist | [`skills/readme/SKILL.md`](skills/readme/SKILL.md) |
