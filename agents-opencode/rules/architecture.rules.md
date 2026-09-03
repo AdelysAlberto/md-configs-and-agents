@@ -1,12 +1,11 @@
-<!-- Adaptado para Opencode -->
 ---
 applyTo: "src/**"
 ---
+
 # Architecture
 
 ## Project Structure
 
-```
 src/
 ├── assets/            # Static assets (images, icons, fonts)
 ├── baseComponents/    # Project-specific wrappers around @sice/frontend-components
@@ -32,12 +31,13 @@ src/
 ├── utils/             # Pure utility functions
 │   └── envs.ts            # Environment variable access (ONLY source of env vars)
 └── vite-env.d.ts
+
 ```
 
 ## Naming Conventions
 
 | Entity | Convention | Example |
-|---|---|---|
+| --- | --- | --- |
 | Components | PascalCase | `AccountCard.tsx` |
 | Hooks | camelCase + `use` prefix | `useGetAccount.hook.ts` |
 | Stores | camelCase + `use` prefix | `useAuth.store.ts` |

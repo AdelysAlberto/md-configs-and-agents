@@ -1,7 +1,9 @@
-<!-- Adaptado para Opencode -->
+<!-- Adapted for OpenCode -->
 ---
+
 applyTo: "src/**"
 ---
+
 # Configuration & Setup
 
 ## Project Setup Guidelines
@@ -51,6 +53,7 @@ Create a `biome.json` at the project root with:
 ### npm Scripts (package.json)
 
 Required scripts:
+
 - `pnpm fix` — runs Biome fix for formatting
 - `pnpm tsc --noEmit` — type checks
 - `pnpm build` — builds the project
@@ -60,7 +63,9 @@ Required scripts:
 
 - Never use `import.meta.env` directly.
 - Always access through `import envs from 'src/utils/envs'`:
+
   ```typescript
   const url = envs.API.API_URL;
   ```
+
 - `.env` files must be listed in `.env.example` (never commit real secrets).

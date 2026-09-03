@@ -1,5 +1,12 @@
 # Team Pinky - Antigravity Core Registry & Universal Invariants
 
+## Agent Runtime
+
+Before executing non-trivial tasks, apply:
+
+`rules/runtime.rules.md`
+This file is mandatory, This policy governs reasoning, search, tool usage, context, scope, progress monitoring, escalation, and completion.
+
 ## 💬 1. Response Style, Language & Tone (Universal)
 
 - **Language & Dialect**: ALWAYS respond in **Neutral Latin American Spanish** (no *"vosotros"*, *"hacéis"*, *"decís"*).
@@ -42,22 +49,31 @@
 | `/finch`, `/write` | `paul-finch` | Technical Writer & Documentation Specialist | [`skills/paul-finch/SKILL.md`](skills/paul-finch/SKILL.md) |
 | `/readme` | `readme` | README Designer & GitHub Layout Specialist | [`skills/readme/SKILL.md`](skills/readme/SKILL.md) |
 
-### Technical Domain Rules (Auto-applied by File Context)
+## 4. Engineering Standards
 
-| Trigger / File Scope | Domain Rule | Mandatory File to Read |
-| :--- | :--- | :--- |
-| Pre-completion Check (`**`) | Pre-Completion Verification Checklist | [`rules/verification-checklist.rules.md`](rules/verification-checklist.rules.md) |
-| React Components, Hooks, UI (`**/*.tsx`, `**/*.ts`) | React & Clean Code Standards | [`rules/reactjs.rules.md`](rules/reactjs.rules.md) |
-| Styling, CSS Modules, Tokens (`**/*.module.css`) | CSS & Design Tokens Standard | [`rules/styling.rules.md`](rules/styling.rules.md) |
-| UI Components & Design System (`src/components/**`) | UI Library & Design System | [`rules/ui-library.rules.md`](rules/ui-library.rules.md) |
-| Stores, State, Zustand (`src/**/state/**`) | State Management Guidelines | [`rules/state-management.rules.md`](rules/state-management.rules.md) |
-| API, Fetching, Result Pattern (`src/**/services/**`) | Services & Error Handling | [`rules/services-hooks.rules.md`](rules/services-hooks.rules.md) |
-| Architecture, Directory Structure (`src/**`) | Vertical Slice Standards | [`rules/architecture.rules.md`](rules/architecture.rules.md) |
-| Internationalization (`src/**`) | i18n & Localization Standards | [`rules/i18n.rules.md`](rules/i18n.rules.md) |
-| Config & Package Setup (`*.json`, `package.json`) | Config & Dependency Setup | [`rules/config-setup.rules.md`](rules/config-setup.rules.md) |
-| Unit / Integration Tests (`**/*.test.*`) | Testing Strategy & MSW | [`rules/testing.rules.md`](rules/testing.rules.md) |
-| Commits, Git Flow | Conventional Commits Standard | [`rules/commits.rules.md`](rules/commits.rules.md) |
-| Backend & API Workflow (`src/**/*.ts`, `src/modules/**`) | Backend Workflow Standards | [`rules/backend_workflow_standards.md`](rules/backend_workflow_standards.md) |
+Before making technical decisions, designing architecture, writing code,
+refactoring, or reviewing implementation, load:
+
+`rules/engineering-invariants.rules.md`
+
+These invariants define the universal engineering standards that apply
+regardless of programming language, framework, or technology.
+
+After loading them, load only the language, framework, architecture,
+or domain-specific rules required by the task.
+
+## Language & Technology Rules
+
+Before writing or modifying code, identify the language and
+technology involved and load the corresponding rules.
+
+- JavaScript / TypeScript → `rules/javascript-typescript.rules.md`
+- Go → `rules/go.rules.md`
+- Python → `rules/python.rules.md`
+- Other languages → load the corresponding language rule if available.
+
+After loading the language rules, load only the framework,
+architecture, domain, tooling, and testing rules relevant to the task.
 
 ---
 

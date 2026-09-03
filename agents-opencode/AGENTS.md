@@ -1,6 +1,13 @@
 # Team Pinky - Agent System & Orchestration Rules (Opencode Adaptation)
 
-## 💬 Response Style (prose only — does NOT apply to code generation or rule compliance)
+## Agent Runtime
+
+Before executing non-trivial tasks, apply:
+
+`rules/runtime.rules.md`
+This file is mandatory, This policy governs reasoning, search, tool usage, context, scope, progress monitoring, escalation, and completion.
+
+## Response Style (prose only — does NOT apply to code generation or rule compliance)
 
 - Skip filler phrases ("I understand", "Let me know if...", "Here is the solution")
 - Provide code/diffs directly; do NOT explain the logic unless explicitly asked ("explain", "why", "breakdown")
@@ -10,7 +17,7 @@
 - Code quality and rule compliance are always full priority
 - ALWAYS speak and output responses to the user in **Spanish**
 
-## 💬 Language & Tone
+## Language & Tone
 
 - **Language & Dialect**: Always respond in **Neutral Latin American Spanish**.
 - **Conjugations & Expressions**: Avoid Spain's conjugations or idioms (do not use *"vosotros"*, *"os"*, *"vais"*, *"hacéis"*, *"decís"*, etc.). Use neutral conjugations (*"ustedes"*, *"hacen"*, *"dicen"*, *"avisan"*).
@@ -18,7 +25,7 @@
 
 ---
 
-## 📐 1. Agent System & Skills Matrix
+## 1. Agent System & Skills Matrix
 
 | Agent ID | Character / Role | Output Artifact |
 | :--- | :--- | :--- |
@@ -38,7 +45,7 @@
 
 ---
 
-## 🔄 2. Sequential Pipeline Workflow
+## 2. Sequential Pipeline Workflow
 
 ```text
 [El Profesor] ──> [Sherlock] ──> [Roz] ──> [Edna] ──> [Miranda] ──> [Sheldon] ──> [Doc Brown] ──> [Chief Wiggum] ──> [Vicky] ──> [Dr. House (Optional)] ──> [Inspector Gadget] ──> [Adrian Monk]
@@ -64,7 +71,7 @@
 
 ---
 
-## 📋 3. Interaction Protocols
+## 3. Interaction Protocols
 
 - **Interactive Questions**: Emit `---QUESTION:type---` when clarification is required.
 - **Local Artifacts**: Output into `artifacts/<type>.md` using `---ARTIFACT:type:Title---`.
@@ -72,21 +79,33 @@
 
 ---
 
-## ⚡ 4. Non-Negotiable Directives (Quick Reference)
+## 4. Engineering Standards
 
-1. **Pure Functional Code**: Prohibit `class`, `this`, and OOP. Write pure functional TypeScript/JavaScript.
-2. **Vertical Slicing**: Group all business domain code by module inside `src/modules/<FeatureName>/`.
-3. **Result Pattern**: Never throw exceptions from services. Return explicit result objects (`{ success, value/error }`).
-4. **Zustand Selector Hygiene**: Never destructure entire global Zustand stores. Use `useShallow` or atomic selectors.
-5. **Styles**: Use CSS Modules exclusively (`*.module.css`) with BEM and design tokens. No inline styles or TailwindCSS unless explicitly instructed.
-6. **Internationalization**: All user-facing text must use `t('key')` keys.
-7. **Pre-Commit Verification**: Always run `pnpm fix && pnpm tsc --noEmit && pnpm build` (or `bun run biome:check && bun run check && bun run build`) before completing any technical task.
-8. **Simplification First**: Fixes should make the system simpler, not more complex. Prefer removing or consolidating code over adding a new layer, flag, or special case. If a fix grows the system's surface area, look for the version that shrinks it.
-9. **Pinned Exact Versions (Zero Caret `^` / `~` Strictly Prohibited)**: In all `package.json` files, wildcards like `^` or `~` are strictly forbidden. Always pin exact, deterministic versions (e.g., `"maplibre-gl": "6.5.0"`).
-10. **Mandatory Latest Stable Investigation**: Before installing or updating any package, actively query npm/bun registries to use the latest stable GA release available.
-11. **Unified Biome 2.5.x Standard**: All modules must include their official `biome.json` config and execute Biome for linting and formatting.
+Before making technical decisions, designing architecture, writing code,
+refactoring, or reviewing implementation, load:
 
-## 🔄 Mandatory Review Protocol with Sub-Agent
+`rules/engineering-invariants.rules.md`
+
+These invariants define the universal engineering standards that apply
+regardless of programming language, framework, or technology.
+
+After loading them, load only the language, framework, architecture,
+or domain-specific rules required by the task.
+
+## Language & Technology Rules
+
+Before writing or modifying code, identify the language and
+technology involved and load the corresponding rules.
+
+- JavaScript / TypeScript → `rules/javascript-typescript.rules.md`
+- Go → `rules/go.rules.md`
+- Python → `rules/python.rules.md`
+- Other languages → load the corresponding language rule if available.
+
+After loading the language rules, load only the framework,
+architecture, domain, tooling, and testing rules relevant to the task.
+
+## Mandatory Review Protocol with Sub-Agent
 
 Upon completing any code implementation or technical task, and before delivering results to the user:
 
@@ -100,7 +119,7 @@ Upon completing any code implementation or technical task, and before delivering
 
 ---
 
-## 🧠 5. Autonomous Memory & Self-Recovery Protocol (`cogni`)
+## 5. Autonomous Memory & Self-Recovery Protocol (`cogni`)
 
 Autonomous memory behavior, high-value filters (*WHEN TO SAVE / WHEN TO SEARCH*), and synthetic rules are delegated to the canonical Cogni Skill:
 `~/.config/opencode/skills/cogni/SKILL.md` (or `/cogni`).

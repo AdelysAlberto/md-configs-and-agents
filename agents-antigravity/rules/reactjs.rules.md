@@ -1,12 +1,13 @@
 ---
 trigger: model_decision
 description: 'React Clean Code standards, pure functional components, modular routing, TanStack Query, ErrorBoundary, and Biome'
-applyTo: '**/*.tsx, **/*.ts'
+applyTo: '**/*.tsx, **/*.ts, **/*.js, **/*.jsx'
 ---
 
 # React & Clean Code Standards
 
 ## 1. Core Invariants
+
 - **Pure Functional Components**: Prohibit `class`, `this`, and `React.Component` (except for `ErrorBoundary`). Use direct `export const Component = () => ...` declarations.
 - **Never use `React.FC` or `React.FunctionComponent`**: Type props directly in the argument destructuring `({ title, children }: Props)`.
 - **Linter & Formatter**: Biome standard (`biome.json`). Always pass `bun run biome:check` / `pnpm fix`.
@@ -47,7 +48,8 @@ export const Button = ({ children, variant = 'primary', onClick }: ButtonProps) 
 
 Toda aplicación React debe estructurar sus rutas de forma modular en `src/navigation/`, aislando la lógica de protección, lazy loading y layouts de `App.tsx`.
 
-### 📂 Estructura Mandatoria de Archivos:
+### 📂 Estructura Mandatoria de Archivos
+
 ```text
 src/navigation/
 ├── paths.ts             # Objeto PATHS constante con todas las rutas
@@ -59,6 +61,7 @@ src/navigation/
 ```
 
 ### 📄 3.1 `src/navigation/paths.ts`
+
 ```typescript
 export const PATHS = {
   HOME: '/',
@@ -69,6 +72,7 @@ export const PATHS = {
 ```
 
 ### 📄 3.2 `src/navigation/PrivateRoute.tsx` & `PublicRoute.tsx`
+
 ```typescript
 // PrivateRoute.tsx
 import { Navigate, Outlet } from 'react-router-dom';
@@ -84,6 +88,7 @@ export const PrivateRoute = () => {
 ```
 
 ### 📄 3.3 `src/navigation/private.routes.tsx`
+
 ```typescript
 import { lazy, Suspense } from 'react';
 import { Outlet, type RouteObject } from 'react-router-dom';
@@ -122,6 +127,7 @@ export const privateRoutes: RouteObject = {
 ```
 
 ### 📄 3.4 `src/navigation/index.ts` y `App.tsx` Ultra-Limpio
+
 ```typescript
 // src/navigation/index.ts
 import { useRoutes } from 'react-router-dom';
@@ -154,6 +160,7 @@ export const App = () => (
 Queda strictly prohibido realizar peticiones HTTP directas o `useEffect` para fetching dentro de componentes de UI. Todo consumo de API debe encapsularse en custom hooks dentro de `src/modules/<modulo>/hooks/`.
 
 ### 📄 Ejemplo: `src/modules/users/hooks/useUsersQuery.ts`
+
 ```typescript
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { usersService } from '../services/users.service';
@@ -190,6 +197,7 @@ export const useToggleUserStatusMutation = () => {
 Se debe incluir un `ErrorBoundary` en la raíz de la aplicación para prevenir pantallas en blanco ante excepciones de renderizado en tiempo de ejecución.
 
 ### 📄 Ejemplo: `src/components/ErrorBoundary/ErrorBoundary.tsx`
+
 ```typescript
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { Button } from '@/components/Button';
@@ -247,6 +255,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 ## 6. Hooks Hygiene & Anti-Patterns
 
 ### ❌ BAD (Redundant State via useEffect)
+
 ```typescript
 // ❌ BAD: Synchronizing state that could be derived directly during render
 const [fullName, setFullName] = useState('');
@@ -256,6 +265,7 @@ useEffect(() => {
 ```
 
 ### ✅ GOOD (Derived State)
+
 ```typescript
 // ✅ GOOD: Compute directly during render
 const fullName = `${firstName} ${lastName}`;

@@ -7,13 +7,16 @@ applyTo: 'src/**/*.ts, src/**/*.tsx'
 # Universal Coding Standards
 
 ## 1. Radical Simplicity & Technical Honesty
+
 - **Simplicity First**: Always prioritize the simplest, most readable solution. Avoid over-engineering, speculative layers, abstractions for future use cases, or unnecessary complexity.
 - **Technical Honesty ("Say I don't know")**: Never invent solutions, fake APIs, or hallucinate non-existent features. If a requirement is ambiguous or a capability is unverified, acknowledge it explicitly and ask rather than guessing.
 
 ---
 
 ## 2. Functional Programming Invariant (Zero OOP)
+
 This codebase is **strictly functional**. Object-oriented structures are prohibited.
+
 - **Banned**: `class`, `this`, `constructor`, `extends` (on classes), `implements`.
 - **Allowed**: Pure functions, closures, function composition, factory functions.
 
@@ -31,6 +34,7 @@ export const getUser = (http: HttpClient) => (id: string) => http.get(`/users/${
 ---
 
 ## 3. Pinned Exact Dependencies (Zero Caret / Tilde)
+
 In `package.json`, wildcards (`^`, `~`) are strictly forbidden. Always pin exact versions to ensure deterministic, reproducible builds.
 
 ```json
@@ -50,6 +54,7 @@ In `package.json`, wildcards (`^`, `~`) are strictly forbidden. Always pin exact
 ---
 
 ## 4. TypeScript Rules
+
 - **Zero `any`**: Use explicit generics or `unknown` with type guards.
 - **Types vs Interfaces**: Use `interface` for extensible object shapes and `type` for unions/primitives.
 - **Enums Prohibited**: Use TypeScript union literals (e.g. `type Status = 'idle' | 'loading' | 'success' | 'error'`).
@@ -58,6 +63,7 @@ In `package.json`, wildcards (`^`, `~`) are strictly forbidden. Always pin exact
 ---
 
 ## 5. Lookup Dictionary Pattern Over `switch` Statement
+
 Prefer declarative Lookup Dictionaries (`Record<string, T>`) over imperative `switch(string)` or multiple `if/else` conditionals for factory functions, state mappers, or strategy selection.
 
 - **Performance**: Constant `O(1)` hash lookup vs `O(N)` sequential string comparison.
@@ -89,7 +95,9 @@ export const getAIProvider = (key?: string): AIProviderInterface => {
 ---
 
 ## 6. Strict DRY Invariant (Zero Duplication of Prompts, Logic & Strings)
+
 Never duplicate system prompts, magic strings, complex regex, configuration objects, or validation logic across multiple files.
+
 - **System Prompts & LLM Schemas**: Extract into single shared constants (e.g. `constants/aiPrompts.constant.ts`) and import across adapters.
 - **Environment Variables & Config**: Use `configEnvs` from `src/utils/env.ts` instead of scatter-reading `process.env.*`.
 
@@ -106,7 +114,9 @@ import { configEnvs } from "../../../utils";
 ---
 
 ## 7. Deterministic Pre-Delivery Gate
+
 Before marking any technical task as done, verify:
+
 ```bash
 bun run biome:check && bun run check && bun test
 # OR
