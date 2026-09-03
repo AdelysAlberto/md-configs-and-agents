@@ -1,7 +1,4 @@
-<!-- Adapted for Opencode -->
----
-applyTo: "src/**"
----
+
 # Commits & Verification Checklist
 
 ## Conventional Commits

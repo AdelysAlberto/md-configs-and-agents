@@ -1,7 +1,4 @@
-<!-- Adapted for Opencode -->
----
-applyTo: "src/**"
----
+
 # Testing Standards
 
 ## Unit Test Guidelines

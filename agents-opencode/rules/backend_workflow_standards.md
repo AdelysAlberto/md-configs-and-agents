@@ -1,7 +1,6 @@
 ---
 trigger: model_decision
 description: 'Backend Workflow & Clean Standards for Node.js, Bun, Fastify and Express'
-applyTo: 'src/**/*.ts, src/providers/**, src/modules/**'
 ---
 
 # Rule: Backend Workflow & Clean Standards (Adely's Golden Standards)
@@ -80,6 +79,7 @@ applyTo: 'src/**/*.ts, src/providers/**, src/modules/**'
 5. **Concurrency Limits & Protections (Rate Limiting & Throttling):**
    - **Rate Limiting:** Every exposed API must have a request speed limiter per client/IP (e.g., Token Bucket / Redis Rate Limiter).
    - **Concurrency Throttling:** If multiple heavy calls are executed in parallel to the database or third-party services, they must be bounded by a maximum concurrency control/semaphore to prevent socket and memory exhaustion.
+
 ---
 
 ## 7. 🔌 Third-Party Provider Adapter Pattern & Dependency Inversion (DIP)
@@ -107,7 +107,3 @@ applyTo: 'src/**/*.ts, src/providers/**, src/modules/**'
    - Every change or addition to the ORM schema (`src/db/schema.ts`) **MUST** generate/create its corresponding SQL migration file within the migrations directory (`drizzle/XXXX_name.sql`) and update its index in `drizzle/meta/_journal.json`.
 2. **Full Server Autonomy:**
    - The backend code must be 100% independent. During the application initialization process (`main.ts` / `runMigrations()`), the server runs automatic migrations on the target database (`migrate(db, { migrationsFolder: "./drizzle" })`), guaranteeing the same schema in any environment (Local, CI/CD, Staging, Production).
-
-
-
-

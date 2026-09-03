@@ -1,7 +1,4 @@
-<!-- Adapted for Opencode -->
----
-applyTo: "src/**"
----
+
 # Verification Checklist
 
 ## Pre-Commit Verification

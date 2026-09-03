@@ -1,7 +1,4 @@
-<!-- Adapted for Opencode -->
----
-applyTo: "src/components/**"
----
+
 # Components & React
 
 ## Component Guidelines

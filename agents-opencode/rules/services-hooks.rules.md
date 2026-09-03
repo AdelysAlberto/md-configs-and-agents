@@ -1,7 +1,4 @@
-<!-- Adapted for Opencode -->
----
-applyTo: "src/services/**"
----
+
 # Services & Hooks (Result Pattern)
 
 ## API Service Guidelines

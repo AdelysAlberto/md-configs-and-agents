@@ -1,7 +1,4 @@
-<!-- Adapted for Opencode -->
----
-applyTo: "src/styles/**"
----
+
 # Styling (CSS Modules & Design Tokens)
 
 ## CSS Module Guidelines

@@ -1,7 +1,4 @@
-<!-- Adapted for Opencode -->
----
-applyTo: "src/states/**"
----
+
 # State Management (Zustand & Selectors)
 
 ## Zustand Store Guidelines

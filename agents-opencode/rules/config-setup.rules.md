@@ -1,8 +1,3 @@
-<!-- Adapted for OpenCode -->
----
-
-applyTo: "src/**"
----
 
 # Configuration & Setup
 

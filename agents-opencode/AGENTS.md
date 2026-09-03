@@ -29,7 +29,6 @@ This file is mandatory, This policy governs reasoning, search, tool usage, conte
 - Only the final answer should be written in Spanish, Respond to the user in Spanish.
 - Generate code, commit messages, variable names and technical analysis in English.
 
-
 ---
 
 ## 1. Agent System & Skills Matrix

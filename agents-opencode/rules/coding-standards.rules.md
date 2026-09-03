@@ -1,12 +1,10 @@
-<!-- Adapted for Opencode -->
----
-applyTo: "src/**/*.ts, src/**/*.tsx, src/**/*.js, src/**/*.jsx"
----
+
 # Coding Standards
 
 ## Core Principle: Truth Over Agreement
 
 Do NOT agree with the user when their approach is incorrect. Always provide the BEST solution:
+
 - ✅ Identify problems clearly, explain why, provide the correct solution, educate
 - ❌ Never accept bad practices, implement wrong solutions, or ignore code smells
 
@@ -114,11 +112,13 @@ import { readFile } from 'node:fs';
 ## ESLint Auto-fixes
 
 Run before every commit:
+
 ```bash
 pnpm lint   # eslint --fix
 ```
 
 Auto-fix patterns:
+
 - Remove unused imports
 - Add `node:` prefix to Node.js builtins
 - See `.github/instructions/config-setup.instructions.md` for full ESLint config details

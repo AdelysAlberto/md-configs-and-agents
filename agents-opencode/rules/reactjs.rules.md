@@ -1,7 +1,4 @@
-<!-- Adapted for Opencode -->
----
-applyTo: "src/**/*.{ts,tsx}"
----
+
 # React Guidelines
 
 ## React Best Practices
