@@ -1,38 +1,38 @@
-# Plantilla de Artefacto: Plan de Sprints y Tareas (`sprint_plan.md`)
+# Artifact Template: Sprint and Task Plan (`sprint_plan.md`)
 
 ```markdown
-# Plan de Sprint y Desglose de Tareas Ejecutables
+# Sprint Plan and Executable Task Breakdown
 
-**Proyecto**: [Nombre del Producto]
-**Fecha**: [Fecha Actual]
-**Planificador**: Monk (Scrum Master / Agile Planner)
-
----
-
-## 📋 Resumen del Sprint
-- **Total Épicas**: X
-- **Total Tareas**: Y
+**Project**: [Product Name]
+**Date**: [Current Date]
+**Planner**: Monk (Scrum Master / Agile Planner)
 
 ---
 
-## 🏃 Sprint 1: Fundaciones y MVP Core
+## Sprint Summary
+- **Total Epics**: X
+- **Total Tasks**: Y
 
-### 🔹 Épica 1: [Nombre de la Épica 1]
+---
 
-#### 📌 Historia 1.1: [Nombre de la Historia de Usuario]
-- **User Story**: Como [rol], quiero [acción] para [beneficio].
-- **Criterios de Aceptación**:
-  - [ ] Criterio 1
-  - [ ] Criterio 2
+## Sprint 1: Foundations and MVP Core
 
-#### 🛠️ Tareas de Desarrollo (En orden secuencial):
+### Epic 1: [Epic 1 Name]
 
-- [ ] **Tarea 1.1.1**: [Descripción de la tarea]
-  - **Archivos**: `src/modules/...`
-  - **Instrucciones**: ...
-  - **Verificación**: `pnpm test` / `pnpm build`
+#### Story 1.1: [User Story Name]
+- **User Story**: As a [role], I want [action] so that [benefit].
+- **Acceptance Criteria**:
+  - [ ] Criterion 1
+  - [ ] Criterion 2
 
-- [ ] **Tarea 1.1.2**: [Descripción de la tarea]
-  - **Archivos**: `src/components/...`
-  - **Instrucciones**: ...
+#### Development Tasks (In sequential order):
+
+- [ ] **Task 1.1.1**: [Task description]
+  - **Files**: `src/modules/...`
+  - **Instructions**: ...
+  - **Verification**: `pnpm test` / `pnpm build`
+
+- [ ] **Task 1.1.2**: [Task description]
+  - **Files**: `src/components/...`
+  - **Instructions**: ...
 ```

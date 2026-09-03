@@ -3,7 +3,7 @@ name: cogni
 description: Autonomous local memory system to query and store synthetic semantic signatures in SQLite, reducing token consumption by up to 95% across AI Agent environments (Antigravity, Cursor, Claude, Copilot, OpenCode, Hermes, Codex).
 ---
 
-# 🧠 Cogni Skill (Autonomous AI Agent Memory System)
+# Cogni Skill (Autonomous AI Agent Memory System)
 
 > *"Just as a Byte is the fundamental unit of raw data, a Cogni is the unit of synthetic knowledge for your AI agent."*
 
@@ -13,7 +13,7 @@ Its primary objective is to maintain architectural consistency across chat sessi
 
 ---
 
-## ⚡ Autonomous Agent Operating Directives
+## Autonomous Agent Operating Directives
 
 ### 1. Two-Step Retrieval & Smart Task Tag-Matching
 To prevent context inflation and avoid re-analyzing codebases:
@@ -75,10 +75,10 @@ Cogni is designed to eliminate context saturation by replacing 500-line file rea
 ```yaml
 # Ideal Cogni Signature Example:
 Topic: standards/i18n/ui
-What: Todo texto visible en JSX/TSX debe usar t('namespace:key'). Prohibido texto literal.
-Why: Estándar global del proyecto para soporte multi-idioma (es, en, pt, fr, ar).
+What: All visible text in JSX/TSX must use t('namespace:key'). Literal text is prohibited.
+Why: Global project standard for multi-language support (es, en, pt, fr, ar).
 Where: src/providers/i18n/, src/modules/*, src/layouts/
-Learned: Cadenas en toast o modales también deben internacionalizarse.
+Learned: Strings in toasts or modals must also be internationalized.
 ```
 
 ### 4. Diagnostic & Maintenance Tooling
@@ -103,12 +103,12 @@ If a compaction message or reset occurs:
 
 ### 6. Deterministic Topic Keys & Automatic Upserts
 To prevent duplicate records:
-- Format: `<domain>/<subdomain>/<topic>` (ej. `arch/auth/jwt`, `standards/i18n/ui`, `session/latest`).
+- Format: `<domain>/<subdomain>/<topic>` (e.g. `arch/auth/jwt`, `standards/i18n/ui`, `session/latest`).
 - When a `--topic-key` already exists, `cogni save` automatically updates (**upserts**) the record.
 
 ---
 
-## 🛠️ Tooling & CLI Reference
+## Tooling & CLI Reference
 
 ### Native MCP Tools:
 - `cogni_context(project, limit)`: Active context & recent sessions in < 100 tokens.

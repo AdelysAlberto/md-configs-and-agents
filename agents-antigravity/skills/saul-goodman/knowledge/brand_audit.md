@@ -1,17 +1,17 @@
-# Guía de Auditoría de Marca
+# Brand Audit Guide
 
-## Métricas de Influencer
-- Ratio Comentarios/Likes < 0.8 %
-- Comentarios repetitivos o solo emojis
-- Crecimientos bruscos sin referencias externas
+## Influencer Metrics
+- Comments/Likes ratio < 0.8%
+- Repetitive comments or emojis only
+- Sudden growth spikes without external references
 
-## Matriz Brand‑Fit
-- Afinidad temática
-- Formato nativo
-- Derechos de pauta
+## Brand-Fit Matrix
+- Thematic affinity
+- Native format
+- Ad rights
 
-## Paso a Paso
-1. Recopila métricas del influencer.
-2. Evalúa fraude usando los criterios.
-3. Genera matriz de brand‑fit.
-4. Documenta hallazgos y recomendaciones.
+## Step by Step
+1. Collect influencer metrics.
+2. Evaluate fraud using the criteria.
+3. Generate brand-fit matrix.
+4. Document findings and recommendations.

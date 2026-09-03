@@ -1,40 +1,40 @@
-# Plantilla de Artefacto: Estudio de Mercado (`market_research.md`)
+# Artifact Template: Market Research (`market_research.md`)
 
 ```markdown
-# Estudio de Mercado e Investigación Deductiva
+# Market Research and Deductive Investigation
 
-**Proyecto**: [Nombre del Proyecto]
-**Fecha**: [Fecha Actual]
-**Investigador**: Sherlock (Market & Competitor Analyst)
-
----
-
-## 1. Resumen Deductivo
-[Síntesis de las evidencias encontradas, fallas de la competencia y oportunidad principal]
+**Project**: [Project Name]
+**Date**: [Current Date]
+**Researcher**: Sherlock (Market & Competitor Analyst)
 
 ---
 
-## 2. El Problema del Mercado
-- **Fricción Principal**: [Descripción del dolor no resuelto]
-- **Oportunidad Identificada**: [Ventaja detectada]
+## 1. Deductive Summary
+[Synthesis of found evidence, competitor weaknesses, and main opportunity]
 
 ---
 
-## 3. Matriz Competitiva
+## 2. Market Problem
+- **Main Friction**: [Description of unsolved pain point]
+- **Identified Opportunity**: [Detected advantage]
 
-| Competidor | Propuesta de Valor | Modelo | Fortalezas | Evidencias / Puntos Débiles |
+---
+
+## 3. Competitive Matrix
+
+| Competitor | Value Proposition | Model | Strengths | Evidence / Weaknesses |
 | :--- | :--- | :--- | :--- | :--- |
-| **Competidor 1** | ... | ... | ... | ... |
-| **Competidor 2** | ... | ... | ... | ... |
+| **Competitor 1** | ... | ... | ... | ... |
+| **Competitor 2** | ... | ... | ... | ... |
 
 ---
 
-## 4. Perfil del Usuario Objetivo
-- **User Persona**: [Necesidad clave y comportamiento]
+## 4. Target User Profile
+- **User Persona**: [Key need and behavior]
 
 ---
 
-## 5. Conclusión y Recomendaciones
-1. [Recomendación 1]
-2. [Recomendación 2]
+## 5. Conclusions and Recommendations
+1. [Recommendation 1]
+2. [Recommendation 2]
 ```

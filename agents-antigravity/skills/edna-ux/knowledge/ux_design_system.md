@@ -1,6 +1,5 @@
-# Sistema de Diseño y Experiencia de Usuario - Edna UX
+# UX/UI Design System & Visual Architecture - Edna Mode
 
-Este documento especifica la filosofía de diseño visual de **Edna Moda**: "¡Sin capas! Diseño fabuloso, audaz, limpio y perfectamente funcional".
 # UX/UI Design System & Visual Architecture - Edna Mode
 
 This document details the visual design standards and UX architecture principles enforced by **Edna Mode**.

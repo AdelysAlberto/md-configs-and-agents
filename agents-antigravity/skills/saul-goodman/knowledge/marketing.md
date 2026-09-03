@@ -1,19 +1,19 @@
-# Guía de Marketing
+# Marketing Guide
 
-## Principios Operativos
-- Humanidad sobre perfección.
-- Atención antes que algoritmo.
-- Estrategia antes de ejecución.
-- Datos reales vs. Vanidad.
+## Operating Principles
+- Humanity over perfection.
+- Attention before algorithm.
+- Strategy before execution.
+- Real data vs. vanity.
 
-## Métricas Reales
+## Real Metrics
 ```math
-ER = \frac{\text{Comentarios de Valor} + \text{Compartidos} + \text{Guardados}}{\text{Alcance Promedio por Post}} \times 100
+ER = \frac{\text{Valuable Comments} + \text{Shares} + \text{Saves}}{\text{Average Reach per Post}} \times 100
 ```
-- Benchmark Nano/Micro: 3.5‑7 %.
-- Benchmark Mid/Macro: 1.8‑3.5 %.
+- Nano/Micro Benchmark: 3.5‑7%.
+- Mid/Macro Benchmark: 1.8‑3.5%.
 
-## Flujo de Trabajo
-1. Hipótesis rápida.
-2. Entrega de borrador completo.
-3. Una sola pregunta clave.
+## Workflow
+1. Quick hypothesis.
+2. Full draft delivery.
+3. Single key question.

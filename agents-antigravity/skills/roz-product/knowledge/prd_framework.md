@@ -1,4 +1,4 @@
-# Marco de Requerimientos y Documentación de Producto (Roz Product)
+# Product Requirements and Documentation Framework (Roz Product)
 
 # Product Requirements Framework (PRD) - Roz
 

@@ -3,7 +3,7 @@ name: cogni
 description: Autonomous local memory system to query and store synthetic semantic signatures in SQLite, reducing token consumption by up to 95% across AI Agent environments (Antigravity, Cursor, Claude, Copilot, OpenCode, Hermes).
 ---
 
-# 🧠 Cogni Skill (Autonomous AI Agent Memory System)
+# Cogni Skill (Autonomous AI Agent Memory System)
 
 > *"Just as a Byte is the fundamental unit of raw data, a Cogni is the unit of synthetic knowledge for your AI agent."*
 
@@ -13,7 +13,7 @@ Its primary objective is to maintain architectural consistency across chat sessi
 
 ---
 
-## ⚡ Autonomous Agent Operating Directives
+## Autonomous Agent Operating Directives
 
 ### 1. Two-Step Retrieval & Smart Task Tag-Matching
 To prevent context inflation and avoid re-analyzing codebases:
@@ -88,12 +88,12 @@ If a compaction message or reset occurs:
 
 ### 5. Deterministic Topic Keys & Automatic Upserts
 To prevent duplicate records:
-- Format: `<domain>/<subdomain>/<topic>` (ej. `arch/auth/jwt`, `sdd/cart/spec`, `session/latest`).
+- Format: `<domain>/<subdomain>/<topic>` (e.g., `arch/auth/jwt`, `sdd/cart/spec`, `session/latest`).
 - When a `--topic-key` already exists, `cogni save` automatically updates (**upserts**) the record.
 
 ---
 
-## 🛠️ Tooling & CLI Reference
+## Tooling & CLI Reference
 
 ### Native MCP Tools:
 - `cogni_context(project, limit)`: Active context & recent sessions in < 100 tokens.

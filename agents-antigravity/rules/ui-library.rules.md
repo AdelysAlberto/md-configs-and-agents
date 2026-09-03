@@ -1,29 +1,29 @@
 ---
 trigger: file_context
-description: Estándar estricto para el Sistema de Diseño y Librería de Componentes Reutilizables de React Frontend (DRY, Variables CSS, Estructura por carpetas)
+description: 'Strict standard for the Design System & Reusable React Frontend Component Library (DRY, CSS Variables, Folder-based Structure)'
 applyTo: src/**/*.tsx, src/components/**/*
 ---
 
-# 🎨 Reglas del Sistema de Diseño & Librería de Componentes Reutilizables (React)
+# Design System & Reusable Component Library Rules (React)
 
-## 📌 1. Principio DRY y Origen Único (Single Source of Truth)
-- **Cero Duplicación de Elementos Interactivos**: Queda estrictamente prohibido maquetar botones, campos de entrada, etiquetas, modales, toasts o dropdowns inline directamente en las páginas o vistas de módulos.
-- **Librería Centralizada**: Todo elemento visual reutilizable DEBE pertenecer a `src/components/` y consumirse desde allí. Si se modifica la apariencia o comportamiento de un componente (ej. `Button`), el cambio debe verse reflejado en el 100% de la aplicación al modificar ese único origen.
+## 1. DRY Principle & Single Source of Truth
+- **Zero Duplication of Interactive Elements**: It is strictly prohibited to inline buttons, input fields, labels, modals, toasts, or dropdowns directly in pages or module views.
+- **Centralized Library**: Every reusable visual element MUST belong to `src/components/` and be consumed from there. If a component's appearance or behavior is modified (e.g., `Button`), the change must be reflected across 100% of the application by modifying that single source.
 
 ---
 
-## 📁 2. Estructura Obligatoria por Carpeta de Componente
+## 2. Mandatory Component Folder Structure
 
-Cada componente de la librería DEBE residir dentro de su propia carpeta dedicada en `src/components/<ComponentName>/`:
+Each library component MUST reside within its own dedicated folder in `src/components/<ComponentName>/`:
 
 ```text
 src/components/<ComponentName>/
-├── <ComponentName>.tsx        # Código del componente funcional React (pure functional)
-├── <ComponentName>.types.ts   # Definición estricta de Props y tipos TypeScript
-└── index.ts                   # Exportación barril (barrel export) limpia
+├── <ComponentName>.tsx        # Pure functional React component code
+├── <ComponentName>.types.ts   # Strict Props and TypeScript types definition
+└── index.ts                   # Clean barrel export
 ```
 
-### Ejemplo de Exportación en `index.ts`:
+### Example `index.ts` Export:
 ```typescript
 export * from "./Button";
 export * from "./Button.types";
@@ -31,47 +31,47 @@ export * from "./Button.types";
 
 ---
 
-## 🎨 3. Invariante Obligatorio de Variables CSS Globales (`var(--...)`)
+## 3. Mandatory Global CSS Variables Invariant (`var(--...)`)
 
-- **Prohibido Hardcodear Colores en Código o Clases en Línea**: Todos los colores (fondos, bordes, textos, acentos y estados) DEBEN utilizar variables CSS globales o tokens del tema (`var(--color-...)` o variantes configuradas centralmente en `index.css`).
-- Si la marca cambia una tonalidad primaria o secundaria, el cambio DEBE realizarse exclusivamente en la definición de la variable en `index.css` sin necesidad de modificar el código de los componentes.
+- **Hardcoding Colors in Code or Inline Classes is Prohibited**: All colors (backgrounds, borders, text, accents, and states) MUST use global CSS variables or theme tokens (`var(--color-...)` or centrally configured variants in `index.css`).
+- If the brand changes a primary or secondary hue, the change MUST be made exclusively in the variable definition in `index.css` without needing to modify component code.
 
-### Tokens Estándar Design System:
-- `--color-primary`: Color primario institucional o de marca
-- `--color-secondary`: Color secundario o de acento
-- `--color-danger`: Estado crítico, errores o eliminaciones
-- `--color-success`: Estado exitoso o confirmación
-- `--color-bg-main`: Fondo principal de la aplicación
-- `--color-bg-card`: Superficie y tarjetas elevadas
-- `--color-border-card`: Bordes de separación y delimitadores
+### Standard Design System Tokens:
+- `--color-primary`: Institutional or brand primary color
+- `--color-secondary`: Secondary or accent color
+- `--color-danger`: Critical state, errors, or deletions
+- `--color-success`: Successful or confirmation state
+- `--color-bg-main`: Application main background
+- `--color-bg-card`: Surface and elevated cards
+- `--color-border-card`: Separation and delimiting borders
 
 ---
 
-## 🧩 4. Catálogo Obligatorio de Componentes Base
+## 4. Mandatory Base Component Catalog
 
 1. **`Button`**:
-   - Variantes requeridas: `primary`, `secondary`, `tertiary`, `danger`, `ghost`, `outline`.
-   - Soporte para icono a la izquierda/derecha y estado de carga (`loading`).
-   - Respetar `border-radius` estándar del sistema de diseño.
+   - Required variants: `primary`, `secondary`, `tertiary`, `danger`, `ghost`, `outline`.
+   - Support for left/right icon and loading state (`loading`).
+   - Respect standard design system `border-radius`.
 2. **`Input`**:
-   - Campos de texto, contraseña, búsqueda, correo.
-   - Soporte para `label`, `error`, `helperText` e `icon`.
+   - Text, password, search, email fields.
+   - Support for `label`, `error`, `helperText`, and `icon`.
 3. **`Dropdown` / `Select`**:
-   - Selector desplegable unificado para filtros y formularios.
+   - Unified dropdown selector for filters and forms.
 4. **`Modal`**:
-   - `InformationModal`: Modal de avisos, créditos o detalles.
-   - `ConfirmationModal`: Modal interactivo de confirmación (aceptar/cancelar).
+   - `InformationModal`: Notice, credits, or details modal.
+   - `ConfirmationModal`: Interactive confirmation modal (accept/cancel).
 5. **`Toast`**:
-   - `ToastProvider` & hook `useToast()` para notificaciones flotantes con variantes `success`, `error`, `warning`, `info`.
+   - `ToastProvider` & `useToast()` hook for floating notifications with `success`, `error`, `warning`, `info` variants.
 6. **`Image`**:
-   - Componente de imagen con carga perezosa (`lazy`), esqueleto de carga (`skeleton`) y fallback antierrores.
+   - Image component with lazy loading, loading skeleton, and error fallback.
 7. **`Badge`**:
-   - Etiquetas de estado e indicadores métricos.
+   - Status labels and metric indicators.
 8. **`Card`**:
-   - Contenedor de superficie elevado con borde adaptativo.
+   - Elevated surface container with adaptive border.
 
 ---
 
-## ⚙️ 5. Simplicidad & Código Funcional Puro
-- Prohibidas las clases u orientaciones orientadas a objetos (`class`, `this`).
-- Componentes sencillos, minimalistas y sin sobreingeniería.
+## 5. Simplicity & Pure Functional Code
+- Classes or object-oriented patterns (`class`, `this`) are prohibited.
+- Components must be simple, minimalist, and free of over-engineering.

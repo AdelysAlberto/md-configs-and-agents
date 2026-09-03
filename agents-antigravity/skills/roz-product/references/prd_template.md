@@ -1,37 +1,37 @@
-# Plantilla de Artefacto: Documento de Requerimientos de Producto (`prd.md`)
+# Artifact Template: Product Requirements Document (`prd.md`)
 
 ```markdown
 # Product Requirement Document (PRD)
 
-**Proyecto**: [Nombre del Producto]
-**Fecha**: [Fecha Actual]
+**Project**: [Product Name]
+**Date**: [Current Date]
 **Product Manager**: Roz (Product Manager)
-**Estado**: Documentación en Regla
+**Status**: Documentation in Order
 
 ---
 
-## 1. Visión General del Producto
-- **Descripción**: [Resumen de alto nivel del producto]
-- **Problema Solucionado**: [Basado en la investigación de Sherlock]
+## 1. Product Overview
+- **Description**: [High-level product summary]
+- **Problem Solved**: [Based on Sherlock's research]
 
 ---
 
-## 2. Objetivos y Métricas Clave
-- **Objetivo**: ... -> *KPI*: ...
+## 2. Objectives and Key Metrics
+- **Objective**: ... -> *KPI*: ...
 
 ---
 
-## 3. Requerimientos Funcionales (MoSCoW)
+## 3. Functional Requirements (MoSCoW)
 
-### Must Have (Indispensable para el MVP)
-1. **RF-01: [Nombre de la Funcionalidad]**
-   - **User Story**: Como [rol], quiero [acción] para [beneficio].
-   - **Criterios de Aceptación**:
-     - [ ] Dado que... Cuando... Entonces...
+### Must Have (Essential for MVP)
+1. **FR-01: [Feature Name]**
+   - **User Story**: As a [role], I want [action] so that [benefit].
+   - **Acceptance Criteria**:
+     - [ ] Given... When... Then...
 
-### Should Have (Importante)
-- **RF-02**: ...
+### Should Have (Important)
+- **FR-02**: ...
 
-### Won't Have (Fuera de Alcance)
-- [Funcionalidad excluida explícitamente]
+### Won't Have (Out of Scope)
+- [Explicitly excluded feature]
 ```

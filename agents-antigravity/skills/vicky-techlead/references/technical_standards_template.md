@@ -1,15 +1,15 @@
-# Plantilla de Artefacto: Estándares Técnicos (`technical_standards.md`)
+# Artifact Template: Technical Standards (`technical_standards.md`)
 
 ```markdown
-# Estándares Técnicos de Código y Scaffolding
+# Code and Scaffolding Technical Standards
 
-**Proyecto**: [Nombre del Producto]
-**Fecha**: [Fecha Actual]
-**Tech Lead / Arquitecta**: Vicky (Technical Architect)
+**Project**: [Product Name]
+**Date**: [Current Date]
+**Tech Lead / Architect**: Vicky (Technical Architect)
 
 ---
 
-## 1. Screaming Architecture & Estructura de Carpetas
+## 1. Screaming Architecture & Folder Structure
 
 ```text
 src/
@@ -28,20 +28,20 @@ src/
 
 ---
 
-## 2. Convenciones de Código y Patrones
-- **Result Pattern**: Las funciones asíncronas devuelven `{ ok: boolean, data?: T, error?: String }`.
-- **Early Returns**: Validación previa de casos límite antes de la ejecución principal.
-- **SOLID**: Single Responsibility por archivo y módulo.
+## 2. Code Conventions and Patterns
+- **Result Pattern**: Async functions return `{ ok: boolean, data?: T, error?: String }`.
+- **Early Returns**: Prior validation of edge cases before main execution.
+- **SOLID**: Single Responsibility per file and module.
 
 ---
 
-## 3. Calidad de Código y Linters
+## 3. Code Quality and Linters
 - **Linter & Formatter**: ESLint + Prettier / Biome.
-- **Chequeo de Tipos**: TypeScript en modo estricto (`strict: true`).
+- **Type Checking**: TypeScript in strict mode (`strict: true`).
 
 ---
 
-## 4. Estrategia de Testing y Scaffolding
-- **Pruebas Unitarias**: Vitest / Jest para servicios del dominio.
-- **Pruebas de Componentes**: React Testing Library para componentes compartidos.
+## 4. Testing and Scaffolding Strategy
+- **Unit Tests**: Vitest / Jest for domain services.
+- **Component Tests**: React Testing Library for shared components.
 ```

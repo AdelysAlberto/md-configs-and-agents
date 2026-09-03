@@ -1,33 +1,33 @@
-# Plantilla de Artefacto: Especificación de Arquitectura Técnica (`architecture_specification.md`)
+# Artifact Template: Technical Architecture Specification (`architecture_specification.md`)
 
 ```markdown
-# Especificación de Arquitectura Técnica
+# Technical Architecture Specification
 
-**Proyecto**: [Nombre del Producto]
-**Fecha**: [Fecha Actual]
-**Arquitecto**: Sheldon (System Architect)
+**Project**: [Product Name]
+**Date**: [Current Date]
+**Architect**: Sheldon (System Architect)
 
 ---
 
-## 1. Stack Tecnológico Lógicamente Óptimo
+## 1. Logically Optimal Technology Stack
 - **Frontend**: Next.js (App Router) + React + Tailwind CSS
 - **Backend / API**: Node.js / TypeScript Server Actions / REST API
-- **Base de Datos**: PostgreSQL / Supabase
-- **Infraestructura**: Vercel / Cloudflare Workers
+- **Database**: PostgreSQL / Supabase
+- **Infrastructure**: Vercel / Cloudflare Workers
 
 ---
 
-## 2. Modelo de Datos DDL
+## 2. DDL Data Model
 
 ```sql
--- Tabla de Usuarios
+-- Users Table
 CREATE TABLE users (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   email VARCHAR(255) UNIQUE NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Tabla Principal
+-- Main Table
 CREATE TABLE resources (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES users(id) ON DELETE CASCADE,
@@ -38,16 +38,16 @@ CREATE TABLE resources (
 
 ---
 
-## 3. Especificación de Endpoints API
+## 3. API Endpoint Specification
 
-| Método | Endpoint | Descripción | Payload | Response |
+| Method | Endpoint | Description | Payload | Response |
 | :--- | :--- | :--- | :--- | :--- |
-| `GET` | `/api/v1/resources` | Listar recursos | - | `200 OK` |
-| `POST` | `/api/v1/resources` | Crear recurso | `{ title }` | `201 Created` |
+| `GET` | `/api/v1/resources` | List resources | - | `200 OK` |
+| `POST` | `/api/v1/resources` | Create resource | `{ title }` | `201 Created` |
 
 ---
 
-## 4. Diagrama de Infraestructura
+## 4. Infrastructure Diagram
 ```text
 [Browser] ──(HTTPS)──> [Next.js App / Edge] ──> [PostgreSQL Database]
 ```

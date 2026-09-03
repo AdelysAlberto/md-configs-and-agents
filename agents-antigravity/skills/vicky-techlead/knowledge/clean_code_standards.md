@@ -34,9 +34,9 @@ src/
 
 ---
 
-## 2. Patrones de Diseño Obligatorios
+## 2. Mandatory Design Patterns
 
-1. **Result Pattern**: Evitar `try/catch/throw` para el control de flujo de negocio. Retornar siempre objetos estructurados `{ ok: true, data }` o `{ ok: false, error }`.
-2. **KISS & Clean Code**: Funciones cortas (< 50 líneas), early returns, nombres descriptivos de variables y funciones.
-3. **Adapter / Mapper Pattern**: Desacoplar la UI de las respuestas de API externas. Mapear DTOs externos a modelos de dominio antes de consumirlos en componentes UI.
-4. **Selector Pattern en Estado Global**: Al usar Zustand o Redux, exigir el uso de selectores individuales para evitar re-renders innecesarios.
+1. **Result Pattern**: Avoid `try/catch/throw` for business flow control. Always return structured objects `{ ok: true, data }` or `{ ok: false, error }`.
+2. **KISS & Clean Code**: Short functions (< 50 lines), early returns, descriptive variable and function names.
+3. **Adapter / Mapper Pattern**: Decouple the UI from external API responses. Map external DTOs to domain models before consuming them in UI components.
+4. **Global State Selector Pattern**: When using Zustand or Redux, enforce the use of individual selectors to prevent unnecessary re-renders.

@@ -1,31 +1,31 @@
 ---
 name: zustand
-description: Patrones avanzados y mejores prácticas para la gestión de estado global y de UI con Zustand 5+. Abarca arquitectura funcional, selector hygiene con useShallow, prevención de bucles infinitos de render, slices modulares, aislamiento de almacenamiento seguro (sessionStorage / createAppStore) y acceso fuera de React.
+description: Advanced patterns and best practices for global and UI state management with Zustand 5+. Covers functional architecture, selector hygiene with useShallow, infinite render loop prevention, modular slices, secure storage isolation (sessionStorage / createAppStore), and out-of-React access.
 ---
 
 # Zustand 5: Best Practices & Architecture
 
-Guía integral para gestionar estado global y de UI con Zustand 5 de forma predecible, funcional y de alto rendimiento.
+Comprehensive guide for managing global and UI state with Zustand 5 in a predictable, functional, and high-performance manner.
 
 ---
 
-## 1. Reglas Fundamentales de Arquitectura
+## 1. Fundamental Architecture Rules
 
-1. **Estado de Servidor vs Estado de UI**:
-   - ❌ **No usar Zustand para datos del servidor**: Utilizar TanStack Query para fetching, caching, sincronización e invalidación.
-   - ✅ **Usar Zustand para estado de UI / Cliente**: Modales, wizards, filtros activos de UI, sidebar colapsado, preferencias de sesión.
-2. **Código Funcional Puro**:
-   - Prohibido el uso de clases y `this`. Todos los stores se crean con funciones puras y tipos TypeScript explícitos.
-3. **Nomenclatura y Estructura**:
-   - Nombrar los hooks de los stores con el prefijo `use` (ej: `useAuthStore`, `useFilterStore`).
-   - Siempre exponer una acción `reset()` para restaurar el estado inicial de manera limpia.
+1. **Server State vs UI State**:
+   - ❌ **Don't use Zustand for server data**: Use TanStack Query for fetching, caching, synchronization, and invalidation.
+   - ✅ **Use Zustand for UI/Client state**: Modals, wizards, active UI filters, collapsed sidebar, session preferences.
+2. **Pure Functional Code**:
+   - Classes and `this` are prohibited. All stores are created with pure functions and explicit TypeScript types.
+3. **Naming & Structure**:
+   - Name store hooks with the `use` prefix (e.g., `useAuthStore`, `useFilterStore`).
+   - Always expose a `reset()` action to restore the initial state cleanly.
 
 ---
 
-## 2. Creación de Stores & Persistencia Segura
+## 2. Store Creation & Secure Persistence
 
-### A. Store en Memoria (No persistente)
-Ideal para estado volátil que debe reiniciarse al refrescar la página.
+### A. In-Memory Store (Non-persistent)
+Ideal for volatile state that should reset on page refresh.
 
 ```typescript
 import { create } from 'zustand';
@@ -51,8 +51,8 @@ export const useModalStore = create<ModalState>((set) => ({
 }));
 ```
 
-### B. Store Persistente (Aislamiento de Sesión)
-**ADVERTENCIA DE SEGURIDAD**: Evitar persistir directamente en `localStorage` datos de sesión o tokens sin aislamiento, ya que puede provocar fugas de datos entre usuarios en el mismo navegador. Preferir `sessionStorage` o el wrapper seguro del proyecto (`createAppStore`).
+### B. Persistent Store (Session Isolation)
+**SECURITY WARNING**: Avoid persisting session data or tokens directly in `localStorage` without isolation, as it can cause data leaks between users on the same browser. Prefer `sessionStorage` or the project's secure wrapper (`createAppStore`).
 
 ```typescript
 import { create } from 'zustand';
@@ -82,8 +82,8 @@ export const useWizardStore = create<WizardState>()(
     }),
     {
       name: 'app-wizard-session',
-      storage: createJSONStorage(() => sessionStorage), // Aislamiento por pestaña/sesión
-      partialize: (state) => ({ currentStep: state.currentStep }), // Persistir solo lo necesario
+      storage: createJSONStorage(() => sessionStorage), // Per-tab/session isolation
+      partialize: (state) => ({ currentStep: state.currentStep }), // Persist only what's needed
     }
   )
 );
@@ -91,31 +91,31 @@ export const useWizardStore = create<WizardState>()(
 
 ---
 
-## 3. Consumo Seguro & Prevención de Re-renders (`useShallow`)
+## 3. Safe Consumption & Re-render Prevention (`useShallow`)
 
-### Regla Crítica en Zustand 5:
-- ❌ **PROHIBIDO destructurar el store completo**: `const { prop1, prop2 } = useStore();` (Re-renderiza el componente ante **CUALQUIER** cambio en el store).
-- ❌ **PROHIBIDO retornar objetos/arrays literales sin memoización**: Provoca un nuevo puntero de memoria en cada evaluación y causa bucles infinitos (`Maximum update depth exceeded`).
+### Critical Rule in Zustand 5:
+- ❌ **DESTRUCTURING THE FULL STORE IS FORBIDDEN**: `const { prop1, prop2 } = useStore();` (Re-renders the component on **ANY** store change).
+- ❌ **RETURNING LITERAL OBJECTS/ARRAYS WITHOUT MEMOIZATION IS FORBIDDEN**: Creates a new memory pointer on each evaluation and causes infinite loops (`Maximum update depth exceeded`).
 
 ```tsx
-// ❌ MAL: Retorna nueva referencia en cada render -> Bucle infinito potencial
+// ❌ BAD: Returns new reference every render -> Potential infinite loop
 const { currentStep, draftData } = useWizardStore((state) => ({
   currentStep: state.currentStep,
   draftData: state.draftData,
 }));
 ```
 
-### ✅ Solución 1: Selectores Atómicos (Recomendado para 1 o 2 valores)
+### ✅ Solution 1: Atomic Selectors (Recommended for 1 or 2 values)
 ```tsx
 export const StepIndicator = () => {
   const currentStep = useWizardStore((state) => state.currentStep);
   const setStep = useWizardStore((state) => state.setStep);
 
-  return <div>Paso actual: {currentStep}</div>;
+  return <div>Current step: {currentStep}</div>;
 };
 ```
 
-### ✅ Solución 2: `useShallow` (Obligatorio al seleccionar múltiples propiedades en un objeto/array)
+### ✅ Solution 2: `useShallow` (Mandatory when selecting multiple properties on an object/array)
 ```tsx
 import { useShallow } from 'zustand/react/shallow';
 
@@ -129,8 +129,8 @@ export const WizardHeader = () => {
 
   return (
     <header>
-      <h1>Paso {currentStep}</h1>
-      <button onClick={reset}>Reiniciar</button>
+      <h1>Step {currentStep}</h1>
+      <button onClick={reset}>Restart</button>
     </header>
   );
 };
@@ -138,9 +138,9 @@ export const WizardHeader = () => {
 
 ---
 
-## 4. Patrón de Slices Modulares (Stores Complejos)
+## 4. Modular Slices Pattern (Complex Stores)
 
-Para módulos grandes, dividir el estado en slices independientes y combinarlos en un único store raíz.
+For large modules, split state into independent slices and combine them into a single root store.
 
 ```typescript
 import { create, StateCreator } from 'zustand';
@@ -166,7 +166,7 @@ const createCartSlice: StateCreator<UserSlice & CartSlice, [], [], CartSlice> = 
   addItem: (item) => set((state) => ({ items: [...state.items, item] })),
 });
 
-// Store unificado
+// Unified store
 export const useRootStore = create<UserSlice & CartSlice>()((...args) => ({
   ...createUserSlice(...args),
   ...createCartSlice(...args),
@@ -175,9 +175,9 @@ export const useRootStore = create<UserSlice & CartSlice>()((...args) => ({
 
 ---
 
-## 5. Acciones Asíncronas & Result Pattern
+## 5. Async Actions & Result Pattern
 
-Manejar errores explícitamente sin lanzar excepciones no controladas:
+Handle errors explicitly without throwing uncontrolled exceptions:
 
 ```typescript
 interface ProductsState {
@@ -203,7 +203,7 @@ export const useProductsStore = create<ProductsState>((set) => ({
       set({ items: response.value, isLoading: false });
       return { success: true };
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Error inesperado';
+      const message = err instanceof Error ? err.message : 'Unexpected error';
       set({ error: message, isLoading: false });
       return { success: false, error: message };
     }
@@ -213,29 +213,29 @@ export const useProductsStore = create<ProductsState>((set) => ({
 
 ---
 
-## 6. Acceso Fuera de Componentes React
+## 6. Access Outside React Components
 
-Zustand permite leer o suscribirse al estado en servicios o interceptores de red sin hooks:
+Zustand allows reading or subscribing to state in services or network interceptors without hooks:
 
 ```typescript
-// Leer estado actual
+// Read current state
 const token = useAuthStore.getState().token;
 
-// Despachar acción
+// Dispatch action
 useAuthStore.getState().logout();
 
-// Suscribirse a cambios
+// Subscribe to changes
 const unsubscribe = useAuthStore.subscribe((state) => {
-  console.log('Estado de autenticación actualizado:', state.isAuthenticated);
+  console.log('Authentication state updated:', state.isAuthenticated);
 });
 ```
 
 ---
 
-## 7. Checklist de Calidad Zustand
+## 7. Zustand Quality Checklist
 
-- [ ] ¿El store maneja solo estado del cliente/UI y no duplica el caché del servidor?
-- [ ] ¿Todos los selectores de múltiples propiedades usan `useShallow`?
-- [ ] ¿Los stores exponen una acción `reset()` para limpieza?
-- [ ] ¿La persistencia utiliza storage seguro (`sessionStorage` o particionado explícito)?
-- [ ] ¿Los nombres de acciones son verbos claros y descriptivos?
+- [ ] Does the store handle only client/UI state and not duplicate the server cache?
+- [ ] Do all multi-property selectors use `useShallow`?
+- [ ] Do stores expose a `reset()` action for cleanup?
+- [ ] Does persistence use secure storage (`sessionStorage` or explicit partitioning)?
+- [ ] Are action names clear, descriptive verbs?

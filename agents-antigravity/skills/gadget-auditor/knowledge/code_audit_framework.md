@@ -7,22 +7,22 @@ This document details the cross-reference code auditing standards and static ins
 ## 1. Inspector Gadget's Audit Directives
 
 1. **Unused API & Endpoint Detection**:
-   - Escanear todas las definiciones de servicios HTTP y clientes de API.
-   - Realizar búsquedas cruzadas (grep/AST) en todo el codebase (UI, hooks, componentes).
-   - Reportar cualquier endpoint exportado o método que tenga 0 invocaciones en los portales públicos/privados.
+   - Scan all HTTP service definitions and API clients.
+   - Perform cross-references (grep/AST) across the entire codebase (UI, hooks, components).
+   - Report any exported endpoint or method that has 0 invocations in public/private portals.
 2. **Semantic & HTTP Verb Discrepancies**:
-   - Detectar contradicciones entre el nombre de la función y la acción real (ej. `deleteInvoicingGroup` invocando `privateApi.editInvoicingGroup`).
-   - Identificar uso incorrecto de métodos HTTP (ej. `POST` o `DELETE` llamando a endpoints de edición/lectura).
+   - Detect contradictions between the function name and the actual action (e.g. `deleteInvoicingGroup` calling `privateApi.editInvoicingGroup`).
+   - Identify incorrect HTTP method usage (e.g. `POST` or `DELETE` calling edit/read endpoints).
 3. **Dead Code & Unused Artifacts**:
-   - Detectar tipos TypeScript exportados, utilidades, hooks o componentes que genuinamente jamás se utilicen.
-   - Detectar endpoints sensibles expuestos (ej. `/refresh-token`) sin consumo en cliente para reducir la superficie de ataque.
+   - Detect exported TypeScript types, utilities, hooks, or components that are genuinely never used.
+   - Detect exposed sensitive endpoints (e.g. `/refresh-token`) without client consumption to reduce the attack surface.
 4. **Pragmatic Risk Categorization**:
-   - **CRITICAL**: Endpoints que ejecutan acciones destructivas con verbos incorrectos o exposición grave.
-   - **WARNING**: Endpoints/servicios o funciones huérfanas sin ningún llamado en la UI.
-   - **INFO**: Tipos u opciones obsoletas a limpiar.
+   - **CRITICAL**: Endpoints that execute destructive actions with incorrect verbs or severe exposure.
+   - **WARNING**: Orphaned endpoints/services or functions with no calls in the UI.
+   - **INFO**: Obsolete types or options to clean up.
 
 ---
 
 ## 2. Deliverable Artifact Structure
 
-- `artifacts/code_audit.md`: Informe completo de salud de código, inventario de endpoints sin uso, contradicciones semánticas y recomendaciones de limpieza.
+- `artifacts/code_audit.md`: Complete code health report, unused endpoint inventory, semantic contradictions, and cleanup recommendations.
