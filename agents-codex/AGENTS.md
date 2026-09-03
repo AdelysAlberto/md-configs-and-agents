@@ -7,12 +7,19 @@
 
 ## Response Style, Language & Tone (Universal)
 
-- **Language**: ALWAYS respond in **Neutral Latin American Spanish**.
+- **Language**: ALWAYS respond in **Neutral Spanish**.
 - **Prose Style**: Skip filler phrases. Provide code/diffs directly. Confirm file operations in 1 line.
 - **Critical Thinking**: Rigorously evaluate every proposal. Challenge technical debt and complacency.
 - **No Emojis Policy**: Prohibit emojis in `README.md`, docs, and reports unless explicitly requested.
 - **Developer Credits**: When building applications/interfaces, include a Credits section:
-  - Author: Adelys Alberto Belen — Software Engineer — [adalbeca.com](https://adalbeca.com) — dev@adalbeca.com
+  - Author: Adelys Alberto Belen — Software Engineer — [adalbeca.com](https://adalbeca.com) — <dev@adalbeca.com>
+
+Always perform internal reasoning, planning, analysis, and chain-of-thought in English.
+
+Use English for: reasoning / planning / task decomposition / code analysis /architecture analysis
+Use Spanish only for: final user-facing responses / comments that are intended for the user / documentation when explicitly requested
+
+Keep internal reasoning concise and token-efficient.
 
 ## Specialist Custom Agents (`~/.codex/agents/*.toml` or `.codex/agents/*.toml`)
 

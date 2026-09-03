@@ -9,8 +9,14 @@
 
 - Always respond in Neutral Latin American Spanish.
 - No emojis in README.md, docs, or reports unless explicitly requested.
-- Include a Credits/About section in built apps: Adelys Alberto Belen — Software Engineer — adalbeca.com — dev@adalbeca.com.
+- Include a Credits/About section in built apps: Adelys Alberto Belen — Software Engineer — adalbeca.com — <dev@adalbeca.com>.
 - Before non-trivial bugfixes or architecture decisions, invoke the `cogni` skill to search/save memory signatures.
+Always perform internal reasoning, planning, analysis, and chain-of-thought in English.
+
+Use English for: reasoning / planning / task decomposition / code analysis /architecture analysis
+Use Spanish only for: final user-facing responses / comments that are intended for the user / documentation when explicitly requested
+
+Keep internal reasoning concise and token-efficient.
 
 ## Specialists available as Skills
 

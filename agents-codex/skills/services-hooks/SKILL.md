@@ -93,27 +93,27 @@ export const useUserProfile = (userId: string) => {
 
 ---
 
-## 5. Regla Invariante: Views Nunca Invocan Services Directamente
+## 5. Invariant Rule: Views Never Invoke Services Directly
 
-- **Prohibido**: Ninguna vista, página o componente de UI puede importar o llamar un `service` (`src/**/services/**`) directamente.
-- **Obligatorio**: Todo acceso a datos pasa por un `custom hook` (`src/**/hooks/**`) que use TanStack Query (`useQuery` / `useMutation`) y que internamente invoque el service.
-- **Flujo correcto**: `View/Component` → `useCustomHook` (TanStack Query) → `service` (Result Pattern).
-- Esto aplica sin excepción, incluso para llamadas "simples" o de un solo uso.
+- **Prohibited**: No view, page, or UI component may import or call a `service` (`src/**/services/**`) directly.
+- **Mandatory**: All data access must go through a `custom hook` (`src/**/hooks/**`) that uses TanStack Query (`useQuery` / `useMutation`) and internally invokes the service.
+- **Correct flow**: `View/Component` → `useCustomHook` (TanStack Query) → `service` (Result Pattern).
+- This applies without exception, even for "simple" or single-use calls.
 
 ```typescript
-// ❌ Incorrecto: la vista invoca el service directamente
+// ❌ Incorrect: the view invokes the service directly
 import { fetchUserProfile } from '../services/user.service';
 
 const UserPage = () => {
   useEffect(() => {
-    fetchUserProfile(id); // Prohibido
+    fetchUserProfile(id); // Prohibited
   }, [id]);
   // ...
 };
 ```
 
 ```typescript
-// ✅ Correcto: la vista solo consume el custom hook
+// ✅ Correct: the view only consumes the custom hook
 import { useUserProfile } from '../hooks/useUserProfile';
 
 const UserPage = () => {
@@ -126,15 +126,15 @@ const UserPage = () => {
 
 ## 6. TanStack Query: `invalidateQueries` vs `removeQueries` vs `setQueryData`
 
-### Prioridad recomendada para agentes IA
+### Recommended priority for AI agents
 
-1. `setQueryData` cuando se conoce el nuevo estado (actualización instantánea, sin refetch).
-2. `invalidateQueries` después de mutaciones (Create/Update/Delete) para revalidar datos con el servidor.
-3. `removeQueries` únicamente para logout, limpieza de caché o eliminación explícita de datos sensibles.
+1. `setQueryData` when the new state is known (instant update, no refetch).
+2. `invalidateQueries` after mutations (Create/Update/Delete) to revalidate data with the server.
+3. `removeQueries` only for logout, cache cleanup, or explicit sensitive data removal.
 
-**Nunca recomendar `removeQueries` como sustituto de `invalidateQueries` tras una operación CRUD normal.**
+**Never recommend `removeQueries` as a substitute for `invalidateQueries` after a normal CRUD operation.**
 
-### ✅ `invalidateQueries` — datos desactualizados pero válidos
+### ✅ `invalidateQueries` — stale but valid data
 
 ```typescript
 // src/modules/users/hooks/useUpdateUser.ts
@@ -150,10 +150,10 @@ export const useUpdateUser = () => {
 };
 ```
 
-- Mantiene los datos en caché y marca la query como `stale`.
-- Las queries activas hacen refetch en segundo plano, sin parpadeos ni estados vacíos.
+- Keeps data in cache and marks the query as `stale`.
+- Active queries refetch in the background, without flickers or empty states.
 
-### ✅ `removeQueries` — eliminar datos por completo (logout, datos sensibles)
+### ✅ `removeQueries` — remove data entirely (logout, sensitive data)
 
 ```typescript
 // src/modules/auth/hooks/useLogout.ts
@@ -169,24 +169,24 @@ export const useLogout = () => {
 };
 ```
 
-- Elimina la query del caché sin refetch automático; la próxima solicitud actúa como nueva.
+- Removes the query from cache without automatic refetch; the next request acts as new.
 
-### ✅ `setQueryData` — se conoce el nuevo valor exacto
+### ✅ `setQueryData` — exact new value is known
 
 ```typescript
 queryClient.setQueryData(['user', user.id], updatedUser);
 ```
 
-### Guía de decisión
+### Decision Guide
 
-| Pregunta | Acción |
+| Question | Action |
 | :--- | :--- |
-| ¿Los datos siguen siendo válidos pero pueden estar desactualizados? | `invalidateQueries` |
-| ¿Los datos deben desaparecer completamente del caché? | `removeQueries` |
-| ¿Conoces exactamente el nuevo valor? | `setQueryData` |
+| Is the data still valid but may be stale? | `invalidateQueries` |
+| Must the data disappear from cache entirely? | `removeQueries` |
+| Do you know the exact new value? | `setQueryData` |
 
-### Malas prácticas prohibidas
+### Prohibited bad practices
 
-- ❌ Usar `removeQueries` después de un UPDATE/CREATE/DELETE normal (provoca hard loading y estados vacíos temporales).
-- ❌ Usar `invalidateQueries` para limpiar datos sensibles en logout (los datos siguen en caché hasta el refetch).
-- ❌ Invalidar todo el caché sin `queryKey` (`queryClient.invalidateQueries()`), salvo necesidad explícita justificada; siempre acotar por `queryKey`.
+- ❌ Using `removeQueries` after a normal UPDATE/CREATE/DELETE (causes hard loading and temporary empty states).
+- ❌ Using `invalidateQueries` to clear sensitive data on logout (data remains in cache until refetch).
+- ❌ Invalidating the entire cache without `queryKey` (`queryClient.invalidateQueries()`), unless explicitly justified; always scope by `queryKey`.

@@ -9,18 +9,25 @@ This file is mandatory. This policy governs reasoning, search, tool usage, conte
 
 ## 1. Response Style, Language & Tone (Universal)
 
-- **Language & Dialect**: ALWAYS respond in **English**.
+- **Language & Dialect**: ALWAYS respond in **SPANISH**.
 - **Prose Style**: Skip filler phrases ("I understand", "Here is..."). Provide code/diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
 - **Critical Thinking & Technical Honesty**: Rigorously and objectively evaluate every proposal. Challenge technical debt, over-engineering, and complacency.
 - **No Emojis Policy (Anti-AI Footprint)**:
   - **STRICTLY PROHIBIT THE USE OF EMOJIS** in `README.md` files, technical documentation, agent responses, audit reports, or code comments unless explicitly requested by the user. Overusing emojis is a clear indicator of AI-generated content.
   - **In UI/UX (App / Web)**: Emojis are only allowed when they represent an explicit UX/UI design choice that provides direct visual value to the user experience, never as generic decoration.
 - **Visual Differentiation & Zero Generative Cliches**: Avoid repetitive or cliche AI visual styles, templates, and patterns (generic purple/blue gradients, cliche slogans, excessive badges). Design must feel 100% human, sleek, authentic, and professional.
-- **Developer Credits Invariant**: When developing or building applications, interfaces, web pages, or extensions, always include a Credits/About section or tab with the author's details:
+- **Developer Credits Invariant**: When developing or building applications, interfaces, web pages, or extensions, always include a Credits/About section or tab with the author's details, only when is necessary.
   - **Author**: Adelys Alberto Belen
   - **Role**: Software Engineer
   - **Website**: [adalbeca.com](https://adalbeca.com)
   - **Email**: <dev@adalbeca.com>
+
+Always perform internal reasoning, planning, analysis, and chain-of-thought in English.
+
+Use English for: reasoning / planning / task decomposition / code analysis /architecture analysis
+Use Spanish only for: final user-facing responses / comments that are intended for the user / documentation when explicitly requested
+
+Keep internal reasoning concise and token-efficient.
 
 ---
 

@@ -1,18 +1,18 @@
 # agents-codex
 
-- `~/.codex/AGENTS.md` — Codex lo lee **siempre**, en cualquier proyecto (nivel global, máxima prioridad de descubrimiento junto con `AGENTS.override.md`).
-- `~/.codex/agents/*.toml` — agentes personalizados (subagentes) disponibles en cualquier sesión.
-- Skills: Codex no documenta una carpeta de usuario fija propia; se referencian por ruta explícita en `skills.config` dentro de `config.toml`/agentes, o se comparten vía el directorio cross-tool `~/.agents/skills/` (mismo que usan Claude/Copilot/Hermes).
+- `~/.codex/AGENTS.md` — Codex reads this **always**, in any project (global level, highest discovery priority along with `AGENTS.override.md`).
+- `~/.codex/agents/*.toml` — custom agents (subagents) available in any session.
+- Skills: Codex does not document its own fixed user folder; they are referenced by explicit path in `skills.config` inside `config.toml`/agents, or shared via the cross-tool directory `~/.agents/skills/` (same used by Claude/Copilot/Hermes).
 
-## Dónde vive esto globalmente en Codex
+## Where this lives globally in Codex
 
-| Alcance | Ruta | Formato |
+| Scope | Path | Format |
 | :--- | :--- | :--- |
-| Instrucciones "siempre activas" (usuario/global) | `~/.codex/AGENTS.md` (o `AGENTS.override.md` para un override temporal) | Markdown plano, concatenado con los de proyecto |
-| Instrucciones "siempre activas" (repo) | `AGENTS.md` en la raíz del repo y subcarpetas | Markdown plano |
-| Configuración de comportamiento (modelo, sandbox, aprobaciones) | `~/.codex/config.toml` (global) / `.codex/config.toml` (proyecto) | TOML |
-| Agentes personalizados (subagentes) | `~/.codex/agents/*.toml` (usuario) / `.codex/agents/*.toml` (proyecto) | TOML (`name`, `description`, `developer_instructions`) |
-| Reglas de permisos de comandos (no son "coding rules") | `~/.codex/rules/*.rules` (usuario) / `<repo>/.codex/rules/*.rules` (proyecto, solo si el proyecto es de confianza) | Starlark |
-| Skills | Sin carpeta de usuario fija documentada propia de Codex; se referencian por ruta en `skills.config`, comúnmente compartiendo `~/.agents/skills/` con otras herramientas | Carpeta con `SKILL.md` (agentskills.io) |
+| "Always active" instructions (user/global) | `~/.codex/AGENTS.md` (or `AGENTS.override.md` for a temporary override) | Plain Markdown, concatenated with project ones |
+| "Always active" instructions (repo) | `AGENTS.md` at repo root and subfolders | Plain Markdown |
+| Behavior configuration (model, sandbox, approvals) | `~/.codex/config.toml` (global) / `.codex/config.toml` (project) | TOML |
+| Custom agents (subagents) | `~/.codex/agents/*.toml` (user) / `.codex/agents/*.toml` (project) | TOML (`name`, `description`, `developer_instructions`) |
+| Command permission rules (not "coding rules") | `~/.codex/rules/*.rules` (user) / `<repo>/.codex/rules/*.rules` (project, only if the project is trusted) | Starlark |
+| Skills | No fixed user folder documented by Codex; referenced by path in `skills.config`, commonly sharing `~/.agents/skills/` with other tools | Folder with `SKILL.md` (agentskills.io) |
 
-No existe un "`AGENTS.md` global" con nombre distinto: es literalmente `AGENTS.md`, solo que ubicado en `~/.codex/` en vez de la raíz de un repo.
+There is no separate "global `AGENTS.md`" with a different name: it is literally `AGENTS.md`, just located in `~/.codex/` instead of a repo root.

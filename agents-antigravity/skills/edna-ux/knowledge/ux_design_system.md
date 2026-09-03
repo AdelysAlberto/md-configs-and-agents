@@ -1,5 +1,6 @@
 # UX/UI Design System & Visual Architecture - Edna Mode
 
+This document specifies the visual design philosophy of **Edna Mode**: "No Capes! Fabulous, bold, clean, and perfectly functional design."
 # UX/UI Design System & Visual Architecture - Edna Mode
 
 This document details the visual design standards and UX architecture principles enforced by **Edna Mode**.

@@ -13,7 +13,7 @@ description: Vitest, React Testing Library, MSW, and testing strategy standards.
 
 ## Test File Location
 
-Los tests deben ir siempre junto al módulo que están probando, preferiblemente dentro de una carpeta `__test__` (o `test`). Esto agrupa los archivos de pruebas y mantiene la estructura limpia.
+Tests should always be placed next to the module they are testing, preferably inside a `__test__` (or `test`) folder. This groups test files together and keeps the structure clean.
 
 ```
 src/components/MyComponent/
@@ -28,8 +28,8 @@ src/hooks/__test__/
 
 ## Mocking Rules
 
-- **Ubicación de Mocks Globales**: Todos los mocks globales, especialmente los handlers de MSW (Mock Service Worker), **DEBEN ir en la carpeta `src/mocks`**.
-- **MSW sobre vi.mock()**: Prefiere aislar peticiones de red usando MSW en lugar de mockear hooks o librerías HTTP directamente.
+- **Global Mock Location**: All global mocks, especially MSW (Mock Service Worker) handlers, **MUST go in the `src/mocks` folder**.
+- **MSW over vi.mock()**: Prefer isolating network requests using MSW rather than mocking hooks or HTTP libraries directly.
 
 ## Component Testing Principles
 
