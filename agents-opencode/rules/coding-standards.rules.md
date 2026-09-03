@@ -1,4 +1,4 @@
-<!-- Adaptado para Opencode -->
+<!-- Adapted for Opencode -->
 ---
 applyTo: "src/**/*.ts, src/**/*.tsx, src/**/*.js, src/**/*.jsx"
 ---
@@ -48,7 +48,7 @@ type Status = 'active' | 'inactive';
 
 ## React Patterns
 
-- **No usar `import React from "react"`**: React 18+ y Vite usan el nuevo transformador JSX (`jsx-runtime`), por lo que no es necesario importar React en todos los archivos. Solo importa los hooks o utilidades específicas que necesites (`import { useState, useEffect } from "react"`).
+- **Do not use `import React from "react"`**: React 18+ and Vite use the new JSX transformer (`jsx-runtime`), so there is no need to import React in every file. Only import the specific hooks or utilities you need (`import { useState, useEffect } from "react"`).
 
 ## Comments and Documentation
 

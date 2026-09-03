@@ -1,20 +1,20 @@
 # agents-hermes
 
-- `~/.hermes/SOUL.md` — personalidad global de la instancia (tono, créditos). Es lo más parecido a una "regla global" persistente en Hermes; Hermes ya siembra un `SOUL.md` inicial, así que esto lo sobrescribe con el tono de Team Pinky.
-- `~/.hermes/skills/` — carpeta única de skills (fuente de la verdad). Todas las personas y reglas de ingeniería migradas viven aquí como skills invocables con `/nombre`.
-- Hermes también soporta compartir skills entre herramientas vía `~/.agents/skills/` (configurando `skills.external_dirs` en `~/.hermes/config.yaml`), si prefieres una única carpeta de skills reusada por Copilot/Claude/Hermes.
+- `~/.hermes/SOUL.md` — Global instance personality (tone, credits). This is the closest thing to a persistent "global rule" in Hermes; Hermes already seeds an initial `SOUL.md`, so this overrides it with Team Pinky's tone.
+- `~/.hermes/skills/` — Single skills folder (source of truth). All migrated personas and engineering rules live here as skills invocable with `/name`.
+- Hermes also supports sharing skills across tools via `~/.agents/skills/` (configuring `skills.external_dirs` in `~/.hermes/config.yaml`), if you prefer a single skills folder shared by Copilot/Claude/Hermes.
 
-Hermes carga `AGENTS.md` desde el **directorio de trabajo actual** al iniciar sesión (no desde `~/.hermes`). Los skills de proyecto en `.hermes/skills/` o `.agents/skills/` requieren `hermes skills trust` la primera vez que se detectan, y tienen precedencia sobre skills globales del mismo nombre.
+Hermes loads `AGENTS.md` from the **current working directory** at session start (not from `~/.hermes`). Project skills in `.hermes/skills/` or `.agents/skills/` require `hermes skills trust` the first time they are detected, and take precedence over global skills with the same name.
 
-## Dónde vive esto globalmente en Hermes
+## Where this lives globally in Hermes
 
-| Alcance | Ruta | Formato |
+| Scope | Path | Format |
 | :--- | :--- | :--- |
-| Personalidad global (lo más cercano a "regla global") | `~/.hermes/SOUL.md` | Markdown plano |
-| Hechos/memoria global | `~/.hermes/MEMORY.md`, `~/.hermes/USER.md` | Markdown plano, tamaño acotado (~2200/~1375 caracteres) |
-| Contexto de proyecto (por repo, no global) | `AGENTS.md` en el cwd (también lee `.cursorrules`) | Markdown plano |
-| Skills (única unidad de extensión — agentes y reglas incluidos) | `~/.hermes/skills/` (global) / `<repo>/.hermes/skills/` o `<repo>/.agents/skills/` (proyecto, requiere trust) | Carpeta con `SKILL.md` (agentskills.io) |
-| Compartir skills entre herramientas | `skills.external_dirs` en `~/.hermes/config.yaml` (ej. apuntando a `~/.agents/skills/`) | Lista de rutas |
-| Config general | `~/.hermes/config.yaml` | YAML |
+| Global personality (closest to "global rule") | `~/.hermes/SOUL.md` | Plain Markdown |
+| Global facts/memory | `~/.hermes/MEMORY.md`, `~/.hermes/USER.md` | Plain Markdown, bounded size (~2200/~1375 characters) |
+| Project context (per repo, not global) | `AGENTS.md` in cwd (also reads `.cursorrules`) | Plain Markdown |
+| Skills (single extension unit — agents and rules included) | `~/.hermes/skills/` (global) / `<repo>/.hermes/skills/` or `<repo>/.agents/skills/` (project, requires trust) | Folder with `SKILL.md` (agentskills.io) |
+| Sharing skills across tools | `skills.external_dirs` in `~/.hermes/config.yaml` (e.g. pointing to `~/.agents/skills/`) | List of paths |
+| General config | `~/.hermes/config.yaml` | YAML |
 
-No existe un "`AGENTS.md` global" en Hermes: solo se lee desde el directorio de trabajo. Para lograr un efecto "siempre activo" sin importar el proyecto, la vía soportada es `SOUL.md` (personalidad) + skills globales en `~/.hermes/skills/`.
+There is no "global `AGENTS.md`" in Hermes: it is only read from the working directory. To achieve a "always active" effect regardless of the project, the supported path is `SOUL.md` (personality) + global skills in `~/.hermes/skills/`.

@@ -1,4 +1,4 @@
-<!-- Adaptado para Opencode -->
+<!-- Adapted for Opencode -->
 ---
 applyTo: "src/services/**"
 ---

@@ -1,48 +1,48 @@
 ---
 name: commit
-description: Analiza los cambios en git (staged o working tree), extrae automáticamente el Ticket ID de la rama (#ID), genera un commit con Conventional Commits y descripción técnica estructurada (resumen + mejoras/fixes) sin listar archivos uno por uno.
+description: Analyzes git changes (staged or working tree), automatically extracts the Ticket ID from the branch (#ID), generates a commit using Conventional Commits and a structured technical description (summary + improvements/fixes) without listing files one by one.
 ---
 
-# Skill: Commit & Staging Inteligente
+# Skill: Smart Commit & Staging
 
-Esta skill se activa cuando el usuario escribe `/commit` o `/git-add`, o solicita preparar y registrar cambios en Git.
+This skill activates when the user types `/commit` or `/git-add`, or asks to prepare and record changes in Git.
 
-## Instrucciones de ejecución
+## Execution instructions
 
-1. **Revisar estado de Git y Rama**:
-   - Obtener la rama actual: `git branch --show-current`.
-   - Extraer el ID del ticket de 6 dígitos del nombre de la rama (ejemplo: si la rama es `feature/264099` o `264099-fix-grid`, el ID es `#264099`). Si la rama no contiene un ID de 6 dígitos numérico, omitir el prefijo `#ID` o solicitar aclaración solo si es indispensable.
+1. **Check Git status and branch**:
+   - Get the current branch: `git branch --show-current`.
+   - Extract the 6-digit ticket ID from the branch name (example: if the branch is `feature/264099` or `264099-fix-grid`, the ID is `#264099`). If the branch does not contain a 6-digit numeric ID, omit the `#ID` prefix or ask for clarification only if strictly necessary.
 
-2. **Staging de Cambios**:
-   - Comprobar archivos modificados y en staging: `git status -s`.
-   - Si no hay archivos en staging pero existen cambios en el working tree, ejecutar `git add .` (o añadir los archivos relevantes para el cambio solicitado).
+2. **Stage changes**:
+   - Check modified and staged files: `git status -s`.
+   - If there are no staged files but there are changes in the working tree, run `git add .` (or add the relevant files for the requested change).
 
-3. **Analizar las Diferencias (Diff)**:
-   - Inspeccionar las diferencias con `git diff --cached`.
-   - Evaluar refactorizaciones, nuevas funcionalidades, correcciones de errores, estilos o configuraciones.
+3. **Analyze the Diff**:
+   - Inspect the differences with `git diff --cached`.
+   - Evaluate refactors, new features, bug fixes, styles, or configurations.
 
-4. **Redactar el Mensaje de Commit**:
-   - **Formato del Título (OBLIGATORIO)**:
-     - Debe comenzar obligatoriamente con el ID precedido de `#` seguido de un espacio (ej: `#264099 fix(DatePicker): corregir offset en timezone` o `#264099 feat(auth): agregar soporte para refresh token`).
-     - Seguir la convención Conventional Commits: `tipo(scope): descripción imperativa y concisa`.
-     - Tipos válidos: `feat`, `fix`, `refactor`, `perf`, `style`, `test`, `docs`, `chore`.
-   - **Cuerpo del Commit (Descripción Técnica Estructurada)**:
-     - **Resumen**: Síntesis conceptual de 2 a 4 líneas de lo que se implementó o corrigió.
-     - **Regla estricta**: **PROHIBIDO listar archivos uno por uno** en la descripción.
-     - **Mejoras y Fixes**: Lista con viñetas limpias de los beneficios técnicos, problemas resueltos, optimizaciones de rendimiento o contratos de API ajustados.
+4. **Draft the Commit Message**:
+   - **Title Format (MANDATORY)**:
+     - Must begin with the ID preceded by `#` followed by a space (e.g., `#264099 fix(DatePicker): fix timezone offset` or `#264099 feat(auth): add refresh token support`).
+     - Follow the Conventional Commits convention: `type(scope): imperative and concise description`.
+     - Valid types: `feat`, `fix`, `refactor`, `perf`, `style`, `test`, `docs`, `chore`.
+   - **Commit Body (Structured Technical Description)**:
+     - **Summary**: Conceptual synthesis of 2 to 4 lines of what was implemented or fixed.
+     - **Strict rule**: **PROHIBITED to list files one by one** in the description.
+     - **Improvements and Fixes**: Clean bulleted list of technical benefits, solved problems, performance optimizations, or adjusted API contracts.
 
-5. **Ejecutar el Commit**:
-   - Ejecutar el commit local:
+5. **Run the Commit**:
+   - Run the local commit:
      ```bash
-     git commit -m "<Título>" -m "<Cuerpo estructurado>"
+     git commit -m "<Title>" -m "<Structured body>"
      ```
 
-6. **Control de Push**:
-   - **Por defecto**: Mantener el commit en el entorno local para que el usuario tenga control total.
-   - **Si el usuario solicitó explícitamente push** (o pasó el flag correspondiente):
+6. **Push Control**:
+   - **By default**: Keep the commit locally so the user has full control.
+   - **If the user explicitly requested push** (or passed the corresponding flag):
      ```bash
-     git push origin <rama-actual>
+     git push origin <current-branch>
      ```
 
-7. **Confirmación**:
-   - Mostrar al usuario un resumen conciso con el título y cuerpo del commit generado.
+7. **Confirmation**:
+   - Show the user a concise summary with the generated commit title and body.

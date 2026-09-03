@@ -75,10 +75,10 @@ Cogni is designed to eliminate context saturation by replacing 500-line file rea
 ```yaml
 # Ideal Cogni Signature Example:
 Topic: standards/i18n/ui
-What: Todo texto visible en JSX/TSX debe usar t('namespace:key'). Prohibido texto literal.
-Why: Estándar global del proyecto para soporte multi-idioma (es, en, pt, fr, ar).
+What: All visible text in JSX/TSX must use t('namespace:key'). Literal text is prohibited.
+Why: Global project standard for multi-language support (es, en, pt, fr, ar).
 Where: src/providers/i18n/, src/modules/*, src/layouts/
-Learned: Cadenas en toast o modales también deben internacionalizarse.
+Learned: Strings in toasts or modals must also be internationalized.
 ```
 
 ### 4. Diagnostic & Maintenance Tooling
@@ -103,7 +103,7 @@ If a compaction message or reset occurs:
 
 ### 6. Deterministic Topic Keys & Automatic Upserts
 To prevent duplicate records:
-- Format: `<domain>/<subdomain>/<topic>` (ej. `arch/auth/jwt`, `standards/i18n/ui`, `session/latest`).
+- Format: `<domain>/<subdomain>/<topic>` (e.g. `arch/auth/jwt`, `standards/i18n/ui`, `session/latest`).
 - When a `--topic-key` already exists, `cogni save` automatically updates (**upserts**) the record.
 
 ---

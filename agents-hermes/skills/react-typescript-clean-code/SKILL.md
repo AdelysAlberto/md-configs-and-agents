@@ -1,42 +1,42 @@
 ---
 name: react-typescript-clean-code
-description: Guía maestra y estándares de ingeniería para React moderno (18/19+) y TypeScript. Enfatiza simplicidad sobre complejidad, código funcional puro, uso juicioso de hooks (useEffect, useMemo, useCallback), patrones de rendimiento reales (virtualización, code-splitting), Clean Architecture y prevención de antipatrones.
+description: Master guide and engineering standards for modern React (18/19+) and TypeScript. Emphasizes simplicity over complexity, pure functional code, judicious use of hooks (useEffect, useMemo, useCallback), real performance patterns (virtualization, code-splitting), Clean Architecture, and anti-pattern prevention.
 ---
 
 # React & TypeScript: Clean Architecture, Simplicity & Performance
 
-Guía de ingeniería para el desarrollo de aplicaciones frontend en React con TypeScript. Prioriza la **simplicidad radical**, la previsibilidad funcional y el rendimiento medible sobre la sobreingeniería y la optimización prematura.
+Engineering guide for frontend application development in React with TypeScript. Prioritizes **radical simplicity**, functional predictability, and measurable performance over over-engineering and premature optimization.
 
 ---
 
-## 🧭 1. Principio Rector: Simplicidad sobre Complejidad
+## 🧭 1. Guiding Principle: Simplicity over Complexity
 
-> *"El código más rápido y con menos bugs es el que no se escribe o el que se mantiene simple."*
+> *"The fastest code with the least bugs is the one that isn't written or the one kept simple."*
 
-1. **Evitar la optimización prematura**: No envolver cada variable o función en `useMemo`/`useCallback` por defecto. El costo de memoria y sobrecarga cognitiva suele superar el supuesto beneficio.
-2. **Priorizar funciones puras**: Extraer la lógica de cálculo fuera de los componentes React en funciones puras de TypeScript fáciles de probar.
-3. **Componentes pequeños y con responsabilidad única**: Máximo ~200 líneas por componente. Si crece, extraer lógica a custom hooks o subcomponentes de presentación.
-4. **Prohibición de `class` y `this`**: 100% código funcional con TypeScript estricto.
+1. **Avoid premature optimization**: Do not wrap every variable or function in `useMemo`/`useCallback` by default. The memory cost and cognitive overhead usually outweigh the presumed benefit.
+2. **Prioritize pure functions**: Extract calculation logic out of React components into pure TypeScript functions that are easy to test.
+3. **Small components with single responsibility**: Maximum ~200 lines per component. If it grows, extract logic into custom hooks or presentational subcomponents.
+4. **No `class` and `this`**: 100% functional code with strict TypeScript.
 
 ---
 
-## 🔍 2. Diagnóstico y Uso Juicioso de Hooks
+## 🔍 2. Diagnosis and Judicious Use of Hooks
 
-### A. `useEffect`: ¿Cuándo Usar y Cuándo EVITAR?
+### A. `useEffect`: When to Use and When to AVOID?
 
-`useEffect` es una compuerta de escape para sincronizarse con **sistemas externos**. **NO** es un mecanismo para manejar eventos de usuario ni para sincronizar estado interno.
+`useEffect` is an escape hatch for synchronizing with **external systems**. It is **NOT** a mechanism for handling user events or synchronizing internal state.
 
-| Caso de Uso | ¿Usar `useEffect`? | Alternativa Correcta (Simplicidad) |
+| Use Case | Use `useEffect`? | Correct Alternative (Simplicity) |
 | :--- | :---: | :--- |
-| **Calcular estado derivado** | ❌ **NUNCA** | Calcular directamente en el cuerpo del componente durante el render. |
-| **Resetear estado al cambiar un prop** | ❌ **EVITAR** | Usar una `key` única en el componente para forzar el reinicio natural de React. |
-| **Manejar acciones de usuario (clicks, submit)** | ❌ **NUNCA** | Ejecutar la lógica dentro del event handler (`onClick`, `onSubmit`). |
-| **Data Fetching manual** | ❌ **EVITAR** | Usar **TanStack Query** (maneja caché, deduplicación, abort y reintentos). |
-| **Suscripción a eventos externos (DOM global, WebSockets, Canvas, Timers)** | ✅ **SÍ (Con Cleanup)** | Sincronización externa con función de limpieza obligatoria en el `return`. |
+| **Compute derived state** | ❌ **NEVER** | Compute directly in the component body during render. |
+| **Reset state when a prop changes** | ❌ **AVOID** | Use a unique `key` on the component to force React's natural reset. |
+| **Handle user actions (clicks, submit)** | ❌ **NEVER** | Execute the logic inside the event handler (`onClick`, `onSubmit`). |
+| **Manual Data Fetching** | ❌ **AVOID** | Use **TanStack Query** (handles cache, deduplication, abort, and retries). |
+| **Subscription to external events (global DOM, WebSockets, Canvas, Timers)** | ✅ **YES (With Cleanup)** | External synchronization with mandatory cleanup function in the `return`. |
 
-#### ❌ Antipatrón: Estado derivado con `useEffect` (Doble Render + Lag)
+#### ❌ Anti-pattern: Derived state with `useEffect` (Double Render + Lag)
 ```tsx
-// MAL: Provoca un render extra con estado inconsistente
+// BAD: Causes an extra render with inconsistent state
 const ProductSummary = ({ price, discount }: Props) => {
   const [total, setTotal] = useState(0);
 
@@ -48,16 +48,16 @@ const ProductSummary = ({ price, discount }: Props) => {
 };
 ```
 
-#### ✅ Solución Limpia: Cálculo en Render
+#### ✅ Clean Solution: Calculation in Render
 ```tsx
-// BIEN: Sin hooks adicionales, síncrono y sin bugs
+// GOOD: No extra hooks, synchronous and bug-free
 const ProductSummary = ({ price, discount }: Props) => {
   const total = price - discount;
   return <div>Total: ${total}</div>;
 };
 ```
 
-#### ✅ Uso Legítimo: Sincronización Externa con Cleanup
+#### ✅ Legitimate Use: External Synchronization with Cleanup
 ```tsx
 export const useWindowWidth = () => {
   const [width, setWidth] = useState(() => window.innerWidth);
@@ -66,7 +66,7 @@ export const useWindowWidth = () => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
 
-    // OBLIGATORIO: Limpieza para evitar memory leaks
+    // MANDATORY: Cleanup to avoid memory leaks
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -76,34 +76,34 @@ export const useWindowWidth = () => {
 
 ---
 
-### B. `useMemo`: ¿Cuándo es Realmente Necesario?
+### B. `useMemo`: When is it Really Necessary?
 
-`useMemo` almacena en caché el resultado de un cálculo entre re-renders.
+`useMemo` caches the result of a computation between re-renders.
 
-| Escenario | ¿Usar `useMemo`? | Motivo Técnico |
+| Scenario | Use `useMemo`? | Technical Reason |
 | :--- | :---: | :--- |
-| Operaciones simples (`a + b`, `.length`, `toLowerCase()`) | ❌ **NO** | El costo de crear closures y chequear dependencias es mayor que el cálculo. |
-| Arrays pequeños (< 500 elementos) | ❌ **NO** | Las CPUs modernas procesan miles de operaciones en menos de 0.1ms. |
-| Filtrado/ordenamiento pesado (> 1,000 elementos o transformaciones O(n²)) | ✅ **SÍ** | Evita congelar el hilo principal en renders recurrentes. |
-| Preservar igualdad referencial de objetos pasados a `React.memo` o dependencias de hooks | ✅ **SÍ** | Evita invalidar la memoización de componentes hijos optimizados. |
+| Simple operations (`a + b`, `.length`, `toLowerCase()`) | ❌ **NO** | The cost of creating closures and checking dependencies is greater than the computation. |
+| Small arrays (< 500 elements) | ❌ **NO** | Modern CPUs process thousands of operations in less than 0.1ms. |
+| Heavy filtering/sorting (> 1,000 elements or O(n²) transformations) | ✅ **YES** | Avoids freezing the main thread on recurrent renders. |
+| Preserving referential equality of objects passed to `React.memo` or hook dependencies | ✅ **YES** | Avoids invalidating memoization of optimized child components. |
 
-#### ❌ Antipatrón: Memoización trivial innecesaria
+#### ❌ Anti-pattern: Unnecessary trivial memoization
 ```tsx
-// MAL: Sobreingeniería para una operación instantánea
+// BAD: Over-engineering for an instantaneous operation
 const fullName = useMemo(() => `${firstName} ${lastName}`, [firstName, lastName]);
 const itemsCount = useMemo(() => items.length, [items]);
 ```
 
-#### ✅ Solución: Simple y directo
+#### ✅ Solution: Simple and direct
 ```tsx
-// BIEN: Expresivo, sin memoria extra ni overhead
+// GOOD: Expressive, no extra memory or overhead
 const fullName = `${firstName} ${lastName}`;
 const itemsCount = items.length;
 ```
 
-#### ✅ Uso Legítimo: Filtrado de gran volumen
+#### ✅ Legitimate Use: Large-volume filtering
 ```tsx
-// BIEN: Justificado por volumen de datos
+// GOOD: Justified by data volume
 const visibleItems = useMemo(() => {
   return largeDataset
     .filter((item) => item.status === activeFilter)
@@ -113,20 +113,20 @@ const visibleItems = useMemo(() => {
 
 ---
 
-### C. `useCallback`: ¿Cuándo Usar y Cuándo Omitir?
+### C. `useCallback`: When to Use and When to Omit?
 
-`useCallback` preserva la **referencia de una función** entre renders.
+`useCallback` preserves the **reference of a function** between renders.
 
-| Escenario | ¿Usar `useCallback`? | Motivo Técnico |
+| Scenario | Use `useCallback`? | Technical Reason |
 | :--- | :---: | :--- |
-| Callbacks pasados a elementos HTML nativos (`<button onClick={...}>`) | ❌ **NO** | Los elementos HTML siempre se re-evalúan en el virtual DOM; no aporta beneficio. |
-| Callbacks pasados a componentes hijos normales (no envueltos en `React.memo`) | ❌ **NO** | El hijo se re-renderizará de todas formas cuando el padre cambie. |
-| Callbacks pasados a componentes hijos optimizados con `React.memo` | ✅ **SÍ** | Evita que el `React.memo` del hijo se invalide en cada render del padre. |
-| Funciones que forman parte del array de dependencias de un `useEffect` o custom hook | ✅ **SÍ** | Evita que el efecto se ejecute en cada ciclo de render. |
+| Callbacks passed to native HTML elements (`<button onClick={...}>`) | ❌ **NO** | HTML elements are always re-evaluated in the virtual DOM; brings no benefit. |
+| Callbacks passed to normal child components (not wrapped in `React.memo`) | ❌ **NO** | The child will re-render anyway when the parent changes. |
+| Callbacks passed to child components optimized with `React.memo` | ✅ **YES** | Prevents the child's `React.memo` from invalidating on each parent render. |
+| Functions that are part of a `useEffect` or custom hook dependency array | ✅ **YES** | Prevents the effect from running on each render cycle. |
 
-#### ❌ Antipatrón: `useCallback` en componentes sin memoización
+#### ❌ Anti-pattern: `useCallback` in components without memoization
 ```tsx
-// MAL: Gasto innecesario de memoria y sintaxis ruidosa
+// BAD: Unnecessary memory expense and noisy syntax
 export const UserList = () => {
   const handleClick = useCallback((id: string) => {
     console.log('Clicked', id);
@@ -134,16 +134,16 @@ export const UserList = () => {
 
   return (
     <div>
-      {/* NativeButton no está memoizado con React.memo */}
+      {/* NativeButton is not memoized with React.memo */}
       <NativeButton onClick={handleClick} />
     </div>
   );
 };
 ```
 
-#### ✅ Solución: Función directa estándar
+#### ✅ Solution: Standard direct function
 ```tsx
-// BIEN: Código limpio y directo
+// GOOD: Clean and direct code
 export const UserList = () => {
   const handleClick = (id: string) => {
     console.log('Clicked', id);
@@ -153,20 +153,20 @@ export const UserList = () => {
 };
 ```
 
-#### ✅ Uso Legítimo: Callback hacia hijo memoizado
+#### ✅ Legitimate Use: Callback to memoized child
 ```tsx
-// El hijo está explícitamente memoizado
+// The child is explicitly memoized
 const MemoizedRow = React.memo(({ item, onDelete }: RowProps) => {
   return (
     <div>
       <span>{item.name}</span>
-      <button onClick={() => onDelete(item.id)}>Eliminar</button>
+      <button onClick={() => onDelete(item.id)}>Delete</button>
     </div>
   );
 });
 
 export const DataTable = ({ items }: TableProps) => {
-  // BIEN: Mantiene la referencia estable para no invalidar el memo de MemoizedRow
+  // GOOD: Keeps the reference stable so it doesn't invalidate MemoizedRow's memo
   const handleDelete = useCallback((id: string) => {
     api.deleteItem(id);
   }, []);
@@ -183,13 +183,13 @@ export const DataTable = ({ items }: TableProps) => {
 
 ---
 
-## ⚡ 3. Técnicas de Rendimiento de Alto Impacto
+## ⚡ 3. High-Impact Performance Techniques
 
-### A. Virtualización de Listas Extensas
-Cuando se renderizan listas con más de 50-100 elementos, la virtualización es 10x más efectiva que cualquier micro-optimización con `useMemo`.
+### A. Virtualization of Long Lists
+When rendering lists with more than 50-100 elements, virtualization is 10x more effective than any micro-optimization with `useMemo`.
 
-- **Web**: Utilizar `@tanstack/react-virtual`.
-- **React Native**: Utilizar `@shopify/flash-list`.
+- **Web**: Use `@tanstack/react-virtual`.
+- **React Native**: Use `@shopify/flash-list`.
 
 ```tsx
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -229,8 +229,8 @@ export const VirtualList = ({ items }: { items: Item[] }) => {
 };
 ```
 
-### B. Code-Splitting por Rutas con `React.lazy`
-Dividir el bundle principal cargando rutas y componentes pesados bajo demanda.
+### B. Code-Splitting by Routes with `React.lazy`
+Split the main bundle loading routes and heavy components on demand.
 
 ```tsx
 import { lazy, Suspense } from 'react';
@@ -240,7 +240,7 @@ const DashboardModule = lazy(() => import('./modules/Dashboard'));
 const SettingsModule = lazy(() => import('./modules/Settings'));
 
 export const AppRoutes = () => (
-  <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+  <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
     <Routes>
       <Route path="/dashboard" element={<DashboardModule />} />
       <Route path="/settings" element={<SettingsModule />} />
@@ -251,25 +251,25 @@ export const AppRoutes = () => (
 
 ---
 
-## 🛡️ 4. TypeScript Estricto & Tipado Limpio
+## 🛡️ 4. Strict TypeScript & Clean Typing
 
-1. **Cero `any`**: Usar `unknown`, genéricos `T` o interfaces específicas.
-2. **Discriminated Unions en lugar de Enums**:
+1. **Zero `any`**: Use `unknown`, generics `T`, or specific interfaces.
+2. **Discriminated Unions instead of Enums**:
    ```typescript
-   // ❌ MAL: Enums numéricos o heterogéneos
+   // ❌ BAD: Numeric or heterogeneous Enums
    enum Status { Active, Inactive }
 
-   // ✅ BIEN: Tipos literales discriminados (type-safe y tree-shakeable)
+   // ✅ GOOD: Discriminated literal types (type-safe and tree-shakeable)
    type Status = 'active' | 'inactive' | 'pending';
    ```
-3. **Props con interfaces descriptivas**:
+3. **Props with descriptive interfaces**:
    ```typescript
    interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
      variant?: 'primary' | 'secondary' | 'danger';
      isLoading?: boolean;
    }
    ```
-4. **Result Pattern en Servicios**:
+4. **Result Pattern in Services**:
    ```typescript
    type Result<T, E = string> = 
      | { success: true; value: T }
@@ -278,13 +278,13 @@ export const AppRoutes = () => (
 
 ---
 
-## 📋 5. Checklist de Verificación y Calidad
+## 📋 5. Verification & Quality Checklist
 
-Antes de dar por completado cualquier componente o módulo:
+Before marking any component or module as complete:
 
-- [ ] **Simplicidad**: ¿Se calculó el estado derivado durante el render en lugar de usar un `useEffect`?
-- [ ] **Hooks justificados**: ¿Todos los `useMemo` y `useCallback` tienen una justificación técnica real (hijos con `React.memo` o datasets pesados)?
-- [ ] **Efectos limpios**: ¿Cada `useEffect` que suscribe eventos externos cuenta con su respectiva función de retorno/cleanup?
-- [ ] **TypeScript**: ¿Cero `any` y tipos estrictos en todas las props y firmas de función?
-- [ ] **Tamaño de componentes**: ¿Los componentes se mantienen bajo ~200 líneas y desacoplados de lógica pesada?
-- [ ] **Cero fugas de render**: ¿Los selectores de estado global están protegidos con `useShallow` o selectores atómicos?
+- [ ] **Simplicity**: Was derived state computed during render instead of using a `useEffect`?
+- [ ] **Justified hooks**: Do all `useMemo` and `useCallback` have a real technical justification (children with `React.memo` or heavy datasets)?
+- [ ] **Clean effects**: Does every `useEffect` that subscribes to external events have its respective cleanup/return function?
+- [ ] **TypeScript**: Zero `any` and strict types in all props and function signatures?
+- [ ] **Component size**: Are components kept under ~200 lines and decoupled from heavy logic?
+- [ ] **Zero render leaks**: Are global state selectors protected with `useShallow` or atomic selectors?

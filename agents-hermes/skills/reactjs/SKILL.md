@@ -49,18 +49,18 @@ export const Button = ({ children, variant = 'primary', onClick }: ButtonProps) 
 
 ## 3. Modular Navigation Architecture (`src/navigation/`)
 
-Toda aplicación React debe estructurar sus rutas de forma modular en `src/navigation/`, aislando la lógica de protección, lazy loading y layouts de `App.tsx`.
+Every React application must structure its routes modularly in `src/navigation/`, isolating protection logic, lazy loading, and layouts from `App.tsx`.
 
-### 📂 Estructura Mandatoria de Archivos
+### 📂 Mandatory File Structure
 
 ```text
 src/navigation/
-├── paths.ts             # Objeto PATHS constante con todas las rutas
-├── PrivateRoute.tsx     # Guard de rutas autenticadas (<Outlet /> / <Navigate />)
-├── PublicRoute.tsx      # Guard de rutas públicas (<Outlet /> / <Navigate />)
-├── private.routes.tsx   # RouteObject privado con lazy imports y MainLayout
-├── public.routes.tsx    # RouteObject público con lazy imports
-└── index.ts             # Barrel que expone <AppRoutes /> vía useRoutes()
+├── paths.ts             # Constant PATHS object with all routes
+├── PrivateRoute.tsx     # Authenticated routes guard (<Outlet /> / <Navigate />)
+├── PublicRoute.tsx      # Public routes guard (<Outlet /> / <Navigate />)
+├── private.routes.tsx   # Private RouteObject with lazy imports and MainLayout
+├── public.routes.tsx    # Public RouteObject with lazy imports
+└── index.ts             # Barrel exposing <AppRoutes /> via useRoutes()
 ```
 
 ### 📄 3.1 `src/navigation/paths.ts`
@@ -129,7 +129,7 @@ export const privateRoutes: RouteObject = {
 };
 ```
 
-### 📄 3.4 `src/navigation/index.ts` y `App.tsx` Ultra-Limpio
+### 📄 3.4 `src/navigation/index.ts` and Super-Clean `App.tsx`
 
 ```typescript
 // src/navigation/index.ts
@@ -158,11 +158,11 @@ export const App = () => (
 
 ---
 
-## 4. TanStack Query Standard (Custom Hooks por Módulo)
+## 4. TanStack Query Standard (Custom Hooks per Module)
 
-Queda strictly prohibido realizar peticiones HTTP directas o `useEffect` para fetching dentro de componentes de UI. Todo consumo de API debe encapsularse en custom hooks dentro de `src/modules/<modulo>/hooks/`.
+Direct HTTP requests or `useEffect` for fetching directly inside UI components is strictly prohibited. All API consumption must be encapsulated in custom hooks inside `src/modules/<module>/hooks/`.
 
-### 📄 Ejemplo: `src/modules/users/hooks/useUsersQuery.ts`
+### 📄 Example: `src/modules/users/hooks/useUsersQuery.ts`
 
 ```typescript
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -171,7 +171,7 @@ import type { UserFilterParams, UserStatus } from '../types/users.types';
 
 export const USERS_QUERY_KEY = ['users'];
 
-// Hook para lecturas (Queries)
+// Hook for reads (Queries)
 export const useUsersQuery = (params: Partial<UserFilterParams>) => {
   return useQuery({
     queryKey: [...USERS_QUERY_KEY, params],
@@ -179,7 +179,7 @@ export const useUsersQuery = (params: Partial<UserFilterParams>) => {
   });
 };
 
-// Hook para mutaciones con invalidación de caché
+// Hook for mutations with cache invalidation
 export const useToggleUserStatusMutation = () => {
   const queryClient = useQueryClient();
 
@@ -195,11 +195,11 @@ export const useToggleUserStatusMutation = () => {
 
 ---
 
-## 5. ErrorBoundary Standard (Captura Global de Excepciones)
+## 5. ErrorBoundary Standard (Global Exception Capture)
 
-Se debe incluir un `ErrorBoundary` en la raíz de la aplicación para prevenir pantallas en blanco ante excepciones de renderizado en tiempo de ejecución.
+An `ErrorBoundary` must be included at the root of the application to prevent blank screens on runtime rendering exceptions.
 
-### 📄 Ejemplo: `src/components/ErrorBoundary/ErrorBoundary.tsx`
+### 📄 Example: `src/components/ErrorBoundary/ErrorBoundary.tsx`
 
 ```typescript
 import { Component, type ErrorInfo, type ReactNode } from 'react';
@@ -225,7 +225,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   }
 
   public override componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.error("🔴 ErrorBoundary atrapó un error en tiempo de ejecución:", error, errorInfo);
+    console.error("🔴 ErrorBoundary caught a runtime error:", error, errorInfo);
   }
 
   private handleReset = (): void => {
@@ -238,10 +238,10 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       return (
         <div className="min-h-screen w-full bg-slate-900 text-[#F8FAFC] flex items-center justify-center p-6">
           <div className="max-w-md w-full bg-[#151C28] border border-red-500/30 rounded-xl p-6 space-y-4">
-            <h2 className="text-lg font-bold">Algo no salió bien</h2>
-            <p className="text-xs text-slate-400">Excepción en tiempo de ejecución.</p>
+            <h2 className="text-lg font-bold">Something went wrong</h2>
+            <p className="text-xs text-slate-400">Runtime exception.</p>
             <Button variant="primary" size="sm" onClick={this.handleReset}>
-              Reintentar Cargar
+              Retry Loading
             </Button>
           </div>
         </div>

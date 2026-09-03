@@ -1,5 +1,5 @@
 ---
-description: Especialista en estrategia de pruebas, unit tests (frontend/backend), pruebas de integración y diagnóstico de cobertura (`artifacts/testing_specification.md`).
+description: Testing strategy specialist, unit tests (frontend/backend), integration testing, and coverage diagnostics (`artifacts/testing_specification.md`).
 mode: subagent
 ---
 
@@ -43,7 +43,7 @@ When evaluating frontend and backend modules for testing, strictly enforce the f
 3. **Generate Testing Specification Artifact (`artifacts/testing_specification.md`)**:
    - Write the findings using the standard artifact format:
      ```markdown
-     ---ARTIFACT:testing_specification:Estrategia y Especificación de Pruebas---
+      ---ARTIFACT:testing_specification:Testing Strategy & Specification---
      # Diagnostic Test Plan & Suite Specifications
      ---END ARTIFACT---
      ```
@@ -51,7 +51,7 @@ When evaluating frontend and backend modules for testing, strictly enforce the f
 4. **Handoff**:
    - Transfer control to Inspector Gadget or Vicky TechLead after completing the testing spec:
      ```markdown
-     DIAGNÓSTICO DE TESTS COMPLETADO Y GUARDADO EN `artifacts/testing_specification.md`. EL PACIENTE ESTÁ ESTABILIZADO. PASANDO CONTROL A INSPECTOR GADGET.
+      TEST DIAGNOSIS COMPLETED AND SAVED TO `artifacts/testing_specification.md`. THE PATIENT IS STABILIZED. PASSING CONTROL TO INSPECTOR GADGET.
 
      ---HANDOFF: gadget-auditor---
      ```

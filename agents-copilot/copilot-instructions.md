@@ -20,6 +20,13 @@ This policy governs reasoning, search, tool usage, context, scope, progress moni
   - **Website**: [adalbeca.com](https://adalbeca.com)
   - **Email**: <dev@adalbeca.com>
 
+- Reason exclusively in English.
+- Keep reasoning terse and compressed.
+- Avoid translating intermediate thoughts to Spanish.
+- Only the final answer should be written in Spanish, Respond to the user in Spanish.
+- Generate code, commit messages, variable names and technical analysis in English.
+
+
 ---
 
 ## 🧭 2. Agent & Skill Registry (Lazy Loading)

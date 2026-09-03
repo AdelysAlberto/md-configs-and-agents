@@ -21,12 +21,11 @@ This file is mandatory. This policy governs reasoning, search, tool usage, conte
   - **Website**: [adalbeca.com](https://adalbeca.com)
   - **Email**: <dev@adalbeca.com>
 
-Always perform internal reasoning, planning, analysis, and chain-of-thought in English.
-
-Use English for: reasoning / planning / task decomposition / code analysis /architecture analysis
-Use Spanish only for: final user-facing responses / comments that are intended for the user / documentation when explicitly requested
-
-Keep internal reasoning concise and token-efficient.
+- Reason exclusively in English.
+- Keep reasoning terse and compressed.
+- Avoid translating intermediate thoughts to Spanish.
+- Only the final answer should be written in Spanish, Respond to the user in Spanish.
+- Generate code, commit messages, variable names and technical analysis in English.
 
 ---
 

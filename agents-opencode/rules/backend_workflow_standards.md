@@ -6,107 +6,107 @@ applyTo: 'src/**/*.ts, src/providers/**, src/modules/**'
 
 # Rule: Backend Workflow & Clean Standards (Adely's Golden Standards)
 
-> **ESTÁNDAR OBLIGATORIO DE DESARROLLO BACKEND:** Aplica a todo desarrollo backend en Node.js, Bun, Fastify y Express.
+> **MANDATORY BACKEND DEVELOPMENT STANDARD:** Applies to all backend development in Node.js, Bun, Fastify, and Express.
 
 ---
 
-## 1. 📁 Estructura de Directorios (Public vs Private & Providers)
+## 1. 📁 Directory Structure (Public vs Private & Providers)
 
-- **`src/providers/`**: Contiene únicamente proveedores de infraestructura y servicios transversales:
-  - `logger.provider.ts` (Pino Logger estructurado).
-  - `result.provider.ts` (Result Pattern + helper `sendResult`).
-  - `appError.provider.ts` (Safety net para errorHandler global).
+- **`src/providers/`**: Contains only infrastructure providers and cross-cutting services:
+  - `logger.provider.ts` (Structured Pino Logger).
+  - `result.provider.ts` (Result Pattern + `sendResult` helper).
+  - `appError.provider.ts` (Safety net for global errorHandler).
   - `database.provider.ts` (ORM / Query Builder).
   - `redis.provider.ts`, etc.
-- **`src/modules/public/`**: Contiene los módulos y rutas que NO requieren autenticación previa (ej. `Auth/` con login, register, email validation).
-- **`src/modules/private/`**: Contiene los módulos y rutas protegidos que requieren token JWT o sesión activa (ej. `Accounts/`, `Garage/`, `Routes/`, etc.).
+- **`src/modules/public/`**: Contains modules and routes that do NOT require prior authentication (e.g., `Auth/` with login, register, email validation).
+- **`src/modules/private/`**: Contains protected modules and routes that require an active JWT token or session (e.g., `Accounts/`, `Garage/`, `Routes/`, etc.).
 
 ---
 
-## 2. ⚡ Result Pattern & Respuestas HTTP Unificadas
+## 2. ⚡ Result Pattern & Unified HTTP Responses
 
-1. **Cero Excepciones en Servicios:**
-   - Los servicios NUNCA lanzan excepciones (`throw`). Retornan siempre `Promise<Result<T>>`.
-   - Utilizan `ResponseOk(data)` para éxito y `ResponseFail.X("ErrorCode")` para fallos (donde `X` representa el tipo de error HTTP: `BadRequest`, `Unauthorized`, `NotFound`, `UnprocessableEntity`, `Conflict`, `Internal`, etc.).
-2. **Helper `sendResult` en Handlers/Controllers:**
-   - Toda respuesta HTTP enviada por el servidor sigue estrictamente el mismo esquema JSON:
-     - **Éxito (200 / 201):** `{ "message": "...", "data": T }`
-     - **Fallo (4xx / 5xx):** `{ "error": "ErrorCode" }`
-
----
-
-## 3. 🪵 Logs Estructurados (`src/providers/logger.provider.ts`)
-
-- Usar exclusivamente Pino Logger para emitir logs de servidor (`logger.info`, `logger.warn`, `logger.error`).
-- Loguear **únicamente lo estrictamente necesario** (inicio de servicios, fallos críticos con contexto, operaciones clave).
-- Salida JSON estructurada en producción y formateada (pretty) en desarrollo.
-- Queda estrictamente prohibido loguear contraseñas, tokens JWT completos o datos personales sensibles.
+1. **Zero Exceptions in Services:**
+   - Services NEVER throw exceptions (`throw`). They always return `Promise<Result<T>>`.
+   - Use `ResponseOk(data)` for success and `ResponseFail.X("ErrorCode")` for failures (where `X` represents the HTTP error type: `BadRequest`, `Unauthorized`, `NotFound`, `UnprocessableEntity`, `Conflict`, `Internal`, etc.).
+2. **`sendResult` Helper in Handlers/Controllers:**
+   - Every HTTP response sent by the server strictly follows the same JSON schema:
+     - **Success (200 / 201):** `{ "message": "...", "data": T }`
+     - **Failure (4xx / 5xx):** `{ "error": "ErrorCode" }`
 
 ---
 
-## 🧪 4. Colección de Pruebas Bruno (`.bru`) Obligatoria
+## 3. 🪵 Structured Logs (`src/providers/logger.provider.ts`)
 
-- Por cada endpoint HTTP creado o modificado, se DEBE crear un archivo `.bru` en la carpeta `bruno/` correspondiente (`bruno/Public/` o `bruno/Private/`).
-- El archivo `.bru` debe respetar la estructura completa de Bruno:
-  - `meta`: nombre, secuencia y tipo (`http`).
-  - `method` (get/post/put/delete): URL con variable `{{base_url}}`.
+- Use exclusively Pino Logger to emit server logs (`logger.info`, `logger.warn`, `logger.error`).
+- Log **only what is strictly necessary** (service startup, critical failures with context, key operations).
+- Structured JSON output in production and formatted (pretty) output in development.
+- It is strictly prohibited to log passwords, complete JWT tokens, or sensitive personal data.
+
+---
+
+## 🧪 4. Mandatory Bruno Test Collection (`.bru`)
+
+- For every HTTP endpoint created or modified, a `.bru` file MUST be created in the corresponding `bruno/` folder (`bruno/Public/` or `bruno/Private/`).
+- The `.bru` file must follow Bruno's complete structure:
+  - `meta`: name, sequence, and type (`http`).
+  - `method` (get/post/put/delete): URL with `{{base_url}}` variable.
   - `headers`: Content-Type application/json.
-  - `body:json`: payload de prueba.
-  - `docs`: explicación del propósito del endpoint.
-  - `example`: ejemplo de request y respuesta exitosa.
+  - `body:json`: test payload.
+  - `docs`: explanation of the endpoint's purpose.
+  - `example`: example of request and successful response.
 
 ---
 
-## 🛠️ 5. Regla de Oro de Utilidades (`src/utils/`)
+## 🛠️ 5. Utilities Golden Rule (`src/utils/`)
 
-- **Prohibición de Helpers Inline o Locales:** Queda estrictamente prohibido definir funciones auxiliares o helpers genéricos de validación, formateo o parsing (ej. `validateBody<T>()`, transformadores de fechas, validadores Zod, helpers criptográficos) dentro de un archivo de controlador (`*.controller.ts`) o servicio (`*.service.ts`).
-- **Ubicación Obligatoria en `src/utils/`:** Cualquier función genérica susceptible de ser utilizada por más de un módulo o controlador DEBE crearse obligatoriamente dentro de `src/utils/` (ej: `validation.util.ts`, `crypto.util.ts`, `date.util.ts`) para garantizar DRY, modularidad y reutilización transversal.
-
----
-
-## 🏥 6. Salud del Backend, Concurrencia, Caching & Pooling (Norma Universal)
-
-> **REGLA DE SALUD INNEGOCIABLE:** Aplica independientemente del lenguaje o framework utilizado (TypeScript/Node/Bun, Go, Rust, Python, etc.).
-
-1. **Ejecución Concurrente vs. Sequencial (Anti-Waterfall & Anti N+1):**
-   - **Prohibido el efecto cascada (Waterfall):** Si en un mismo handler/servicio se ejecutan múltiples consultas I/O o a base de datos que son independientes entre sí, **JAMÁS** deben ejecutarse secuencialmente una detrás de otra (`await q1; await q2;`). Deben ejecutarse en paralelo (ej. `Promise.all([q1, q2])` o concurrencia nativa).
-   - **Prohibido I/O dentro de bucles (Anti N+1):** Queda estrictamente prohibido realizar consultas a BD o llamadas API internas dentro de un bucle `for`, `map` o `forEach`. Deben agregarse mediante `IN (...)`, `JOIN` o batching.
-2. **No Bloqueo de Hilo Principal (Non-Blocking Event Loop):**
-   - Cada llamada HTTP debe ser asíncrona no bloqueante. Las operaciones de cálculo intensivo (CPU-bound) deben delegarse a hilos secundarios (Worker Threads) o colas asíncronas en segundo plano.
-3. **Connection Pooling Obligatorio:**
-   - Todo cliente o driver de base de datos relacional (PostgreSQL, MySQL, SQLite/Turso, etc.) **DEBE** configurarse con un Pool de Conexiones explícito (definir `max`, `idleTimeout`, `connectionTimeout`). Prohibido abrir/cerrar conexiones directas por cada petición HTTP.
-4. **Caché Estratégico (Cache-Aside & TTL):**
-   - Datos de alta frecuencia de lectura y baja frecuencia de actualización deben almacenarse en memoria (RAM / Redis) implementando el patrón *Cache-Aside* con un TTL (Time-To-Live) obligatorio.
-5. **Límites de Concurrencia & Protecciones (Rate Limiting & Throttling):**
-   - **Rate Limiting:** Toda API expuesta debe contar con limitador de velocidad de peticiones por cliente/IP (ej. Token Bucket / Redis Rate Limiter).
-   - **Concurrency Throttling:** Si se ejecutan múltiples llamadas pesadas en paralelo hacia la BD o servicios de terceros, deben acotarse mediante un control/semáforo de concurrencia máximo para evitar agotamiento de sockets y memoria.
----
-
-## 7. 🔌 Patrón Adaptador de Proveedores e Inversión de Dependencias (DIP)
-
-> **REGLA DE ABSTRACCIÓN DE TERCEROS Y AGRUPACIÓN POR DOMINIO:** Ningún servicio de aplicación (`src/modules/**/*.service.ts`) debe depender o importar directamente tipos, nombres o funciones específicos de un proveedor externo o vendor concreto (ej. `calculateValhallaRoute`, `ValhallaTrip`, `StripeChargeDTO`, `TwilioSmsParams`).
-
-1. **Estructura de Proveedores Agrupados por Dominio:**
-   - Todos los proveedores de servicios se organizan en `src/providers/<domain>/` (ej: `src/providers/routing/`, `src/providers/payment/`, `src/providers/email/`).
-   - La raíz del dominio expone la capa adaptadora agnóstica (`services/`, `interfaces/`, `index.ts`).
-2. **Subdirectorio de Proveedores Concretos (`src/providers/<domain>/providers/<vendor>/`):**
-   - Las implementaciones concretas de proveedores/vendors de un dominio residen en su subdirectorio `providers/<vendor>/` (ej: `src/providers/routing/providers/valhalla/`, `src/providers/payment/providers/stripe/`, `src/providers/email/providers/resend/`).
-   - Esto evita la acumulación desordenada de carpetas en la raíz de `src/providers/`.
-3. **Capa Adaptadora Agnóstica (Puerto / Adapter):**
-   - La capa adaptadora en `src/providers/<domain>/services/` recibe las peticiones de los módulos de negocio, delega en la implementación del vendor activo (`src/providers/<domain>/providers/<vendor>/`) y traduce la respuesta hacia DTOs agnósticos.
-4. **Reemplazo Transparente de Proveedores (Zero Breakage):**
-   - Agregar o cambiar un proveedor (ej: agregar OSRM en `src/providers/routing/providers/osrm/`) **DEBE** ser transparente para la capa de negocio (`src/modules/`), requiriendo cero cambios en los servicios de aplicación.
+- **Prohibition of Inline or Local Helpers:** It is strictly prohibited to define auxiliary functions or generic validation, formatting, or parsing helpers (e.g., `validateBody<T>()`, date transformers, Zod validators, cryptographic helpers) within a controller file (`*.controller.ts`) or service file (`*.service.ts`).
+- **Mandatory Placement in `src/utils/`:** Any generic function that may be used by more than one module or controller MUST be created inside `src/utils/` (e.g., `validation.util.ts`, `crypto.util.ts`, `date.util.ts`) to ensure DRY, modularity, and cross-cutting reuse.
 
 ---
 
-## 8. 🗄️ Migraciones de Base de Datos Obligatorias y Autonomía sin MCP
+## 🏥 6. Backend Health, Concurrency, Caching & Pooling (Universal Standard)
 
-> **REGLA DE ORO DE PERSISTENCIA Y MIGRACIONES:** Prohibido depender de ejecutores SQL de terceros o servidores MCP de base de datos para alterar esquemas en producción o desarrollo.
+> **NON-NEGOTIABLE HEALTH RULE:** Applies regardless of the language or framework used (TypeScript/Node/Bun, Go, Rust, Python, etc.).
 
-1. **Migraciones Físicas Obligatorias (`drizzle/*.sql` y `_journal.json`):**
-   - Todo cambio o adición en el esquema ORM (`src/db/schema.ts`) **DEBE** generar/crear su correspondiente archivo de migración SQL dentro del directorio de migraciones (`drizzle/XXXX_nombre.sql`) y actualizar su índice en `drizzle/meta/_journal.json`.
-2. **Autonomía Total del Servidor:**
-   - El código backend debe ser 100% independiente. En el proceso de inicialización de la aplicación (`main.ts` / `runMigrations()`), el servidor ejecuta las migraciones automáticas sobre la base de datos de destino (`migrate(db, { migrationsFolder: "./drizzle" })`), garantizando el mismo esquema en cualquier entorno (Local, CI/CD, Staging, Producción).
+1. **Concurrent vs. Sequential Execution (Anti-Waterfall & Anti N+1):**
+   - **Waterfall effect prohibited:** If multiple independent I/O or database queries are executed in the same handler/service, they must **NEVER** run sequentially one after another (`await q1; await q2;`). They must run in parallel (e.g., `Promise.all([q1, q2])` or native concurrency).
+   - **I/O inside loops prohibited (Anti N+1):** It is strictly prohibited to make database queries or internal API calls inside a `for`, `map`, or `forEach` loop. They must be aggregated using `IN (...)`, `JOIN`, or batching.
+2. **Non-Blocking Main Thread (Non-Blocking Event Loop):**
+   - Every HTTP call must be asynchronous and non-blocking. CPU-bound operations must be delegated to secondary threads (Worker Threads) or background async queues.
+3. **Mandatory Connection Pooling:**
+   - Every relational database client or driver (PostgreSQL, MySQL, SQLite/Turso, etc.) **MUST** be configured with an explicit Connection Pool (define `max`, `idleTimeout`, `connectionTimeout`). Opening/closing direct connections per HTTP request is prohibited.
+4. **Strategic Caching (Cache-Aside & TTL):**
+   - High read frequency and low update frequency data should be stored in memory (RAM / Redis) implementing the *Cache-Aside* pattern with a mandatory TTL (Time-To-Live).
+5. **Concurrency Limits & Protections (Rate Limiting & Throttling):**
+   - **Rate Limiting:** Every exposed API must have a request speed limiter per client/IP (e.g., Token Bucket / Redis Rate Limiter).
+   - **Concurrency Throttling:** If multiple heavy calls are executed in parallel to the database or third-party services, they must be bounded by a maximum concurrency control/semaphore to prevent socket and memory exhaustion.
+---
+
+## 7. 🔌 Third-Party Provider Adapter Pattern & Dependency Inversion (DIP)
+
+> **THIRD-PARTY ABSTRACTION & DOMAIN GROUPING RULE:** No application service (`src/modules/**/*.service.ts`) should depend on or directly import types, names, or functions specific to an external provider or vendor (e.g., `calculateValhallaRoute`, `ValhallaTrip`, `StripeChargeDTO`, `TwilioSmsParams`).
+
+1. **Domain-Grouped Provider Structure:**
+   - All service providers are organized in `src/providers/<domain>/` (e.g., `src/providers/routing/`, `src/providers/payment/`, `src/providers/email/`).
+   - The domain root exposes the vendor-agnostic adapter layer (`services/`, `interfaces/`, `index.ts`).
+2. **Concrete Provider Subdirectory (`src/providers/<domain>/providers/<vendor>/`):**
+   - Concrete vendor/provider implementations for a domain reside in their `providers/<vendor>/` subdirectory (e.g., `src/providers/routing/providers/valhalla/`, `src/providers/payment/providers/stripe/`, `src/providers/email/providers/resend/`).
+   - This prevents the messy accumulation of folders in the `src/providers/` root.
+3. **Vendor-Agnostic Adapter Layer (Port / Adapter):**
+   - The adapter layer in `src/providers/<domain>/services/` receives requests from business modules, delegates to the active vendor implementation (`src/providers/<domain>/providers/<vendor>/`), and translates the response into agnostic DTOs.
+4. **Transparent Provider Replacement (Zero Breakage):**
+   - Adding or changing a provider (e.g., adding OSRM in `src/providers/routing/providers/osrm/`) **MUST** be transparent to the business layer (`src/modules/`), requiring zero changes in application services.
+
+---
+
+## 8. 🗄️ Mandatory Database Migrations & Autonomy Without MCP
+
+> **PERSISTENCE & MIGRATIONS GOLDEN RULE:** Relying on third-party SQL executors or MCP database servers to alter schemas in production or development is prohibited.
+
+1. **Mandatory Physical Migrations (`drizzle/*.sql` and `_journal.json`):**
+   - Every change or addition to the ORM schema (`src/db/schema.ts`) **MUST** generate/create its corresponding SQL migration file within the migrations directory (`drizzle/XXXX_name.sql`) and update its index in `drizzle/meta/_journal.json`.
+2. **Full Server Autonomy:**
+   - The backend code must be 100% independent. During the application initialization process (`main.ts` / `runMigrations()`), the server runs automatic migrations on the target database (`migrate(db, { migrationsFolder: "./drizzle" })`), guaranteeing the same schema in any environment (Local, CI/CD, Staging, Production).
 
 
 

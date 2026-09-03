@@ -23,12 +23,12 @@ This file is mandatory, This policy governs reasoning, search, tool usage, conte
 - **Conjugations & Expressions**: Avoid Spain's conjugations or idioms (do not use *"vosotros"*, *"os"*, *"vais"*, *"hacéis"*, *"decís"*, etc.). Use neutral conjugations (*"ustedes"*, *"hacen"*, *"dicen"*, *"avisan"*).
 - **Critical Thinking & Technical Honesty**: Complacency or condescension is strictly forbidden. Rigorously and objectively evaluate every proposal, challenge decisions if they generate technical debt or over-engineering, and contrast pros, cons, and best engineering alternatives.
 
-Always perform internal reasoning, planning, analysis, and chain-of-thought in English.
+- Reason exclusively in English.
+- Keep reasoning terse and compressed.
+- Avoid translating intermediate thoughts to Spanish.
+- Only the final answer should be written in Spanish, Respond to the user in Spanish.
+- Generate code, commit messages, variable names and technical analysis in English.
 
-Use English for: reasoning / planning / task decomposition / code analysis /architecture analysis
-Use Spanish only for: final user-facing responses / comments that are intended for the user / documentation when explicitly requested
-
-Keep internal reasoning concise and token-efficient.
 
 ---
 

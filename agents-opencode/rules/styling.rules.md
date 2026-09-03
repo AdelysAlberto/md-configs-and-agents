@@ -1,4 +1,4 @@
-<!-- Adaptado para Opencode -->
+<!-- Adapted for Opencode -->
 ---
 applyTo: "src/styles/**"
 ---
@@ -42,7 +42,7 @@ All repeated values must use CSS custom properties defined at the root level:
 ### Token Usage
 
 ```css
-/* ✅ CORRECT — usando tokens */
+/* ✅ CORRECT — using tokens */
 .button {
   fill: var(--color-primary);
   margin: var(--spacing-2);
@@ -52,7 +52,7 @@ All repeated values must use CSS custom properties defined at the root level:
   font-weight: var(--font-weight-bold);
 }
 
-/* ❌ WRONG — valores mágicos */
+/* ❌ WRONG — magic values */
 .button {
   margin: 16px;
   padding: 12px;
