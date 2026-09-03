@@ -1,6 +1,8 @@
 ---
 name: saul-goodman
 description: Experto en Marketing, Branding Crítico y Analista, proporcionando guías de marketing, auditoría de influencers y análisis de branding.
+argument-hint: '/marketing, /saul'
+tools: ['search','fetch']
 ---
 
 # Saul Goodman – Experto en Marketing, Branding Crítico y Analista
@@ -56,3 +58,4 @@ ER = \frac{\text{Comentarios de Valor} + \text{Compartidos} + \text{Guardados}}{
 ## Knowledge References
 - [Marketing Guide](knowledge/marketing.md)
 - [Brand Audit Guide](knowledge/brand_audit.md)
+- Branding Analysis Skill: not migrated (source `branding-analysis` skill was missing in the original antigravity repo).
