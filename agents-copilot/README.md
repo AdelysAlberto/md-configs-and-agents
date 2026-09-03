@@ -1,18 +1,19 @@
 # agents-copilot
 
-Adaptación de [`agents-antigravity`](../agents-antigravity) al esquema de personalización de **GitHub Copilot** (VS Code / Agent Host / GitHub.com).
+Esquema de personalización de **GitHub Copilot** (VS Code / Agent Host / GitHub.com).
 
-## Cómo instalar en un repositorio
+Copilot tiene **dos alcances independientes** para este mismo contenido, y no se excluyen entre sí — puedes tener ambos activos a la vez:
 
-Copia el contenido de `.github/` de esta carpeta directamente a la raíz de tu repositorio:
+| Alcance | ¿Necesita `.github/`? | ¿Dónde vive? | ¿A qué repos aplica? |
+| :--- | :--- | :--- | :--- |
+| **Repositorio** | **Sí, obligatorio.** Copilot solo detecta `copilot-instructions.md` / `instructions/` / `agents/` / `skills/` si viven dentro de `.github/` en la raíz de ESE repo. | Dentro del propio repo (versionado en git) | Solo ese repo |
+| **Usuario / global (Agent Host)** | **No.** No lleva wrapper `.github/` porque no vive en ningún repo; vive en tu `$HOME`. | `~/.copilot/instructions/`, `~/.copilot/agents/`, `~/.copilot/skills/` | **Todos** los repos que abras (CLI, cloud agent, y VS Code si usa Agent Host) |
 
-```bash
-cp -r agents-copilot/.github /ruta/a/tu/repo/
-```
+Es decir: si solo quieres reglas **globales** (tu caso), NO necesitas tocar `.github/` para nada — solo necesitas los archivos en `~/.copilot/...`, que ya está hecho en este equipo (ver sección más abajo). El wrapper `.github/` solo es necesario si además quieres versionar estas reglas dentro de un repositorio específico para compartirlas con tu equipo vía git.
 
 Resultado esperado en el repo destino:
 
-```
+```md
 .github/
   copilot-instructions.md      # Siempre activo (equivalente a AGENTS.md/GEMINi.md)
   instructions/*.instructions.md   # Reglas por archivo (applyTo glob) — de rules/*.rules.md
@@ -20,34 +21,11 @@ Resultado esperado en el repo destino:
   skills/<name>/SKILL.md            # Capacidades portables — copiadas tal cual
 ```
 
-## Tabla de equivalencias (antigravity → Copilot)
+Nota clave: existen **dos "perfiles de usuario" distintos** y no comparten carpeta:
 
-| Antigravity | GitHub Copilot | Notas |
-| :--- | :--- | :--- |
-| `AGENTS.md` / `GEMINi.md` (raíz) | `.github/copilot-instructions.md` | Siempre se inyecta en cada request del workspace |
-| `rules/*.rules.md` | `.github/instructions/*.instructions.md` | Se quitó el campo `trigger`; se mantuvo `description` y `applyTo` |
-| `skills/<persona>/SKILL.md` (roles/orquestador) | `.github/agents/<persona>.agent.md` | Frontmatter cambiado a `name` + `description` + `tools` + `argument-hint` |
-| `skills/<tema>/SKILL.md` (capacidad técnica portable) | `.github/skills/<tema>/SKILL.md` | Copiado sin cambios (formato ya compatible, estándar agentskills.io) |
-| Trigger `/comando` | Selector de agente (`@nombre-agente`) o slash-command de skill (`/nombre-skill`) | Copilot no soporta triggers de texto libre para agentes, solo para skills/prompts |
+- El perfil de VS Code (`$VSCODE_USER_PROMPTS_FOLDER`) es propio de la UI de VS Code; útil si usas Copilot Chat dentro del editor, pero **invisible** para sesiones de Agent Host (CLI `copilot`, cloud agent).
+- `~/.copilot/` es el perfil harness-agnóstico; lo lee tanto el Agent Host como VS Code cuando corre sobre Agent Host. Para reglas verdaderamente globales (tu caso), esta es la carpeta correcta — y es la que ya está poblada en este equipo.
 
-## Hallazgos durante la migración
+**No existe un único "`AGENTS.md` global"** en Copilot: no hay un nombre de archivo fijo obligatorio a nivel usuario. Lo que lo hace "global" es la ubicación (`~/.copilot/instructions/`) más `applyTo: '**'` en el frontmatter — el nombre del archivo es libre.
 
-- `skills/agent-memory/SKILL.md` es un duplicado de `skills/cogni/SKILL.md` con `name: cogni` pero carpeta `agent-memory` (inconsistencia ya presente en el origen). No se migró para evitar conflicto de `name` vs. directorio (regla dura de Copilot: deben coincidir).
-- `saul-goodman` referenciaba `skills/branding-analysis/SKILL.md`, que no existe en el repo origen. Se dejó una nota en el `.agent.md` migrado.
-- `voice.rules.md` depende del MCP `pocket-tts`, no estándar en Copilot. No se migró; ver nota en `copilot-instructions.md`.
-
-## Dónde vive esto globalmente en GitHub Copilot (Linux)
-
-Ver la respuesta completa en la conversación, resumen rápido:
-
-| Alcance | Ruta | Formato |
-| :--- | :--- | :--- |
-| Instrucciones siempre activas (repo) | `.github/copilot-instructions.md` o `AGENTS.md` en la raíz | Markdown plano |
-| Instrucciones por archivo (repo) | `.github/instructions/*.instructions.md` | Frontmatter `applyTo` |
-| Instrucciones por archivo (usuario, VS Code UI) | Carpeta de perfil de VS Code (`chat.instructionsFilesLocations`) | `.instructions.md` |
-| Instrucciones por archivo (usuario, Agent Host / harness-agnóstico) | `~/.copilot/instructions/` | `.instructions.md` |
-| Agentes personalizados (repo) | `.github/agents/*.agent.md` | Frontmatter + cuerpo |
-| Agentes personalizados (usuario, Agent Host) | `~/.copilot/agents/` | `.agent.md` |
-| Skills de agente (repo) | `.github/skills/`, `.claude/skills/`, `.agents/skills/` | Carpeta con `SKILL.md` |
-| Skills de agente (usuario, cualquier harness) | `~/.copilot/skills/`, `~/.claude/skills/`, `~/.agents/skills/` | Carpeta con `SKILL.md` |
-| Prompt files (solo VS Code, no Agent Host) | `.github/prompts/*.prompt.md` (repo) / perfil de VS Code (usuario) | `.prompt.md` |
+Prioridad cuando coexisten instrucciones globales (usuario) y de repo (`.github/copilot-instructions.md` o `AGENTS.md`): las de usuario ganan en tono/estilo, las de repo ganan en convenciones específicas del proyecto — ver [instruction priority](https://code.visualstudio.com/docs/agent-customization/custom-instructions#_instruction-priority).
