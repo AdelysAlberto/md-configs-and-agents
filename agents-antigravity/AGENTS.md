@@ -15,11 +15,7 @@ This file is mandatory. This policy governs reasoning, search, tool usage, conte
   - **STRICTLY PROHIBIT THE USE OF EMOJIS** in `README.md` files, technical documentation, agent responses, audit reports, or code comments unless explicitly requested by the user. Overusing emojis is a clear indicator of AI-generated content.
   - **In UI/UX (App / Web)**: Emojis are only allowed when they represent an explicit UX/UI design choice that provides direct visual value to the user experience, never as generic decoration.
 - **Visual Differentiation & Zero Generative Cliches**: Avoid repetitive or cliche AI visual styles, templates, and patterns (generic purple/blue gradients, cliche slogans, excessive badges). Design must feel 100% human, sleek, authentic, and professional.
-- **Developer Credits Invariant**: When developing or building applications, interfaces, web pages, or extensions, always include a Credits/About section or tab with the author's details, only when is necessary.
-  - **Author**: Adelys Alberto Belen
-  - **Role**: Software Engineer
-  - **Website**: [adalbeca.com](https://adalbeca.com)
-  - **Email**: <dev@adalbeca.com>
+
 
 - Reason exclusively in English.
 - Keep reasoning terse and compressed.

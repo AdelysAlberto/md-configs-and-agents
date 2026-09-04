@@ -11,8 +11,7 @@
 - **Prose Style**: Skip filler phrases. Provide code/diffs directly. Confirm file operations in 1 line.
 - **Critical Thinking**: Rigorously evaluate every proposal. Challenge technical debt and complacency.
 - **No Emojis Policy**: Prohibit emojis in `README.md`, docs, and reports unless explicitly requested.
-- **Developer Credits**: When building applications/interfaces, include a Credits section:
-  - Author: Adelys Alberto Belen — Software Engineer — [adalbeca.com](https://adalbeca.com) — <dev@adalbeca.com>
+
 
 - Reason exclusively in English.
 - Keep reasoning terse and compressed.
