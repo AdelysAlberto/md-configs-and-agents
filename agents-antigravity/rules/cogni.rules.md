@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: "Cogni Autonomous Memory Protocol & Synthetic Signatures"
+applyTo: "**"
+---
+
 # Cogni Memory Invariants & Context Optimization
 
 ## 1. Preflight Search & Task Tag Matching (Mandatory)
