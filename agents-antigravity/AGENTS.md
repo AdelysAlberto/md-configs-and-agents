@@ -3,7 +3,8 @@
 ## Agent Runtime
 
 Before executing non-trivial tasks, apply:
-`rules/runtime.rules.md`
+
+`config/rules/runtime.rules.md`
 This file is mandatory. This policy governs reasoning, search, tool usage, context, scope, progress monitoring, escalation, and completion.
 
 ## 1. Response Style, Language & Tone (Universal)
@@ -16,7 +17,6 @@ This file is mandatory. This policy governs reasoning, search, tool usage, conte
   - **In UI/UX (App / Web)**: Emojis are only allowed when they represent an explicit UX/UI design choice that provides direct visual value to the user experience, never as generic decoration.
 - **Visual Differentiation & Zero Generative Cliches**: Avoid repetitive or cliche AI visual styles, templates, and patterns (generic purple/blue gradients, cliche slogans, excessive badges). Design must feel 100% human, sleek, authentic, and professional.
 
-
 - Reason exclusively in English.
 - Keep reasoning terse and compressed.
 - Avoid translating intermediate thoughts to Spanish.
@@ -25,59 +25,46 @@ This file is mandatory. This policy governs reasoning, search, tool usage, conte
 
 ---
 
-## 2. Skill & Agent Registry Index (Lazy Loading)
+## 2. Agent Registry Index (Antigravity 2.0 Agents)
 
 > [!IMPORTANT]
-> **Source of Truth Principle**: Before writing, auditing, or refactoring code in a specific domain, load the exact `SKILL.md` or `rules/*.md` using `view_file`. Do NOT guess or rely on summarized memories.
+> **Source of Truth Principle**: Before writing, auditing, or refactoring code in a specific domain, load the exact agent definition in `config/agents/<agent>.md` or `config/rules/*.md` using `view_file`. Do NOT guess or rely on summarized memories.
 
-### Specialized Agent Skills
+### Specialized Agents (`config/agents/*.md`)
 
-| Command / Trigger | Specialist | Role | Exact Skill Path |
+| Command / Trigger | Specialist | Role | Exact Agent Path |
 | :--- | :--- | :--- | :--- |
-| `/profesor`, `/start` | `profesor-orchestrator` | Overall strategy & orchestration | [`skills/profesor-orchestrator/SKILL.md`](skills/profesor-orchestrator/SKILL.md) |
-| `/brainstorm`, `/sherlock` | `sherlock-analyst` | Market & competitor research | [`skills/sherlock-analyst/SKILL.md`](skills/sherlock-analyst/SKILL.md) |
-| `/brief`, `/prd`, `/roz` | `roz-product` | Product requirements & PRD | [`skills/roz-product/SKILL.md`](skills/roz-product/SKILL.md) |
-| `/ux`, `/wireframe`, `/edna` | `edna-ux` | UX/UI design & visual system | [`skills/edna-ux/SKILL.md`](skills/edna-ux/SKILL.md) |
-| `/css`, `/miranda` | `miranda-css` | CSS Modules, BEM & tokens | [`skills/miranda-css/SKILL.md`](skills/miranda-css/SKILL.md) |
-| `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | System architecture, DDL & APIs | [`skills/sheldon-architect/SKILL.md`](skills/sheldon-architect/SKILL.md) |
-| `/db`, `/doc` | `doc-database` | Database, ORM, Redis & indexes | [`skills/doc-database/SKILL.md`](skills/doc-database/SKILL.md) |
-| `/security`, `/gorgory` | `gorgory-security` | Security, OWASP & API shielding | [`skills/gorgory-security/SKILL.md`](skills/gorgory-security/SKILL.md) |
-| `/standards`, `/vicky` | `vicky-techlead` | Clean Architecture & Scaffolding | [`skills/vicky-techlead/SKILL.md`](skills/vicky-techlead/SKILL.md) |
-| `/testing`, `/house` | `house-testing` | Unit, integration & MSW tests | [`skills/house-testing/SKILL.md`](skills/house-testing/SKILL.md) |
-| `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`skills/gadget-auditor/SKILL.md`](skills/gadget-auditor/SKILL.md) |
-| `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Code reviewer for MR/PR and staged changes | [`skills/tio-bob/SKILL.md`](skills/tio-bob/SKILL.md) |
-| `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`skills/monk-scrum/SKILL.md`](skills/monk-scrum/SKILL.md) |
-| `/finch`, `/write` | `paul-finch` | Technical Writer & Documentation Specialist | [`skills/paul-finch/SKILL.md`](skills/paul-finch/SKILL.md) |
-| `/readme` | `readme` | README Designer & GitHub Layout Specialist | [`skills/readme/SKILL.md`](skills/readme/SKILL.md) |
-
-## 3. Engineering Standards
-
-Before making technical decisions, designing architecture, writing code,
-refactoring, or reviewing implementation, load:
-
-`rules/engineering-invariants.rules.md`
-
-These invariants define the universal engineering standards that apply
-regardless of programming language, framework, or technology.
-
-After loading them, load only the language, framework, architecture,
-or domain-specific rules required by the task.
-
-## Language & Technology Rules
-
-Before writing or modifying code, identify the language and
-technology involved and load the corresponding rules.
-
-- JavaScript / TypeScript -> `rules/javascript-typescript.rules.md`
-- Go -> `rules/go.rules.md`
-- Python -> `rules/python.rules.md`
-- Other languages -> load the corresponding language rule if available.
-
-After loading the language rules, load only the framework,
-architecture, domain, tooling, and testing rules relevant to the task.
+| `/profesor`, `/start` | `profesor-orchestrator` | Overall strategy & orchestration | [`config/agents/profesor-orchestrator.md`](config/agents/profesor-orchestrator.md) |
+| `/brainstorm`, `/sherlock` | `sherlock-analyst` | Market & competitor research | [`config/agents/sherlock-analyst.md`](config/agents/sherlock-analyst.md) |
+| `/brief`, `/prd`, `/roz` | `roz-product` | Product requirements & PRD | [`config/agents/roz-product.md`](config/agents/roz-product.md) |
+| `/ux`, `/wireframe`, `/edna` | `edna-ux` | UX/UI design & visual system | [`config/agents/edna-ux.md`](config/agents/edna-ux.md) |
+| `/css`, `/miranda` | `miranda-css` | CSS Modules, BEM & tokens | [`config/agents/miranda-css.md`](config/agents/miranda-css.md) |
+| `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | System architecture, DDL & APIs | [`config/agents/sheldon-architect.md`](config/agents/sheldon-architect.md) |
+| `/db`, `/doc` | `doc-database` | Database, ORM, Redis & indexes | [`config/agents/doc-database.md`](config/agents/doc-database.md) |
+| `/security`, `/gorgory` | `gorgory-security` | Security, OWASP & API shielding | [`config/agents/gorgory-security.md`](config/agents/gorgory-security.md) |
+| `/standards`, `/vicky` | `vicky-techlead` | Clean Architecture & Scaffolding | [`config/agents/vicky-techlead.md`](config/agents/vicky-techlead.md) |
+| `/testing`, `/house` | `house-testing` | Unit, integration & MSW tests | [`config/agents/house-testing.md`](config/agents/house-testing.md) |
+| `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`config/agents/gadget-auditor.md`](config/agents/gadget-auditor.md) |
+| `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Code reviewer for MR/PR and staged changes | [`config/agents/tio-bob.md`](config/agents/tio-bob.md) |
+| `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`config/agents/monk-scrum.md`](config/agents/monk-scrum.md) |
+| `/finch`, `/write` | `paul-finch` | Technical Writer & Documentation Specialist | [`config/agents/paul-finch.md`](config/agents/paul-finch.md) |
+| `/readme` | `readme` | README Designer & GitHub Layout Specialist | [`config/agents/readme.md`](config/agents/readme.md) |
+| `/growth`, `/saul` | `saul-goodman` | Growth Officer & Product Analytics Lead | [`config/agents/saul-goodman.md`](config/agents/saul-goodman.md) |
 
 ---
 
-## 4. Autonomous Memory & Cogni Protocol
+## 3. Engineering Standards & Technology Rules (`config/rules/*.rules.md`)
 
-Autonomous memory queries, semantic signatures, and recall are delegated to [`skills/cogni/SKILL.md`](skills/cogni/SKILL.md).
+Before making technical decisions, designing architecture, writing code, refactoring, or reviewing implementation, load:
+
+`config/rules/engineering-invariants.rules.md`
+
+- JavaScript / TypeScript -> `config/rules/javascript-typescript.rules.md`
+- Go -> `config/rules/go.rules.md`
+- Python -> `config/rules/python.rules.md`
+
+---
+
+## 4. Autonomous Memory & Cogni Protocol (`config/skills/agent-memory/SKILL.md`)
+
+Autonomous memory queries, semantic signatures, and recall are delegated to [`config/skills/agent-memory/SKILL.md`](config/skills/agent-memory/SKILL.md).
