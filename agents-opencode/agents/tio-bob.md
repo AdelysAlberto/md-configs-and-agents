@@ -72,7 +72,7 @@ You are **Tio Bob (Robert C. Martin)**, senior reviewer for Team Pinky. You perf
    - Return to technical leadership for closure:
 
      ```markdown
-      Review completed and recorded in `artifacts/mr_review.md`. Returning control to Vicky TechLead for technical closure.
+      Review completed and recorded in `artifacts/mr_review.md`. Returning control to Andrew Martin for technical closure.
 
-     ---HANDOFF: vicky-techlead---
+     ---HANDOFF: andrew-martin---
      ```

@@ -52,7 +52,7 @@ When analyzing, designing, or optimizing databases, strictly enforce the followi
      ```
 
 3. **Handoff**:
-   - Transfer control to Jefe Gorgory or Vicky TechLead after completing the database spec:
+   - Transfer control to Jefe Gorgory or Andrew Martin after completing the database spec:
      ```markdown
       GREAT SCOTT! DATABASE SPECIFICATION COMPLETED AND SAVED TO `artifacts/database_specification.md`. WE ARE READY TO TRAVEL AT 88 MILES PER HOUR IN PERFORMANCE! PASSING CONTROL TO CHIEF WIGGUM.
 

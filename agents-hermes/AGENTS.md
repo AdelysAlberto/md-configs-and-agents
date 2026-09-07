@@ -22,9 +22,9 @@
 Hermes has no lightweight "custom agent" file format like Copilot's `.agent.md` or Codex's agent
 `.toml` — skills are the only extensibility unit. Each Team Pinky persona below is a Skill invoked
 with `/persona-name`, and its instructions ask the agent to **adopt that persona** for the turn:
-`profesor-orchestrator`, `sherlock-analyst`, `roz-product`, `edna-ux`, `miranda-css`,
-`sheldon-architect`, `doc-database`, `gorgory-security`, `vicky-techlead`, `house-testing`,
-`gadget-auditor`, `tio-bob`, `monk-scrum`, `paul-finch`, `readme`, `saul-goodman`.
+`profesor-orchestrator`, `sherlock-analyst`, `roz-product`, `edna-ux`, `saul-goodman`,
+`sheldon-architect`, `doc-database`, `gorgory-security`, `andrew-martin`, `house-testing`,
+`gadget-auditor`, `tio-bob`, `monk-scrum`, `paul-finch`, `readme`, `jordan-belfort`.
 
 ## Engineering standards as Skills
 

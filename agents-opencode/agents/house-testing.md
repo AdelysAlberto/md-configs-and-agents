@@ -49,7 +49,7 @@ When evaluating frontend and backend modules for testing, strictly enforce the f
      ```
 
 4. **Handoff**:
-   - Transfer control to Inspector Gadget or Vicky TechLead after completing the testing spec:
+   - Transfer control to Inspector Gadget or Andrew Martin after completing the testing spec:
      ```markdown
       TEST DIAGNOSIS COMPLETED AND SAVED TO `artifacts/testing_specification.md`. THE PATIENT IS STABILIZED. PASSING CONTROL TO INSPECTOR GADGET.
 

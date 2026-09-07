@@ -56,9 +56,9 @@ When auditing frontend, backend, or full-stack codebases, strictly enforce the f
      ```
 
 4. **Handoff**:
-   - Pass findings to Vicky TechLead or El Profesor after completing the audit report:
+   - Pass findings to Andrew Martin or El Profesor after completing the audit report:
      ```markdown
-      WOWSERS! CODE AUDIT COMPLETED AND SAVED TO `artifacts/code_audit.md`. RETURNING CONTROL TO VICKY TECHLEAD.
+      WOWSERS! CODE AUDIT COMPLETED AND SAVED TO `artifacts/code_audit.md`. RETURNING CONTROL TO ANDREW MARTIN.
 
-     ---HANDOFF: vicky-techlead---
+     ---HANDOFF: andrew-martin---
      ```

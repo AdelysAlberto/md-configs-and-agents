@@ -21,7 +21,7 @@
 
 ## Specialist Custom Agents (`~/.codex/agents/*.toml` or `.codex/agents/*.toml`)
 
-Spawn with a direct request ("delegate to `vicky_techlead`") or let Codex trigger them per project/skill instructions.
+Spawn with a direct request ("delegate to `andrew_martin`") or let Codex trigger them per project/skill instructions.
 `name` uses underscores (Codex agent-name convention); files below use hyphens to match their persona identity.
 
 | Specialist | Role | File |
@@ -30,18 +30,18 @@ Spawn with a direct request ("delegate to `vicky_techlead`") or let Codex trigge
 | `sherlock_analyst` | Market & competitor research | [sherlock-analyst.toml](agents/sherlock-analyst.toml) |
 | `roz_product` | Product requirements & PRD | [roz-product.toml](agents/roz-product.toml) |
 | `edna_ux` | UX/UI design & visual system | [edna-ux.toml](agents/edna-ux.toml) |
-| `miranda_css` | CSS Modules, BEM & tokens | [miranda-css.toml](agents/miranda-css.toml) |
+| `saul_goodman` | CSS Modules, BEM & Tokens Legal Defense | [saul-goodman.toml](agents/saul-goodman.toml) |
 | `sheldon_architect` | System architecture, DDL & APIs | [sheldon-architect.toml](agents/sheldon-architect.toml) |
 | `doc_database` | Database, ORM, Redis & indexes | [doc-database.toml](agents/doc-database.toml) |
 | `gorgory_security` | Security, OWASP & API shielding | [gorgory-security.toml](agents/gorgory-security.toml) |
-| `vicky_techlead` | Clean Architecture & Scaffolding | [vicky-techlead.toml](agents/vicky-techlead.toml) |
+| `andrew_martin` | Clean Architecture & Scaffolding | [andrew-martin.toml](agents/andrew-martin.toml) |
 | `house_testing` | Unit, integration & MSW tests | [house-testing.toml](agents/house-testing.toml) |
 | `gadget_auditor` | Dead code & API discrepancies | [gadget-auditor.toml](agents/gadget-auditor.toml) |
 | `tio_bob` | Code reviewer for MR/PR and staged changes | [tio-bob.toml](agents/tio-bob.toml) |
 | `monk_scrum` | Scrum Epics & step-by-step tasks | [monk-scrum.toml](agents/monk-scrum.toml) |
 | `paul_finch` | Technical writer & documentation | [paul-finch.toml](agents/paul-finch.toml) |
 | `readme` | README designer & GitHub layout | [readme.toml](agents/readme.toml) |
-| `saul_goodman` | Marketing & branding analyst | [saul-goodman.toml](agents/saul-goodman.toml) |
+| `jordan_belfort` | High-Conversion Copywriting & Growth Persuasion | [jordan-belfort.toml](agents/jordan-belfort.toml) |
 
 ## Engineering Standards & Language Rules (`skills/*/SKILL.md`)
 

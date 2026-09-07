@@ -40,18 +40,18 @@ Invoke by name in the agent picker, or ask the orchestrator to delegate. `argume
 | `sherlock-analyst` | Market & competitor research | [sherlock-analyst.agent.md](agents/sherlock-analyst.agent.md) |
 | `roz-product` | Product requirements & PRD | [roz-product.agent.md](agents/roz-product.agent.md) |
 | `edna-ux` | UX/UI design & visual system | [edna-ux.agent.md](agents/edna-ux.agent.md) |
-| `miranda-css` | CSS Modules, BEM & tokens | [miranda-css.agent.md](agents/miranda-css.agent.md) |
+| `saul-goodman` | CSS Modules, BEM & Tokens Legal Defense | [saul-goodman.agent.md](agents/saul-goodman.agent.md) |
 | `sheldon-architect` | System architecture, DDL & APIs | [sheldon-architect.agent.md](agents/sheldon-architect.agent.md) |
 | `doc-database` | Database, ORM, Redis & indexes | [doc-database.agent.md](agents/doc-database.agent.md) |
 | `gorgory-security` | Security, OWASP & API shielding | [gorgory-security.agent.md](agents/gorgory-security.agent.md) |
-| `vicky-techlead` | Clean Architecture & Scaffolding | [vicky-techlead.agent.md](agents/vicky-techlead.agent.md) |
+| `andrew-martin` | Clean Architecture & Scaffolding | [andrew-martin.agent.md](agents/andrew-martin.agent.md) |
 | `house-testing` | Unit, integration & MSW tests | [house-testing.agent.md](agents/house-testing.agent.md) |
 | `gadget-auditor` | Dead code & API discrepancies | [gadget-auditor.agent.md](agents/gadget-auditor.agent.md) |
 | `tio-bob` | Code reviewer for MR/PR and staged changes | [tio-bob.agent.md](agents/tio-bob.agent.md) |
 | `monk-scrum` | Scrum Epics & step-by-step tasks | [monk-scrum.agent.md](agents/monk-scrum.agent.md) |
 | `paul-finch` | Technical writer & documentation | [paul-finch.agent.md](agents/paul-finch.agent.md) |
 | `readme` | README designer & GitHub layout | [readme.agent.md](agents/readme.agent.md) |
-| `saul-goodman` | Marketing & branding analyst | [saul-goodman.agent.md](agents/saul-goodman.agent.md) |
+| `jordan-belfort` | High-Conversion Copywriting & Growth Persuasion | [jordan-belfort.agent.md](agents/jordan-belfort.agent.md) |
 
 ### Portable Agent Skills (`.github/skills/*/SKILL.md`)
 

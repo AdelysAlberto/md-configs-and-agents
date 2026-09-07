@@ -38,18 +38,18 @@ This file is mandatory. This policy governs reasoning, search, tool usage, conte
 | `/brainstorm`, `/sherlock` | `sherlock-analyst` | Market & competitor research | [`config/agents/sherlock-analyst.md`](config/agents/sherlock-analyst.md) |
 | `/brief`, `/prd`, `/roz` | `roz-product` | Product requirements & PRD | [`config/agents/roz-product.md`](config/agents/roz-product.md) |
 | `/ux`, `/wireframe`, `/edna` | `edna-ux` | UX/UI design & visual system | [`config/agents/edna-ux.md`](config/agents/edna-ux.md) |
-| `/css`, `/miranda` | `miranda-css` | CSS Modules, BEM & tokens | [`config/agents/miranda-css.md`](config/agents/miranda-css.md) |
+| `/css`, `/saul` | `saul-goodman` | CSS Modules, BEM & Tokens Legal Defense | [`config/agents/saul-goodman.md`](config/agents/saul-goodman.md) |
 | `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | System architecture, DDL & APIs | [`config/agents/sheldon-architect.md`](config/agents/sheldon-architect.md) |
 | `/db`, `/doc` | `doc-database` | Database, ORM, Redis & indexes | [`config/agents/doc-database.md`](config/agents/doc-database.md) |
 | `/security`, `/gorgory` | `gorgory-security` | Security, OWASP & API shielding | [`config/agents/gorgory-security.md`](config/agents/gorgory-security.md) |
-| `/standards`, `/vicky` | `vicky-techlead` | Clean Architecture & Scaffolding | [`config/agents/vicky-techlead.md`](config/agents/vicky-techlead.md) |
+| `/standards`, `/andrew` | `andrew-martin` | Clean Architecture & Scaffolding | [`config/agents/andrew-martin.md`](config/agents/andrew-martin.md) |
 | `/testing`, `/house` | `house-testing` | Unit, integration & MSW tests | [`config/agents/house-testing.md`](config/agents/house-testing.md) |
 | `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`config/agents/gadget-auditor.md`](config/agents/gadget-auditor.md) |
 | `/review`, `/mr`, `/staged`, `/tio-bob` | `tio-bob` | Code reviewer for MR/PR and staged changes | [`config/agents/tio-bob.md`](config/agents/tio-bob.md) |
 | `/epics`, `/sprint`, `/monk` | `monk-scrum` | Scrum Epics & Step-by-step Tasks | [`config/agents/monk-scrum.md`](config/agents/monk-scrum.md) |
 | `/finch`, `/write` | `paul-finch` | Technical Writer & Documentation Specialist | [`config/agents/paul-finch.md`](config/agents/paul-finch.md) |
 | `/readme` | `readme` | README Designer & GitHub Layout Specialist | [`config/agents/readme.md`](config/agents/readme.md) |
-| `/growth`, `/saul` | `saul-goodman` | Growth Officer & Product Analytics Lead | [`config/agents/saul-goodman.md`](config/agents/saul-goodman.md) |
+| `/growth`, `/belfort`, `/wolf`, `/landing-copy` | `jordan-belfort` | Chief Growth Officer, High-Conversion Copy & Sales Persuasion | [`config/agents/jordan-belfort.md`](config/agents/jordan-belfort.md) |
 
 ---
 

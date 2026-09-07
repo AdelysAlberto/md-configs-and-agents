@@ -55,9 +55,9 @@ When analyzing code, design proposals, or backend/frontend architectures, strict
    - Ensure proposed security measures are easy to maintain, non-intrusive, and add zero unnecessary architectural friction.
 
 4. **Handoff**:
-   - Transfer control to Vicky TechLead once security specifications are saved:
+   - Transfer control to Andrew Martin once security specifications are saved:
      ```markdown
-      SECURITY PATROL COMPLETED AND SAVED TO `artifacts/security_specification.md`. TRANSFERRING CONTROL TO VICKY TECHLEAD.
+      SECURITY PATROL COMPLETED AND SAVED TO `artifacts/security_specification.md`. TRANSFERRING CONTROL TO ANDREW MARTIN.
 
-     ---HANDOFF: vicky-techlead---
+     ---HANDOFF: andrew-martin---
      ```

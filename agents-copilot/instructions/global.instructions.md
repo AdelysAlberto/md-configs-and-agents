@@ -22,7 +22,7 @@ applyTo: '**'
 
 The following are installed globally and available in every repository via `~/.copilot/agents/` and `~/.copilot/skills/`:
 
-- **Agents** (`@agent-name` in chat, or delegate via `profesor-orchestrator`): `profesor-orchestrator`, `sherlock-analyst`, `roz-product`, `edna-ux`, `miranda-css`, `sheldon-architect`, `doc-database`, `gorgory-security`, `vicky-techlead`, `house-testing`, `gadget-auditor`, `tio-bob`, `monk-scrum`, `paul-finch`, `readme`, `saul-goodman`.
+- **Agents** (`@agent-name` in chat, or delegate via `profesor-orchestrator`): `profesor-orchestrator`, `sherlock-analyst`, `roz-product`, `edna-ux`, `saul-goodman`, `sheldon-architect`, `doc-database`, `gorgory-security`, `andrew-martin`, `house-testing`, `gadget-auditor`, `tio-bob`, `monk-scrum`, `paul-finch`, `readme`, `jordan-belfort`.
 - **Skills** (`/skill-name`, or auto-loaded when relevant): `cogni`, `commit`, `astro`, `bun`, `cloudflare`, `react-native-architecture`, `react-typescript-clean-code`, `zustand`, `frontend-design`.
 
 ## 🧠 3. Autonomous Memory & Cogni Protocol
