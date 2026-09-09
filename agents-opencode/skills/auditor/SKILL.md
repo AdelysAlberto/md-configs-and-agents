@@ -1,6 +1,7 @@
 ---
 name: auditor
 description: Analyze projects, discover architecture, audit source code, identify patterns, anti-patterns, technical debt, business rules, and generate senior-level technical documentation.
+mode: subagent
 license: MIT
 compatibility: opencode
 metadata:
@@ -54,6 +55,27 @@ The skill must behave as a:
 - Technical Lead
 - Senior Technical Writer
 - Experienced Technical Reviewer
+
+---
+
+## Supporting Resources
+
+This skill relies on the following templates:
+
+- templates/component-documentation.md
+- templates/feature-documentation.md
+- templates/library-documentation.md
+- templates/api-documentation.md
+- templates/architecture-documentation.md
+- templates/business-component-documentation.md
+- templates/business-documentation.md
+
+These templates must be used as the output structure when generating documentation.
+
+Select the most appropriate template according to the analyzed artifact type.
+
+Fallback template:
+- templates/technical-documentation.md
 
 ---
 
