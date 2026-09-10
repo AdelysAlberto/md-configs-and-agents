@@ -60,8 +60,15 @@ Before making technical decisions, designing architecture, writing code, refacto
 `config/rules/engineering-invariants.rules.md`
 
 - JavaScript / TypeScript -> `config/rules/javascript-typescript.rules.md`
+- React / React Native -> `config/rules/reactjs.rules.md`
 - Go -> `config/rules/go.rules.md`
 - Python -> `config/rules/python.rules.md`
+
+### 3.1 UI Performance & Anti-Jank Invariants (Universal)
+- **Zero HTTP Polling in Real-Time Systems**: Strictly prohibit `refetchInterval` or polling loops when WebSockets/push events are available.
+- **Component Decoupling**: Isolate frequently updated sections using `React.memo` and atomic state selectors. Local state updates must never trigger parent screen re-renders.
+- **Pull-to-Refresh Isolation**: `isRefreshing` must ONLY bind to manual user drag gestures (`isManualRefreshing`), never background query fetching. Zero layout shifts / visual flickering.
+- **Swipe-to-Delete for List Collections**: Interactive item removals in list views must use the swipe-to-the-left gesture revealing the action button.
 
 ---
 

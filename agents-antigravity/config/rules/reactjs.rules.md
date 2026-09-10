@@ -270,3 +270,19 @@ useEffect(() => {
 // ✅ GOOD: Compute directly during render
 const fullName = `${firstName} ${lastName}`;
 ```
+
+---
+
+## 7. Real-Time Performance & Anti-Jank Invariants
+
+### ❌ Anti-Patrón 1: HTTP Polling para Tiempo Real
+- **PROHIBIDO**: Activar intervalos de recarga continua (`refetchInterval: 3000`, `setInterval`) cuando el backend soporte WebSocket o eventos push. Agota la batería, congestiona la red y causa re-renderizados continuos.
+- **REGLA**: Usar WebSockets / SSE con actualizaciones de estado atómicas.
+
+### ❌ Anti-Patrón 2: Acoplamiento de Vistas Completas
+- **PROHIBIDO**: Mantener listas o datos de alta frecuencia de actualización dentro del componente raíz de la pantalla.
+- **REGLA**: Aislar cada sección interactiva o de alta frecuencia en un subcomponente independiente memorizado (`React.memo`) con selectores atómicos (`useStore(s => s.item)`).
+
+### ❌ Anti-Patrón 3: Pull-to-Refresh Vinculado a Background Fetching
+- **PROHIBIDO**: Enlazar `isRefreshing` de `RefreshControl` o `ScreenScrollView` a `query.isRefetching`. Provoca saltos de scroll y spinners parpadeantes en cada sincronización de fondo.
+- **REGLA**: `isRefreshing` solo debe activarse mediante el gesto manual del usuario (`isManualRefreshing`).
