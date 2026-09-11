@@ -2,11 +2,26 @@
 applyTo: "src/**/*.ts"
 ---
 
-# Coding Standards — TypeScript & Functional Programming
+# Coding Standards — Node.js & Backend Services
+
+## Universal Anti-Pattern Elimination (Zero-Tolerance)
+
+- **Zero Double Fan-Out**: Publishers must never self-echo or receive their own emitted events in Pub/Sub channels. Use sender IDs (`senderId`), `noLocal: true`, or separate ingest vs egress channels.
+- **Scoped Subscriptions**: Subscriptions to message buses/WebSockets must be strictly scoped to specific entity IDs (`room:${id}`). Never use broad wildcards (`*`, `#`) for tenant/client streams.
+- **Bounded In-Memory State**: Never store state in unbounded in-process `Map`/`Set` collections. Use LRU caches with maximum sizes and TTLs, or delegate to Redis/database.
+- **Zero Secrets in URLs / Query Params**: Auth tokens, API keys, and credentials must never travel via query strings. Use `Authorization: Bearer <token>` or `X-API-Key` headers.
+- **Mandatory Lifecycle & TTL**: Every ephemeral key in Redis, cache entry, or distributed lock MUST have an explicit TTL. Never create immortal locks or un-expiring sessions.
+- **Guarded Business Rules**: Validate and enforce all business constraints (quotas, `maxMembers`, paywall permissions, balance checks) inside domain service logic with transactional atomicity. Never rely on schema definitions or UI checks alone.
+- **Idempotent Mutations**: All state-changing operations (creations, joins, payments, webhook processing) must be idempotent and guarded via idempotency keys or unique constraints.
+- **Zero Silent Error Swallowing**: Empty catch blocks (`catch (e) {}`) are strictly forbidden. Infrastructure and network errors must be logged with operational context and returned via `Result.fail()`.
+- **Zero N+1 Queries**: Never query databases or remote APIs inside loops (`map`, `forEach`, `for`). Use batching (`WHERE id IN (...)`), joins, or DataLoader.
+- **Omni-Channel Boundary Validation**: Validate all inbound payloads across WebSockets, Pub/Sub events, Webhooks, and gRPC with Zod/schema validation before executing business logic.
+
+---
 
 ## Paradigm: Functional Programming ONLY
 
-- **NO classes** — pure functions only (AppError exists only as legacy safety net)
+- **NO classes** — pure functions only
 - **NO constructors** or OOP patterns
 - Pure functions with explicit return types
 - Immutable data structures (spread `{ ...obj }`, never mutate)
@@ -26,6 +41,8 @@ const badUpdate = (user: User, updates: Partial<User>): User => {
 };
 ```
 
+---
+
 ## Type Safety Rules
 
 | Rule | Details |
@@ -38,53 +55,40 @@ const badUpdate = (user: User, updates: Partial<User>): User => {
 | **Generics** | Use for reusable, type-safe APIs |
 | **`Record<string, unknown>`** | For dynamic objects instead of `any` |
 
-```typescript
-// ✅ Type guard for unknown data
-const isUser = (data: unknown): data is User =>
-  typeof data === "object" && data !== null && "id" in data && "email" in data;
+---
 
-// ✅ Union type
-type UserStatus = "active" | "inactive" | "pending";
+## Error Handling: Result Pattern (`ResponseFail` / `Result.fail`)
 
-// ❌ FORBIDDEN
-const bad = (data: any): any => data;
-```
+**Rule**: Services MUST use `ResponseFail.X()` or `Result.fail(error)` and return `Result<T>`. Never `throw` unchecked exceptions out of services.
 
-## Error Handling: AppError vs ResponseFail
-
-| **AppError** (Legacy) | **ResponseFail** (Current) |
-|----------------------|---------------------------|
-| `throw AppError.NotFound("msg")` | `return ResponseFail.NotFound("msg")` |
-| ❌ Only for errorHandler safety net | ✅ Use in ALL services |
-| `@/utils/appError` | `@/utils/result` |
-
-**Rule**: Services MUST use `ResponseFail.X()` and return `Result<T>`. Never `throw`.
+---
 
 ## Logging Convention
 
 ```typescript
-logger.info("[serviceName]: Starting operation");
-logger.warn("[serviceName]: Validation failed");
-logger.error("[serviceName]: Critical failure");
-logger.info("[serviceName]: ✅ Operation completed successfully");
+logger.info("[serviceName]: Starting operation", { operationId });
+logger.warn("[serviceName]: Validation failed", { reason });
+logger.error("[serviceName]: Infrastructure failure", { error, stack: error.stack });
 ```
 
-## Documentation
-
-- JSDoc comments for exported functions (brief, one-line)
-- All documentation in **English**
-- Minimal inline comments — code should be self-explanatory
-- Destructure function arguments to clarify intent
+---
 
 ## Forbidden Patterns
 
 ```typescript
+// ❌ Double fan-out / Self-echo loops
+// ❌ Wildcard subscriptions (* / #) on client/tenant streams
+// ❌ Unbounded global in-memory state / maps
+// ❌ Secrets in URL query parameters
+// ❌ Immortal sessions / locks without TTL
+// ❌ Business rules in schema/UI but missing in service logic
+// ❌ Non-idempotent write operations / missing deduplication
+// ❌ Empty catch blocks / swallowed exceptions
+// ❌ N+1 queries in loops
+// ❌ Unvalidated WebSocket / Queue payloads
 // ❌ God services (multiple unrelated methods)
 // ❌ Business logic in controllers
-// ❌ try/catch in controllers
-// ❌ throw in services (use ResponseFail)
 // ❌ any type
 // ❌ console.log (use logger)
-// ❌ Mutable state
-// ❌ Classes
+// ❌ Mutable state / Classes
 ```
