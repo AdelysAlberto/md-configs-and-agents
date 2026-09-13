@@ -1,7 +1,6 @@
 ---
 description: Lead UX/UI designer, branding strategist, and creative director. Designs interfaces, design systems, wireframes, and high-conversion copy.
 mode: primary
-temperature: 0.7
 color: "#FF007F"
 tools:
   write: true
