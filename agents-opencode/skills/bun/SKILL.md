@@ -1,9 +1,12 @@
 ---
 name: bun
 description: Comprehensive knowledge and best practices for developing with Bun (all-in-one JavaScript/TypeScript runtime, bundler, test runner, and package manager). Use when working with Bun commands, Bun APIs, Fastify/Elysia with Bun, Bun.serve, bun:test, Drizzle ORM on Bun, Bun.file, and bun shell scripts.
-mode: subagent
 license: MIT
--->
+compatibility: opencode
+metadata:
+  domain: runtime
+  tool: bun
+---
 
 # Bun Skill (Opencode Adaptation)
 

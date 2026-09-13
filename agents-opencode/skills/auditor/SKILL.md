@@ -1,7 +1,6 @@
 ---
 name: auditor
 description: Analyze projects, discover architecture, audit source code, identify patterns, anti-patterns, technical debt, business rules, and generate senior-level technical documentation.
-mode: subagent
 license: MIT
 compatibility: opencode
 metadata:

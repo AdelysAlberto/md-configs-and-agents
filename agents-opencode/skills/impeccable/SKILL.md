@@ -1,8 +1,12 @@
 ---
 name: impeccable
-description: Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Not for backend-only or non-UI tasks. Version 4.0.2.
-mode: subagent
--->
+description: Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states.
+license: MIT
+compatibility: opencode
+metadata:
+  domain: frontend-design
+  version: 4.0.2
+---
 
 # Impeccable Design Skill (Opencode Adaptation)
 

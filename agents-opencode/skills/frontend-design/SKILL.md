@@ -1,8 +1,12 @@
 ---
 name: frontend-design
 description: Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making choices that don't read as templated defaults. Use when designing websites, landing pages, dashboards, product UI, or any frontend interface requiring visual design decisions.
-mode: subagent
--->
+license: MIT
+compatibility: opencode
+metadata:
+  domain: frontend
+  focus: visual-design
+---
 
 # Frontend Design Skill (Opencode Adaptation)
 

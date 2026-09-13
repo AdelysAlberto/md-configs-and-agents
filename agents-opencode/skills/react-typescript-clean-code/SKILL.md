@@ -1,8 +1,12 @@
 ---
 name: react-typescript-clean-code
 description: Master guide and engineering standards for modern React (18/19+) and TypeScript. Emphasizes simplicity over complexity, pure functional code, judicious use of hooks (useEffect, useMemo, useCallback), real performance patterns (virtualization, code-splitting), Clean Architecture, and anti-pattern prevention.
-mode: subagent
--->
+license: MIT
+compatibility: opencode
+metadata:
+  domain: frontend
+  framework: react
+---
 
 # React & TypeScript: Clean Architecture Skill (Opencode Adaptation)
 

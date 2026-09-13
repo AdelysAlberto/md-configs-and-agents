@@ -1,8 +1,12 @@
 ---
 name: zustand
 description: Advanced patterns and best practices for managing global and UI state with Zustand 5+. Covers functional architecture, selector hygiene with useShallow, prevention of infinite render loops, modular slices, secure storage isolation (sessionStorage / createAppStore), and access outside React.
-mode: subagent
--->
+license: MIT
+compatibility: opencode
+metadata:
+  domain: state-management
+  library: zustand
+---
 
 # Zustand 5 Skill (Opencode Adaptation)
 

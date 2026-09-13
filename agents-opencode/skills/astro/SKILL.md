@@ -1,8 +1,11 @@
 ---
 name: astro
-description: Skill for building with the Astro web framework. Helps create Astro components and pages, configure SSR adapters, set up content collections, deploy static sites, and manage project structure and CLI commands. Use when the user mentions .astro files, SSG, islands architecture, content collections, or deploying Astro.
-mode: subagent
+description: Skill for building with the Astro web framework. Helps create Astro components and pages, configure SSR adapters, set up content collections, deploy static sites, and manage project structure and CLI commands.
 license: MIT
+compatibility: opencode
+metadata:
+  domain: frontend
+  framework: astro
 ---
 
 # Astro Skill (Opencode Adaptation)
