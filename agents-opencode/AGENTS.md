@@ -1,15 +1,22 @@
 # Team Pinky - Agent Architecture & Engineering System (OpenCode)
 
-## 1. Agent Runtime & Universal Policy
+## 1. External File Loading & Lazy Rules
 
-Before executing non-trivial tasks, all agents must respect:
-- `rules/runtime.rules.md` (Reasoning control, tool budget, search strategy).
-- `rules/engineering-invariants.rules.md` (Simplicity, pure functional TS, Result Pattern, SSOT).
-- `rules/cogni.rules.md` (Preflight search & postflight memory persistence).
-- `rules/commits.rules.md` (Conventional Commits & ticket identification).
-- `rules/verification-checklist.rules.md` (Deterministic terminal verification gate).
+CRITICAL: When you encounter a file reference (e.g., `@rules/engineering-invariants.rules.md` or `@skills/<name>/SKILL.md`), use your Read tool to load it on a need-to-know basis. They are relevant to the SPECIFIC task at hand.
 
-### Universal Response Style & Language
+Instructions:
+- Do NOT preemptively load all references: use lazy loading based on actual need.
+- When loaded, treat content as mandatory instructions that override defaults.
+- Follow references recursively when needed.
+
+### Core Universal Rules
+- For reasoning budget, tool limits, and execution policy: `@rules/runtime.rules.md`
+- For TypeScript standards, Result Pattern, and code invariants: `@rules/engineering-invariants.rules.md`
+- For semantic memory retrieval and persistence: `@rules/cogni.rules.md`
+- For Conventional Commits and branch Ticket ID extraction: `@rules/commits.rules.md`
+- For deterministic verification before completing tasks: `@rules/verification-checklist.rules.md`
+
+### Universal Response Style & Invariants
 - **Language**: ALWAYS output final responses, reviews, and prose in **Neutral Spanish** (*"ustedes"*, *"hacen"*, *"avisan"*).
 - **Prose Style**: Skip filler phrases ("I understand", "Here is..."). Provide code and diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
 - **Reasoning**: Reason exclusively in English, terse and compressed.
@@ -18,17 +25,11 @@ Before executing non-trivial tasks, all agents must respect:
 
 ---
 
-## 2. Core Agents (5 Agents Matrix)
+## 2. Subagent Delegation Policy
 
-OpenCode distinguishes between **Primary Agents** (direct interactive chat via `Tab`) and **Subagents** (task-specific delegators):
-
-| Agent Name | File | Mode | Temp | Color UI | Permissions & Tools | Primary Focus |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **`profesor`** | `agents/profesor.md` | `primary` | `0.5` | `#FF2A6D` (Rojo Carmesí) | `write: true`, `edit: true`, `bash: true` | **Lead Developer & Orchestrator**: Builds code, implements features, runs tests, and applies skills on demand. |
-| **`sheldon`** | `agents/sheldon.md` | `primary` | `0.3` | `#05D5FA` (Cian Eléctrico) | `write: true` (specs), `edit: false`, `bash: false` | **Software & System Architect**: Designs DDL schemas, API contracts, and implementation plans. |
-| **`edna`** | `agents/edna.md` | `primary` | `0.7` | `#FF007F` (Fucsia Neón) | `write: true`, `edit: true`, `bash: false` | **Lead UX/UI, Branding & Copywriter**: Designs interfaces, visual tokens, wireframes, brand identity, and high-conversion copy. |
-| **`tio-bob`** | `agents/tio-bob.md` | `subagent` | `0.3` | `#00E676` (Verde Esmeralda) | `write: false`, `edit: false`, `bash: true` (git) | **Senior Code Reviewer**: Evidence-first review of PRs, MRs, and staged git diffs. |
-| **`gorgory`** | `agents/gorgory.md` | `subagent` | `0.3` | `#FFBE0B` (Dorado Ámbar) | `write: false`, `edit: false`, `bash: true` (lint) | **Security & Code Hygiene Auditor**: OWASP vulnerabilities, rate limiting, endpoint hygiene, and dead code. |
+Primary agents (`@profesor`, `@sheldon`, `@edna`) must delegate specialized tasks to subagents via the `task` tool when triggered:
+- **`@tio-bob`** (`agents/tio-bob.md`): Delegate when the user asks for code review, PR/MR inspection, or staged diff checks.
+- **`@gorgory`** (`agents/gorgory.md`): Delegate when the user asks for security audits, OWASP checks, endpoint hygiene, or dead code detection.
 
 ---
 
@@ -36,29 +37,29 @@ OpenCode distinguishes between **Primary Agents** (direct interactive chat via `
 
 Agents do not carry heavy technical manuals in their base prompt. Instead, they dynamically inspect and read specialized skills via the `skill` tool when addressing specific domains:
 
-| Category | Skill Name | Domain Knowledge |
+| Category | Skill Reference | Domain Knowledge |
 | :--- | :--- | :--- |
-| **Architecture** | `clean-architecture` | Vertical Slicing (`src/modules/`), Result Pattern, Pure Functional TS, DIP adapters. |
-| **Architecture** | `backend-architecture` | Fastify / Express / Bun, public/private route isolation, structured Pino logs, Bruno tests. |
-| **Database** | `database-design` | PostgreSQL, Drizzle ORM, physical migrations, indexing (B-Tree, GIN), Redis caching, ACID. |
-| **Styling** | `css-architecture` | CSS Modules (`*.module.css`), strict BEM naming, Design Tokens (CSS vars), GPU animations. |
-| **UI Design** | `ux-wireframing` | Screen anatomy wireframes, dramatic minimalism ("No capes!"), user journeys, state transitions. |
-| **UI Design** | `frontend-design` | Visual direction, typography, distinct human aesthetics, avoiding templated AI clichés. |
-| **State** | `zustand` | Zustand 5+, atomic selectors (`useShallow`), slice segregation, avoiding infinite render loops. |
-| **Frontend** | `react-typescript-clean-code` | React 18/19+, hook hygiene (`useEffect` vs derivations), strict typing without `any`. |
-| **Mobile** | `react-native-architecture` | React Native & Expo, cross-platform navigation, offline synchronization. |
-| **Testing** | `testing-strategy` | Vitest, React Testing Library, Mock Service Worker (MSW), service Result Pattern testing. |
-| **Planning** | `scrum-planning` | Epics, User Stories, Gherkin acceptance criteria, granular 1x1 developer tasks. |
-| **Product** | `product-requirements` | Product Briefs, PRDs, MoSCoW prioritization, functional & non-functional requirements. |
-| **Discovery** | `market-research` | Deductive competitor analysis, feature parity matrices, user pain point validation. |
-| **Growth** | `growth-copywriting` | High-conversion copy, sales persuasion frameworks (AIDA, PAS), landing blueprints. |
-| **Security** | `security-hardening` | OWASP Top 10 defenses, endpoint rate limiting, secure cookie flags, token handling. |
-| **Audit** | `auditor` | Static codebase discovery, architecture mapping, technical debt evaluation. |
-| **i18n** | `i18n-localization` | react-i18next namespaces, translation key hygiene, pluralization, RTL logical properties. |
-| **Runtime & Ops**| `bun` | Bun runtime APIs, test runner, bundler, Bun.serve, shell scripts. |
-| **Runtime & Ops**| `cloudflare` | Workers, Pages, KV, D1, R2, Vectorize. |
-| **Memory** | `cogni` | Autonomous memory system for semantic signatures in local/global SQLite. |
-| **Writing** | `finch` | Natural human tone technical writing for documentation and proposals. |
+| **Architecture** | `@skills/clean-architecture/SKILL.md` | Vertical Slicing (`src/modules/`), Result Pattern, Pure Functional TS, DIP adapters. |
+| **Architecture** | `@skills/backend-architecture/SKILL.md` | Fastify / Express / Bun, public/private route isolation, structured Pino logs, Bruno tests. |
+| **Database** | `@skills/database-design/SKILL.md` | PostgreSQL, Drizzle ORM, physical migrations, indexing (B-Tree, GIN), Redis caching, ACID. |
+| **Styling** | `@skills/css-architecture/SKILL.md` | CSS Modules (`*.module.css`), strict BEM naming, Design Tokens (CSS vars), GPU animations. |
+| **UI Design** | `@skills/ux-wireframing/SKILL.md` | Screen anatomy wireframes, dramatic minimalism ("No capes!"), user journeys, state transitions. |
+| **UI Design** | `@skills/frontend-design/SKILL.md` | Visual direction, typography, distinct human aesthetics, avoiding templated AI clichés. |
+| **State** | `@skills/zustand/SKILL.md` | Zustand 5+, atomic selectors (`useShallow`), slice segregation, avoiding infinite render loops. |
+| **Frontend** | `@skills/react-typescript-clean-code/SKILL.md` | React 18/19+, hook hygiene (`useEffect` vs derivations), strict typing without `any`. |
+| **Mobile** | `@skills/react-native-architecture/SKILL.md` | React Native & Expo, cross-platform navigation, offline synchronization. |
+| **Testing** | `@skills/testing-strategy/SKILL.md` | Vitest, React Testing Library, Mock Service Worker (MSW), service Result Pattern testing. |
+| **Planning** | `@skills/scrum-planning/SKILL.md` | Epics, User Stories, Gherkin acceptance criteria, granular 1x1 developer tasks. |
+| **Product** | `@skills/product-requirements/SKILL.md` | Product Briefs, PRDs, MoSCoW prioritization, functional & non-functional requirements. |
+| **Discovery** | `@skills/market-research/SKILL.md` | Deductive competitor analysis, feature parity matrices, user pain point validation. |
+| **Growth** | `@skills/growth-copywriting/SKILL.md` | High-conversion copy, sales persuasion frameworks (AIDA, PAS), landing blueprints. |
+| **Security** | `@skills/security-hardening/SKILL.md` | OWASP Top 10 defenses, endpoint rate limiting, secure cookie flags, token handling. |
+| **Audit** | `@skills/auditor/SKILL.md` | Static codebase discovery, architecture mapping, technical debt evaluation. |
+| **i18n** | `@skills/i18n-localization/SKILL.md` | react-i18next namespaces, translation key hygiene, pluralization, RTL logical properties. |
+| **Runtime & Ops**| `@skills/bun/SKILL.md` | Bun runtime APIs, test runner, bundler, Bun.serve, shell scripts. |
+| **Runtime & Ops**| `@skills/cloudflare/SKILL.md` | Workers, Pages, KV, D1, R2, Vectorize. |
+| **Memory** | `@skills/cogni/SKILL.md` | Autonomous memory system for semantic signatures in local/global SQLite. |
+| **Writing** | `@skills/finch/SKILL.md` | Natural human tone technical writing for documentation and proposals. |
 
 ---
 
