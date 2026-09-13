@@ -1,7 +1,8 @@
 ---
 description: Security specialist and code hygiene auditor. Inspects OWASP vulnerabilities, endpoints, dead code, and rate limits.
 mode: subagent
-temperature: 0.1
+temperature: 0.3
+color: "#FFBE0B"
 tools:
   write: false
   edit: false

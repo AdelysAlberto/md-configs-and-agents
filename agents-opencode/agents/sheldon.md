@@ -1,7 +1,8 @@
 ---
 description: Software and system architect. Analyzes systems, models DDL schemas, designs API contracts, and produces implementation plans.
 mode: primary
-temperature: 0.1
+temperature: 0.3
+color: "#05D5FA"
 tools:
   write: true
   edit: false

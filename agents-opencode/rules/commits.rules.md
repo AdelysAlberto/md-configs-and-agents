@@ -40,8 +40,8 @@ git commit -m "fix: thing"
 Always run **before** creating a commit:
 
 ```bash
-pnpm fix          # Biome formatting fix
-pnpm tsc --noEmit  # Type check
+pnpm biome:check          # Biome formatting fix
+pnpm typecheck --noEmit  # Type check
 pnpm test         # Run unit/integration tests
 ```
 
@@ -52,7 +52,7 @@ If any of the above fail, fix the issues before committing.
 Before marking a task as completed, verify:
 
 - [ ] Code follows functional programming principles (no `class`, `this`, `extends`)
-- [ ] TypeScript types are correct (`pnpm tsc --noEmit` passes)
+- [ ] TypeScript types are correct (`pnpm typecheck --noEmit` passes)
 - [ ] CSS uses CSS Modules with design tokens (no hardcoded values)
 - [ ] Result Pattern is used for all async operations
 - [ ] Zustand selector pattern is used (no store destructuring)

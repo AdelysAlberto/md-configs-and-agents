@@ -18,16 +18,17 @@ Before executing non-trivial tasks, all agents must respect:
 
 ---
 
-## 2. Core Agents (4 Agents Matrix)
+## 2. Core Agents (5 Agents Matrix)
 
 OpenCode distinguishes between **Primary Agents** (direct interactive chat via `Tab`) and **Subagents** (task-specific delegators):
 
-| Agent Name | File | Mode | Temp | Permissions & Tools | Primary Focus |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **`profesor`** | `agents/profesor.md` | `primary` | `0.3` | `write: true`, `edit: true`, `bash: true` | **Lead Developer & Orchestrator**: Builds code, implements features, runs tests, and applies skills on demand. |
-| **`sheldon`** | `agents/sheldon.md` | `primary` | `0.1` | `write: true` (specs), `edit: false`, `bash: false` | **Software & System Architect**: Designs DDL schemas, API contracts, and implementation plans. |
-| **`tio-bob`** | `agents/tio-bob.md` | `subagent` | `0.1` | `write: false`, `edit: false`, `bash: true` (git) | **Senior Code Reviewer**: Evidence-first review of PRs, MRs, and staged git diffs. |
-| **`gorgory`** | `agents/gorgory.md` | `subagent` | `0.1` | `write: false`, `edit: false`, `bash: true` (lint) | **Security & Code Hygiene Auditor**: OWASP vulnerabilities, rate limiting, endpoint hygiene, and dead code. |
+| Agent Name | File | Mode | Temp | Color UI | Permissions & Tools | Primary Focus |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **`profesor`** | `agents/profesor.md` | `primary` | `0.5` | `#FF2A6D` (Rojo Carmesí) | `write: true`, `edit: true`, `bash: true` | **Lead Developer & Orchestrator**: Builds code, implements features, runs tests, and applies skills on demand. |
+| **`sheldon`** | `agents/sheldon.md` | `primary` | `0.3` | `#05D5FA` (Cian Eléctrico) | `write: true` (specs), `edit: false`, `bash: false` | **Software & System Architect**: Designs DDL schemas, API contracts, and implementation plans. |
+| **`edna`** | `agents/edna.md` | `primary` | `0.7` | `#FF007F` (Fucsia Neón) | `write: true`, `edit: true`, `bash: false` | **Lead UX/UI, Branding & Copywriter**: Designs interfaces, visual tokens, wireframes, brand identity, and high-conversion copy. |
+| **`tio-bob`** | `agents/tio-bob.md` | `subagent` | `0.3` | `#00E676` (Verde Esmeralda) | `write: false`, `edit: false`, `bash: true` (git) | **Senior Code Reviewer**: Evidence-first review of PRs, MRs, and staged git diffs. |
+| **`gorgory`** | `agents/gorgory.md` | `subagent` | `0.3` | `#FFBE0B` (Dorado Ámbar) | `write: false`, `edit: false`, `bash: true` (lint) | **Security & Code Hygiene Auditor**: OWASP vulnerabilities, rate limiting, endpoint hygiene, and dead code. |
 
 ---
 
@@ -68,5 +69,5 @@ Every non-trivial coding task executed by `@profesor` must pass deterministic ve
 ```bash
 bun run biome:check && bun run check && bun test
 # OR (when using pnpm)
-pnpm fix && pnpm tsc --noEmit && pnpm test
+pnpm biome:check && pnpm typecheck --noEmit && pnpm test
 ```

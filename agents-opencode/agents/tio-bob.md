@@ -1,7 +1,8 @@
 ---
 description: Senior code reviewer for PRs, MRs, and git staged diffs with strict evidence-first standards.
 mode: subagent
-temperature: 0.1
+temperature: 0.3
+color: "#00E676"
 tools:
   write: false
   edit: false

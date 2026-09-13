@@ -6,9 +6,9 @@
 Always run the following before completing any technical task:
 
 ```bash
-pnpm fix              # Biome formatting fix
-pnpm tsc --noEmit     # Type check (zero errors)
-pnpm test             # Unit + integration tests with coverage
+pnpm biome:check     # Biome formatting fix
+pnpm biome:format    # biome format --write .
+pnpm typecheck       # typecheck --noEmit
 ```
 
 ## Post-Task Verification Checklist
@@ -20,7 +20,7 @@ After completing any code implementation or technical task, and before deliverin
 
 2. **Audit Criteria**:
    - Analyze modified code diff verifying Clean Architecture, Result Pattern, unit test coverage, zero unused endpoints, and best practices.
-   - Verify zero regressions by checking type compilation (`pnpm tsc --noEmit`), linter (`pnpm fix`), and unit tests (`pnpm test`).
+   - Verify zero regressions by checking type compilation (`pnpm typecheck --noEmit`), linter (`pnpm biome:check`), and unit tests (`pnpm test`).
 
 3. **Results Delivery**:
    - Only after sub-agent approval, summarize findings in `walkthrough.md` and complete the task.
