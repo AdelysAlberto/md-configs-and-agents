@@ -30,6 +30,8 @@ Instructions:
 Primary agents (`@profesor`, `@sheldon`, `@edna`) must delegate specialized tasks to subagents via the `task` tool when triggered:
 - **`@tio-bob`** (`agents/tio-bob.md`): Delegate when the user asks for code review, PR/MR inspection, or staged diff checks.
 - **`@gorgory`** (`agents/gorgory.md`): Delegate when the user asks for security audits, OWASP checks, endpoint hygiene, or dead code detection.
+- **`@saul`** (`agents/saul.md`): Delegate when the user asks for legal audits, terms & conditions review, startup/corporate incorporation (Spain/EU), tax/pluriactivity compliance, trademark registration, software copyright (LPI), or GDPR/privacy analysis.
+- **`@contador`** (`agents/contador.md`): Delegate when the user asks for financial calculations, IRPF brackets, RETA quotas, corporate tax (IS), tax deductions, accounting optimization, or tax models (130, 303, 111, 115, 200, 349, 369).
 
 ---
 
@@ -39,6 +41,8 @@ Agents do not carry heavy technical manuals in their base prompt. Instead, they 
 
 | Category | Skill Reference | Domain Knowledge |
 | :--- | :--- | :--- |
+| **Tax & Accounting** | `@skills/tax-accounting/SKILL.md` | Spanish & EU tax, IRPF brackets, RETA tiers, Corporate Tax (IS), legal deductions, VAT/OSS. |
+| **Legal & Compliance** | `@skills/legal-compliance/SKILL.md` | Spanish & EU law, Ley de Startups 28/2022, pluriactivity/RETA, S.L. Crea y Crece, IP/LPI, trademarks, GDPR/ePrivacy, PSD2, AI Act. |
 | **Architecture** | `@skills/clean-architecture/SKILL.md` | Vertical Slicing (`src/modules/`), Result Pattern, Pure Functional TS, DIP adapters. |
 | **Architecture** | `@skills/backend-architecture/SKILL.md` | Fastify / Express / Bun, public/private route isolation, structured Pino logs, Bruno tests. |
 | **Database** | `@skills/database-design/SKILL.md` | PostgreSQL, Drizzle ORM, physical migrations, indexing (B-Tree, GIN), Redis caching, ACID. |

@@ -38,7 +38,8 @@ This file is mandatory. This policy governs reasoning, search, tool usage, conte
 | `/brainstorm`, `/sherlock` | `sherlock-analyst` | Market & competitor research | [`config/agents/sherlock-analyst.md`](config/agents/sherlock-analyst.md) |
 | `/brief`, `/prd`, `/roz` | `roz-product` | Product requirements & PRD | [`config/agents/roz-product.md`](config/agents/roz-product.md) |
 | `/ux`, `/wireframe`, `/edna` | `edna-ux` | UX/UI design & visual system | [`config/agents/edna-ux.md`](config/agents/edna-ux.md) |
-| `/css`, `/saul` | `saul-goodman` | CSS Modules, BEM & Tokens Legal Defense | [`config/agents/saul-goodman.md`](config/agents/saul-goodman.md) |
+| `/legal`, `/compliance`, `/saul` | `saul-goodman` | Senior Legal Counsel & Startup Compliance Attorney | [`config/agents/saul-goodman.md`](config/agents/saul-goodman.md) |
+| `/contador`, `/tax`, `/irpf` | `contador` | Senior Tax Accountant & Financial Strategist (Christian Wolff) | [`config/agents/contador.md`](config/agents/contador.md) |
 | `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | System architecture, DDL & APIs | [`config/agents/sheldon-architect.md`](config/agents/sheldon-architect.md) |
 | `/db`, `/doc` | `doc-database` | Database, ORM, Redis & indexes | [`config/agents/doc-database.md`](config/agents/doc-database.md) |
 | `/security`, `/gorgory` | `gorgory-security` | Security, OWASP & API shielding | [`config/agents/gorgory-security.md`](config/agents/gorgory-security.md) |
