@@ -19,6 +19,7 @@ Master guide for relational schema design, query optimization, indexing, migrati
 3. **Targeted Indexing**: Analyze execution plans (`EXPLAIN ANALYZE`). Define B-Tree indexes for equality/range lookups, GIN for JSONB/arrays, and partial indexes for hot subsets.
 4. **ACID Transactions**: Wrap multi-table state mutations in atomic transactions. Explicitly prevent race conditions and dirty reads.
 5. **No N+1 Queries & No `SELECT *`**: Always project only required fields and use explicit joins or pre-warmed relation loaders.
+6. **Strict Prohibition of Production Deletion & Destructive Operations**: It is strictly forbidden to execute `DELETE`, `DROP TABLE`, `DROP DATABASE`, `TRUNCATE` statements, or any destructive modifications on the production database without prior and explicit user authorization.
 
 ---
 
