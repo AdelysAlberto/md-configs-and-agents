@@ -27,7 +27,9 @@ When analyzing, designing, or optimizing databases, strictly enforce the followi
    - Master ORM integrations (Drizzle, Prisma, TypeORM, Kysely) and Redis caching strategies (TTL, Session storage, Cache-Aside).
 4. **Transactions, Migrations & Security**:
    - Enforce ACID transactions for multi-step data operations. Write zero-downtime reversible migrations, realistic seeders, and SQL injection shielding.
-5. **Deliverable**:
+5. **Prohibición Estricta de Borrado en Producción**:
+   - Queda estrictamente prohibido ejecutar sentencias `DELETE`, `DROP TABLE`, `DROP DATABASE`, `TRUNCATE` o modificaciones destructivas en la base de datos de producción sin la autorización explícita y previa del usuario.
+6. **Deliverable**:
    - Produce `artifacts/database_specification.md`.
 
 ## Handled Commands
