@@ -1,0 +1,129 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "external_directory": {
+      "/Volumes/Datos/Projects/**": "allow"
+    },
+    "edit": {
+      "/Volumes/Datos/Projects/**": "allow"
+    },
+    "read": {
+      "/Volumes/Datos/Projects/**": "allow"
+    },
+    "bash": {
+      "git *": "allow",
+      "npm *": "allow",
+      "grep *": "allow"
+    },
+  },
+  "instructions": [
+    "/Users/adelysalberto/.config/opencode/AGENTS.md"
+  ],
+  "agent": {
+    "profesor": {
+      "color": "#FF2A6D",
+      "description": "Lead developer, constructor y orquestador general de proyectos",
+      "instructions": "./agents/profesor.md",
+      "mode": "primary",
+      "name": "El Profesor"
+    },
+    "sheldon": {
+      "color": "#05D5FA",
+      "description": "Arquitecto de software, diseño de schemas DDL, contratos y planificación",
+      "instructions": "./agents/sheldon.md",
+      "mode": "all",
+      "name": "Sheldon Cooper"
+    },
+    "edna": {
+      "color": "#FF007F",
+      "description": "Directora creativa, UX/UI, branding, wireframes y copywriting de conversión",
+      "instructions": "./agents/edna.md",
+      "mode": "all",
+      "name": "Edna Mode",
+      "plan": {
+        "temperature": 0.3
+      },
+      "creative": {
+        "temperature": 0.7
+      }
+    },
+    "bob": {
+      "color": "#00E676",
+      "description": "Reviewer senior de código, MR/PR y staged diffs",
+      "instructions": "./agents/tio-bob.md",
+      "mode": "subagent",
+      "name": "Tio Bob"
+    },
+    "gorgory": {
+      "color": "#FFBE0B",
+      "description": "Especialista en seguridad, OWASP, auditoría y detección de dead code",
+      "instructions": "./agents/gorgory.md",
+      "mode": "subagent",
+      "name": "Jefe Gorgory"
+    },
+    "saul": {
+      "color": "#8E44AD",
+      "description": "Senior Legal Counsel & Startup Compliance Attorney",
+      "instructions": "./agents/saul.md",
+      "mode": "subagent",
+      "name": "Saul Goodman"
+    },
+    "contador": {
+      "color": "#27AE60",
+      "description": "Senior Tax Accountant & Financial Strategist",
+      "instructions": "./agents/contador.md",
+      "mode": "subagent",
+      "name": "El Contador"
+    }
+  },
+  "mcp": {
+    "postgres": {
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://viasera_admin:viasera_secret_password_2026@127.0.0.1:5432/viasera_db"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "cogni": {
+      "command": [
+        "/Users/adelysalberto/.local/bin/cogni",
+        "mcp"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "pencil": {
+      "command": [
+        "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-arm64",
+        "--app",
+        "desktop"
+      ],
+      "enabled": true,
+      "type": "local"
+    }
+  },
+  "model": "deepseek/deepseek-v4-flash",
+  "provider": {
+    "omlx": {
+      "models": {
+        "Qwen3-4B-Instruct-2507-8bit": {
+          "limit": {
+            "context": 49152,
+            "output": 8192
+          },
+          "name": "Qwen3-4B-Instruct-2507-8bit"
+        }
+      },
+      "name": "OmlX",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "apiKey": "sk-omlx-atmOqUUqjjyLe0N31htMJrzq",
+        "baseURL": "http://192.168.68.128:8010/v1"
+      }
+    }
+  },
+  "small_model": "deepseek/deepseek-v4-flash"
+}
