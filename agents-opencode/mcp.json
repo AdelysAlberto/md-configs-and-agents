@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "cogni": {
+      "args": [
+        "mcp"
+      ],
+      "command": "/Users/adelysalberto/.local/bin/cogni"
+    },
+    "viasera-notifier": {
+      "command": "bun",
+      "args": [
+        "run",
+        "/Volumes/Datos/Projects/viasera/mcp/n8n-notifier/src/index.ts"
+      ],
+      "env": {
+        "N8N_WEBHOOK_URL": "http://<N8N_HOST>:5678/webhook/viasera-agent-notify"
+      }
+    }
+  }
+}

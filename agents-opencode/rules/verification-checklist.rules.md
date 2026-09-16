@@ -16,7 +16,7 @@ pnpm typecheck       # typecheck --noEmit
 After completing any code implementation or technical task, and before delivering results to the user:
 
 1. **Invoke Specialist Sub-Agent**:
-   - Delegate code audit to **Andrew Martin** (`andrew-martin` / `/standards`), **Dr. House** (`house-testing` / `/testing`), and **Inspector Gadget** (`gadget-auditor` / `/audit`).
+   - Delegate code audit to **Tio Bob** (`@bob` / code review), **Jefe Gorgory** (`@gorgory` / security & code health), and **Sheldon Cooper** (`@sheldon` / architecture).
 
 2. **Audit Criteria**:
    - Analyze modified code diff verifying Clean Architecture, Result Pattern, unit test coverage, zero unused endpoints, and best practices.

@@ -9,12 +9,22 @@ Instructions:
 - When loaded, treat content as mandatory instructions that override defaults.
 - Follow references recursively when needed.
 
+## Architectural Exploration and Knowledge Graph (Graphify)
+- **Graph Source**: When asked about global architecture, dependency analysis between modules, detection of god nodes or flows between layers, the agent MUST prioritize the inspection of `graphify-out/` and execute the `graphify` skill.
+- **Impact Preflight**: Before cross-sectional refactoring or service deletions, consult the knowledge graph to map non-obvious couplings and dependencies.
+
 ### Core Universal Rules
 - For reasoning budget, tool limits, and execution policy: `@rules/runtime.rules.md`
 - For TypeScript standards, Result Pattern, and code invariants: `@rules/engineering-invariants.rules.md`
 - For semantic memory retrieval and persistence: `@rules/cogni.rules.md`
 - For Conventional Commits and branch Ticket ID extraction: `@rules/commits.rules.md`
 - For deterministic verification before completing tasks: `@rules/verification-checklist.rules.md`
+
+### Notificaciones de Intervención Humana (El Pregonero)
+Antes de ejecutar `ask_question`, pausar para aprobación de un plan, solicitar permisos de ejecución o concluir una tarea principal, DEBES invocar la herramienta MCP `send_telegram_alert` (`el-pregonero`) con los parámetros:
+- `event_type`: 'QUESTION' | 'PLAN_APPROVAL' | 'PERMISSION_REQUIRED' | 'TASK_COMPLETED' | 'ERROR'
+- `summary`: Resumen conciso de la situación o pregunta.
+- `action_required`: Acción o respuesta requerida por el usuario.
 
 ### Universal Response Style & Invariants
 - **Language**: ALWAYS output final responses, reviews, and prose in **Neutral Spanish** (*"ustedes"*, *"hacen"*, *"avisan"*).
@@ -27,9 +37,11 @@ Instructions:
 
 ## 2. Subagent Delegation Policy
 
-Primary agents (`@profesor`, `@sheldon`, `@edna`) must delegate specialized tasks to subagents via the `task` tool when triggered:
+Primary orchestrators (`@profesor`) must delegate specialized tasks to subagents via the `task` tool to preserve context hygiene:
+- **`@sheldon`** (`agents/sheldon.md`): Delegate when structural architecture, DDL schema modeling, module boundaries, API contract design, or AST indexing maps are required.
+- **`@edna`** (`agents/edna.md`): Delegate when UX/UI design, screen wireframes, design tokens, or visual copy is required.
 - **`@tio-bob`** (`agents/tio-bob.md`): Delegate when the user asks for code review, PR/MR inspection, or staged diff checks.
-- **`@gorgory`** (`agents/gorgory.md`): Delegate when the user asks for security audits, OWASP checks, endpoint hygiene, or dead code detection.
+- **`@gorgory`** (`agents/gorgory.md`): Delegate when the user asks for security audits, OWASP checks, endpoint hygiene, repository health, or dead code detection.
 - **`@saul`** (`agents/saul.md`): Delegate when the user asks for legal audits, terms & conditions review, startup/corporate incorporation (Spain/EU), tax/pluriactivity compliance, trademark registration, software copyright (LPI), or GDPR/privacy analysis.
 - **`@contador`** (`agents/contador.md`): Delegate when the user asks for financial calculations, IRPF brackets, RETA quotas, corporate tax (IS), tax deductions, accounting optimization, or tax models (130, 303, 111, 115, 200, 349, 369).
 
