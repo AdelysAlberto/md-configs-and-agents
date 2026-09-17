@@ -6,6 +6,7 @@
 - **Reasoning**: Reason exclusively in English, terse and compressed.
 - **Code Generation**: Variable names, types, functions, git commit messages, and documentation in English.
 - **Anti-AI Footprint (Strict No Emojis)**: Prohibit generic emojis in markdown, documentation, responses, and commit messages.
+- **Response Budget**: final responses ≤ 15 lines by default; verdict first; evidence as tables or raw commands; long runbooks go to repo docs, never to chat.
 
 ---
 
