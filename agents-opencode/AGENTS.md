@@ -69,7 +69,10 @@ Agents do not carry heavy technical manuals in their base prompt. Instead, they 
 | **Runtime & Ops**| `@skills/cloudflare/SKILL.md` | Workers, Pages, KV, D1, R2, Vectorize. |
 | **Memory** | `@skills/cogni/SKILL.md` | Autonomous memory system for semantic signatures in local/global SQLite. |
 | **Writing** | `@skills/finch/SKILL.md` | Natural human tone technical writing for documentation and proposals. |
-| **Social / Tech** | `@skills/linkedin/SKILL.md` | Authentic engineering reflections (Finch + Edna style, no emojis, no clichés). |
+| **Social / Tech** | `@skills/linkedin/SKILL.md` | Authentic engineering reflections (Finch + Edna style, no emojis, no cliches). |
+| **Visual Craft** | `@skills/visual-craft/SKILL.md` | Color psychology, intentional typography, concentric radii, surfaces, GPU animations, system-fit, anti-AI-cliche detection. |
+| **UX Decision** | `@skills/ux-decision/SKILL.md` | Problem framing, state completeness sweep, blindspot detection, accessibility behavior, content design, evidence-based critique. |
+| **Mobile Native** | `@skills/mobile-native/SKILL.md` | iOS HIG, Material Design 3, cross-platform patterns, gesture-driven interaction, React Native / Expo anti-patterns. |
 
 ---
 

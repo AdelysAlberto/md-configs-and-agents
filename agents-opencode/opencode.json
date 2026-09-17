@@ -48,7 +48,7 @@
       },
       "brainstorm": {
         "temperature": 0.7,
-        "prompt": "{file:./prompts/creative.txt}"
+        "prompt": "{file:./prompts/creative.md}"
       }
     },
     "bob": {
