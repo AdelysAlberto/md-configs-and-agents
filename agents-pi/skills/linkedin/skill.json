@@ -1,0 +1,5 @@
+{
+  "name": "linkedin",
+  "description": "Generates authentic, high-impact LinkedIn engineering reflections inspired by Paul Finch (conversational, vivid storytelling) and Edna Mode (punchy, anti-bloat, zero fluff). Extracts abstract architectural lessons from recent work without reciting git changelogs or leaking product details.",
+  "instructions": "instructions.md"
+}

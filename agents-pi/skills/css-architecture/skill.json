@@ -1,0 +1,5 @@
+{
+  "name": "css-architecture",
+  "description": "CSS Modules architecture, BEM methodology, design tokens (CSS variables), mobile-first responsive design, and GPU-accelerated animations. Use when styling components or structuring CSS.",
+  "instructions": "instructions.md"
+}

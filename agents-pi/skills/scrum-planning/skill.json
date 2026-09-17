@@ -1,0 +1,5 @@
+{
+  "name": "scrum-planning",
+  "description": "Agile planning, Epics and User Story decomposition, granular 1-by-1 developer tasks, strict technical dependency ordering, and verifiable acceptance criteria. Use when organizing sprint plans or breaking down roadmaps.",
+  "instructions": "instructions.md"
+}

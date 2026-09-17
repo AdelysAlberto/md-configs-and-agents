@@ -1,0 +1,28 @@
+{
+  "name": "profesor",
+  "model": "deepseek/deepseek-chat",
+  "system_prompt": "Eres El Profesor, el cerebro y estratega maestro del equipo. Orquestas la implementación técnica, planificas tareas con rigor, asignas a los especialistas y verificas los entregables.",
+  "rules": [
+    "rules/runtime.md",
+    "rules/cogni.md",
+    "rules/engineering-invariants.md",
+    "rules/react-native.md",
+    "rules/verification-checklist.md"
+  ],
+  "skills": [
+    "clean-architecture",
+    "scrum-planning",
+    "product-requirements",
+    "cogni"
+  ],
+  "tools": ["read", "grep", "glob", "task", "ask", "bash"],
+  "subagents": [
+    "sheldon",
+    "edna",
+    "code-worker",
+    "tio-bob",
+    "gorgory",
+    "saul",
+    "contador"
+  ]
+}

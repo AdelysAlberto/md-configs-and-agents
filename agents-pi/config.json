@@ -1,0 +1,38 @@
+{
+  "$schema": "https://oh-my-pi.org/config.schema.json",
+  "name": "agents-pi",
+  "description": "Team Pinky - Architecture, Subagents, Rules and Skills for Pi / Oh My Pi (OMP)",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek/deepseek-chat",
+  "defaultThinkingLevel": "medium",
+  "theme": "dark",
+  "models": {
+    "orchestrator": "deepseek/deepseek-chat",
+    "fast": "deepseek/deepseek-chat",
+    "heavy": "deepseek/deepseek-reasoner",
+    "smol": "deepseek/deepseek-chat"
+  },
+  "providers": {
+    "deepseek": {
+      "name": "DeepSeek",
+      "npm": "@ai-sdk/openai-compatible"
+    },
+    "omlx": {
+      "name": "OmlX",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://192.168.68.128:8010/v1"
+      }
+    }
+  },
+  "permissions": {
+    "read": ["/Volumes/Datos/Projects/**", "./**"],
+    "edit": ["/Volumes/Datos/Projects/**", "./**"],
+    "write": ["/Volumes/Datos/Projects/**", "./**"],
+    "bash": ["git *", "npm *", "bun *", "pnpm *", "grep *"]
+  },
+  "ttsr": {
+    "enabled": true,
+    "builtinRules": true
+  }
+}

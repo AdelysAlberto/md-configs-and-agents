@@ -1,0 +1,5 @@
+{
+  "name": "backend-architecture",
+  "description": "Backend architecture and clean workflow for Node.js, Bun, Fastify, and Express. Includes public vs private module segregation, Result Pattern HTTP handlers, structured Pino logging, and Bruno API collections.",
+  "instructions": "instructions.md"
+}

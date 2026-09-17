@@ -1,0 +1,5 @@
+{
+  "name": "database-design",
+  "description": "Database architecture, relational schemas (PostgreSQL), Drizzle ORM, physical migrations, indexing strategies (B-Tree, GIN), Redis caching, and ACID transactions. Use when modeling schemas or optimizing queries.",
+  "instructions": "instructions.md"
+}

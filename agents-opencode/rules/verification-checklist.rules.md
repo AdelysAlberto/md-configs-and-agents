@@ -30,8 +30,12 @@ After completing any code implementation or technical task, and before deliverin
 - **Pure Functional Code**: Prohibit `class`, `this`, and OOP. Write pure functional TypeScript/JavaScript.
 - **Vertical Slicing**: Group all business domain code by module inside `src/modules/<FeatureName>/`.
 - **Result Pattern**: Never throw exceptions from services. Return explicit result objects (`{ success, value/error }`).
+- **React Native Max File Length (< 250 LOC)**: No screen or component file may exceed 250 LOC. Screens must act strictly as orchestrators (< 100 LOC).
+- **React Native DRY ScreenLayout**: Never duplicate `SafeAreaView`, `LinearGradient`, headers, or back buttons. Wrap screens in reusable `<ScreenLayout>`.
+- **React Native Logic Separation**: Extract non-trivial state, queries, and effects into dedicated custom hooks (`use[Screen].ts`).
+- **React Native Safe Areas & Media**: Strictly use `react-native-safe-area-context` and `expo-image`.
 - **Zustand Selector Hygiene**: Never destructure entire global Zustand stores. Use `useShallow` or atomic selectors.
-- **Styles**: Use CSS Modules exclusively (`*.module.css`) with BEM and design tokens. No inline styles or TailwindCSS unless explicitly instructed.
+- **Styles**: Use CSS Modules exclusively (`*.module.css`) for web, and StyleSheet/Design Tokens for mobile. No inline styles or TailwindCSS unless explicitly instructed.
 - **Internationalization**: All user-facing text must use `t('key')` keys.
 - **Pinned Exact Versions**: In all `package.json` files, wildcards like `^` or `~` are strictly forbidden. Always pin exact, deterministic versions.
 - **Mandatory Latest Stable Investigation**: Before installing or updating any package, actively query npm/bun registries to use the latest stable GA release available.

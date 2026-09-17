@@ -1,0 +1,5 @@
+{
+  "name": "testing-strategy",
+  "description": "Testing standards, unit testing for services and hooks, integration testing with MSW and React Testing Library, edge case diagnosis, and test-driven design. Use when writing tests or planning QA coverage.",
+  "instructions": "instructions.md"
+}

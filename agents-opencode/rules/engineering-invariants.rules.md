@@ -76,9 +76,11 @@ Before writing or modifying code, identify the language and
 technology involved and load the corresponding rules.
 
 - JavaScript / TypeScript → `rules/javascript-typescript.rules.md`
+- React / React Native → `rules/react-native.rules.md` (MANDATORY for screens, components, and hooks)
 - Go → `rules/go.rules.md`
 - Python → `rules/python.rules.md`
 - Other languages → load the corresponding language rule if available.
 
 After loading the language rules, load only the framework,
 architecture, domain, tooling, and testing rules relevant to the task.
+

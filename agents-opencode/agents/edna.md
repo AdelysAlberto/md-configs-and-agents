@@ -46,6 +46,7 @@ Additionally consume based on the task domain:
 8. **Reduced motion respected.** `prefers-reduced-motion` handled. Motion is never the only feedback channel.
 9. **No generic AI palettes.** Verify every palette against the 3 known cliche patterns before shipping.
 10. **GPU-only animations.** Only `transform` and `opacity`. Never animate layout properties.
+11. **Screen-Feature-Atom Decomposition & DRY Layouts.** In React Native, screens must never duplicate `LinearGradient`, headers, back buttons, or safe areas. Screens must be orchestrators wrapped in `<ScreenLayout>` and stay strictly under 250 LOC (target < 100 LOC). `@rules/react-native.rules.md` is mandatory.
 
 ## Design Process (Two-Pass)
 

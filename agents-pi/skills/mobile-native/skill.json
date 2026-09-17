@@ -1,0 +1,5 @@
+{
+  "name": "mobile-native",
+  "description": "iOS Human Interface Guidelines, Material Design 3, cross-platform patterns, gesture-driven interaction, safe areas, touch targets, native navigation, and battle-tested anti-patterns for React Native / Expo. Use when designing, building, or reviewing any mobile interface.",
+  "instructions": "instructions.md"
+}

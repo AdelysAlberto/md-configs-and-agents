@@ -1,0 +1,5 @@
+{
+  "name": "clean-architecture",
+  "description": "Clean Architecture standards, Vertical Slicing, pure functional TypeScript, Result Pattern, and strict anti-pattern elimination. Use when structuring project modules, domain logic, or services.",
+  "instructions": "instructions.md"
+}

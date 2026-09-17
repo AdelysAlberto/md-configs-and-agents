@@ -23,6 +23,7 @@ Instructions:
 ### Core Universal Rules
 - For reasoning budget, tool limits, and execution policy: `@rules/runtime.rules.md`
 - For TypeScript standards, Result Pattern, and code invariants: `@rules/engineering-invariants.rules.md`
+- For React Native UI architecture (< 250 LOC, DRY ScreenLayout, hook extraction): `@rules/react-native.rules.md`
 - For semantic memory retrieval and persistence: `@rules/cogni.rules.md`
 - For Conventional Commits and branch Ticket ID extraction: `@rules/commits.rules.md`
 - For deterministic verification before completing tasks: `@rules/verification-checklist.rules.md`

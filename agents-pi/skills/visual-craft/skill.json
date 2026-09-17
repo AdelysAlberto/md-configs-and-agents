@@ -1,0 +1,5 @@
+{
+  "name": "visual-craft",
+  "description": "Visual design craft knowledge base. Color psychology, intentional typography, concentric radii, optical alignment, shadows for elevation, GPU-only animations, scale-on-press, icon stroke matching, system-fit decisions, and anti-AI-cliche detection. Platform-agnostic. Use when designing, building, or reviewing any UI surface.",
+  "instructions": "instructions.md"
+}

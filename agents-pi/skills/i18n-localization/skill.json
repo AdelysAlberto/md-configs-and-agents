@@ -1,0 +1,5 @@
+{
+  "name": "i18n-localization",
+  "description": "Internationalization (i18n) standards, react-i18next setup, namespaced translation keys, pluralization, and RTL logical CSS properties. Use when localizing UI text or adding multi-language support.",
+  "instructions": "instructions.md"
+}

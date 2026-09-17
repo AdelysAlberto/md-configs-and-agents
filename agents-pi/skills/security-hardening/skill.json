@@ -1,0 +1,5 @@
+{
+  "name": "security-hardening",
+  "description": "Security hardening standards, OWASP Top 10 mitigation, API rate limiting, input sanitization, secure cookies, token handling, and frontend shielding. Use when reviewing security, authentication, or sensitive endpoints.",
+  "instructions": "instructions.md"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "react-native-architecture",
+  "description": "Master production React Native & Expo (2026 standards) with Expo Router, New Architecture (Fabric/TurboModules), Reanimated 3, Vertical Slicing, and Callstack performance optimizations.",
+  "instructions": "instructions.md"
+}

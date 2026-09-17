@@ -1,0 +1,5 @@
+{
+  "name": "screen-layout",
+  "description": "Patrones obligatorios para la creación y refactorización de layouts y componentes wrapper en React Native",
+  "instructions": "instructions.md"
+}

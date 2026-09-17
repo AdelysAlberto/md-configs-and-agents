@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "cogni": {
+      "command": "/Users/adelysalberto/.local/bin/cogni",
+      "args": ["mcp"]
+    },
+    "viasera-notifier": {
+      "command": "bun",
+      "args": [
+        "run",
+        "/Volumes/Datos/Projects/viasera/mcp/n8n-notifier/src/index.ts"
+      ],
+      "env": {
+        "N8N_WEBHOOK_URL": "http://<N8N_HOST>:5678/webhook/viasera-agent-notify"
+      }
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://viasera_admin:viasera_secret_password_2026@127.0.0.1:5432/viasera_db"
+      ]
+    },
+    "pencil": {
+      "command": "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-arm64",
+      "args": [
+        "--app",
+        "desktop"
+      ]
+    }
+  }
+}

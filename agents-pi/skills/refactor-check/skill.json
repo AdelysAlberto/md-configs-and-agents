@@ -1,0 +1,5 @@
+{
+  "name": "refactor-check",
+  "description": "Procedimiento de verificación post-refactorización para evitar regresiones de tipado, imports muertos o fugas de scope",
+  "instructions": "instructions.md"
+}
