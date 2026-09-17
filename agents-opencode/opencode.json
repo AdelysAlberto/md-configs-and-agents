@@ -119,12 +119,19 @@
             "output": 8192
           },
           "name": "Qwen3-4B-Instruct-2507-8bit"
+        },
+        "Qwen3.8-27B-OptiQ-4bit": {
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          },
+          "name": "Qwen3.8-27B-OptiQ-4bit"
         }
       },
       "name": "OmlX",
       "npm": "@ai-sdk/openai-compatible",
       "options": {
-        "apiKey": "sk-omlx-atmOqUUqjjyLe0N31htMJrzq",
+        "apiKey": "sk-omlx-abc15149",
         "baseURL": "http://192.168.68.128:8010/v1"
       }
     }
