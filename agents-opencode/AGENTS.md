@@ -27,14 +27,6 @@ Instructions:
 - For Conventional Commits and branch Ticket ID extraction: `@rules/commits.rules.md`
 - For deterministic verification before completing tasks: `@rules/verification-checklist.rules.md`
 
-### Notificaciones de Intervención Humana (El Pregonero)
-Antes de ejecutar `ask_question`, pausar para aprobación de un plan, solicitar permisos de ejecución o concluir una tarea principal, DEBES invocar la herramienta MCP `send_telegram_alert` (`el-pregonero`) con los parámetros:
-- `event_type`: 'QUESTION' | 'PLAN_APPROVAL' | 'PERMISSION_REQUIRED' | 'TASK_COMPLETED' | 'ERROR'
-- `summary`: Resumen conciso de la situación o pregunta.
-- `action_required`: Acción o respuesta requerida por el usuario.
-
-
----
 
 ## 2. Subagent Delegation Policy
 

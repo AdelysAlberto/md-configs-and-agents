@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "skills": {
+    "accessibility": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/accessibility/SKILL.md",
+      "computedHash": "7907e995fa5dedc396029feeb0aeb18d890ac9b4f393e29642d68950b6115dfc"
+    },
+    "blindspots": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/blindspots/SKILL.md",
+      "computedHash": "1fd55699376d10a25a187513a7ebcd616d79f77c8edcedf60cef91bf3c794e0c"
+    },
+    "challenge": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/challenge/SKILL.md",
+      "computedHash": "e640546e867fe8933eaf0f84f6c7cd840d84f0bf0917646e54a9ad4e92084e78"
+    },
+    "clear": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/clear/SKILL.md",
+      "computedHash": "3dc5343d7c641714b8e6e232f78c4cac970c27f76ed7db48006a93caa1500dec"
+    },
+    "content": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/content/SKILL.md",
+      "computedHash": "3d8dd6a4a1ca97e09a03e380e0b0a45a1025b4f3d0fa8c265af2d2b8f8202c5b"
+    },
+    "critique": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/critique/SKILL.md",
+      "computedHash": "7ea7349567f6ebb251d3d9a54140afaa6be063210626340a1f7da0826e85939d"
+    },
+    "decision": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/decision/SKILL.md",
+      "computedHash": "91ceacfd1fec6fa5136a476c1697cf7465cbfcb722d7e60e0e58a66ae4d9ca12"
+    },
+    "frame": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/frame/SKILL.md",
+      "computedHash": "58d6b11bea1f973d4c7b35c8657e9cc185131610d7cf5ef22d21f7ed969e8627"
+    },
+    "handoff": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/handoff/SKILL.md",
+      "computedHash": "15205d47122094e021d55c2ea0a8ebca29cf64eae012c5816fb2d70147b6dbf0"
+    },
+    "pr": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/pr/SKILL.md",
+      "computedHash": "50e3e86cbad467e11e09f05ea0a3c35a46bfedf262e572aedf37cede1bb53dad"
+    },
+    "ripple": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ripple/SKILL.md",
+      "computedHash": "5f7ce999774e7a97ded7ed0d4d858f900d8669321ed1d136808623b9fdc02f52"
+    },
+    "setup-ux": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/setup-ux/SKILL.md",
+      "computedHash": "686213442e755274b3cb6b525afad2247cea97113fc2b811eaed30f4ecc3617b"
+    },
+    "state-sweep": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/state-sweep/SKILL.md",
+      "computedHash": "81feb05e647a0abe3df73bb8315d3de1834a5e6040aea1af672210a76eea920d"
+    },
+    "system-fit": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/system-fit/SKILL.md",
+      "computedHash": "21cf1e5d15861b13fd76803b8bf86046384522cc818697946a7b8bbbf0eab0d3"
+    },
+    "user-grounding": {
+      "source": "Tranz007/ux-skills",
+      "sourceType": "github",
+      "skillPath": "skills/user-grounding/SKILL.md",
+      "computedHash": "2e28a9a63bd24b84f33e5c4cd4c06abf432aa2d7e833f4ab977687ed7f9e0be0"
+    }
+  }
+}

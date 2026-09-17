@@ -45,6 +45,10 @@
       },
       "creative": {
         "temperature": 0.7
+      },
+      "brainstorm": {
+        "temperature": 0.7,
+        "prompt": "{file:./prompts/creative.txt}"
       }
     },
     "bob": {
