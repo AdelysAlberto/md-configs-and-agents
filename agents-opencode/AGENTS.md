@@ -1,5 +1,12 @@
 # Team Pinky - Agent Architecture & Engineering System (OpenCode)
 
+### Universal Response Style & Invariants
+- **Language**: ALWAYS output final responses, reviews, task summaries, and user-facing prose in **Neutral Spanish** (*"ustedes"*, *"hacen"*, *"avisan"*), regardless of whether the user prompts or writes in English or any other language.
+- **Prose Style**: Skip filler phrases ("I understand", "Here is..."). Provide code and diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
+- **Reasoning**: Reason exclusively in English, terse and compressed.
+- **Code Generation**: Variable names, types, functions, git commit messages, and documentation in English.
+- **Anti-AI Footprint (Strict No Emojis)**: Prohibit generic emojis in markdown, documentation, responses, and commit messages.
+
 ## 1. External File Loading & Lazy Rules
 
 CRITICAL: When you encounter a file reference (e.g., `@rules/engineering-invariants.rules.md` or `@skills/<name>/SKILL.md`), use your Read tool to load it on a need-to-know basis. They are relevant to the SPECIFIC task at hand.
@@ -26,12 +33,6 @@ Antes de ejecutar `ask_question`, pausar para aprobación de un plan, solicitar 
 - `summary`: Resumen conciso de la situación o pregunta.
 - `action_required`: Acción o respuesta requerida por el usuario.
 
-### Universal Response Style & Invariants
-- **Language**: ALWAYS output final responses, reviews, and prose in **Neutral Spanish** (*"ustedes"*, *"hacen"*, *"avisan"*).
-- **Prose Style**: Skip filler phrases ("I understand", "Here is..."). Provide code and diffs directly. Confirm file operations in 1 line maximum. Use bullet points for notes.
-- **Reasoning**: Reason exclusively in English, terse and compressed.
-- **Code Generation**: Variable names, types, functions, git commit messages, and documentation in English.
-- **Anti-AI Footprint (Strict No Emojis)**: Prohibit generic emojis in markdown, documentation, responses, and commit messages.
 
 ---
 
@@ -76,6 +77,7 @@ Agents do not carry heavy technical manuals in their base prompt. Instead, they 
 | **Runtime & Ops**| `@skills/cloudflare/SKILL.md` | Workers, Pages, KV, D1, R2, Vectorize. |
 | **Memory** | `@skills/cogni/SKILL.md` | Autonomous memory system for semantic signatures in local/global SQLite. |
 | **Writing** | `@skills/finch/SKILL.md` | Natural human tone technical writing for documentation and proposals. |
+| **Social / Tech** | `@skills/linkedin/SKILL.md` | Authentic engineering reflections (Finch + Edna style, no emojis, no clichés). |
 
 ---
 
