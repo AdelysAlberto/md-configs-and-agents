@@ -58,6 +58,14 @@ Antes de ejecutar `ask_question`, pausar para aprobación de un plan, solicitar 
 | `/readme` | `readme` | README Designer & GitHub Layout Specialist | [`config/agents/readme.md`](config/agents/readme.md) |
 | `/growth`, `/belfort`, `/wolf`, `/landing-copy` | `jordan-belfort` | Chief Growth Officer, High-Conversion Copy & Sales Persuasion | [`config/agents/jordan-belfort.md`](config/agents/jordan-belfort.md) |
 
+### Design & UX Domain Knowledge Skills (`config/skills/*`)
+
+| Skill | Role & Scope | Exact Skill Path |
+| :--- | :--- | :--- |
+| `visual-craft` | Color psychology, typography, concentric radii, shadows, GPU animations, anti-AI-cliches | [`config/skills/visual-craft/SKILL.md`](config/skills/visual-craft/SKILL.md) |
+| `ux-decision` | Problem framing, premise interrogation, 11-transition state sweep, blindspots, accessibility, content design | [`config/skills/ux-decision/SKILL.md`](config/skills/ux-decision/SKILL.md) |
+| `mobile-native` | iOS HIG, Material Design 3, cross-platform gestures, safe areas, touch targets, React Native anti-patterns | [`config/skills/mobile-native/SKILL.md`](config/skills/mobile-native/SKILL.md) |
+
 ---
 
 ## 3. Engineering Standards & Technology Rules (`config/rules/*.rules.md`)

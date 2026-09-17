@@ -27,6 +27,15 @@ Instructions:
 - For Conventional Commits and branch Ticket ID extraction: `@rules/commits.rules.md`
 - For deterministic verification before completing tasks: `@rules/verification-checklist.rules.md`
 
+## Política Estricta de Delegación de Subagentes
+Queda PROHIBIDO invocar subtareas genéricas o anónimas (`general`). Toda delegación mediante la herramienta `task` debe especificar el nombre exacto del subagente registrado:
+- `task(agent="edna", ...)` -> Para UX/UI, wireframes, diseño visual, tokens o componentes.
+- `task(agent="sheldon", ...)` -> Para esquemas DDL, arquitectura, contratos de API.
+- `task(agent="bob", ...)` -> Para revisión de PR/MR y diffs.
+- `task(agent="gorgory", ...)` -> Para seguridad, dead code y OWASP.
+- `task(agent="saul", ...)` -> Para cumplimiento legal, GDPR y términos.
+- `task(agent="contador", ...)` -> Para fiscalidad, IRPF y cálculos contables.
+
 
 ## 2. Subagent Delegation Policy
 
