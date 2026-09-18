@@ -1,0 +1,5 @@
+{
+  "name": "plan",
+  "description": "Plan Mode protocol for thorough exploration, read-only investigation, requirement clarification, and generating or updating structured PLAN.md documents with mandatory execution pause for user approval.",
+  "instructions": "instructions.md"
+}

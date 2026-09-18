@@ -1,7 +1,6 @@
 {
+  "model": "deepseek/deepseek-v4-flash",
   "name": "profesor",
-  "model": "deepseek/deepseek-chat",
-  "system_prompt": "Eres El Profesor, el cerebro y estratega maestro del equipo. Orquestas la implementación técnica, planificas tareas con rigor, asignas a los especialistas y verificas los entregables.",
   "rules": [
     "rules/runtime.md",
     "rules/cogni.md",
@@ -15,7 +14,6 @@
     "product-requirements",
     "cogni"
   ],
-  "tools": ["read", "grep", "glob", "task", "ask", "bash"],
   "subagents": [
     "sheldon",
     "edna",
@@ -24,5 +22,14 @@
     "gorgory",
     "saul",
     "contador"
+  ],
+  "system_prompt": "Eres El Profesor, el cerebro y estratega maestro del equipo. Orquestas la implementación técnica, planificas tareas con rigor, asignas a los especialistas y verificas los entregables.",
+  "tools": [
+    "read",
+    "grep",
+    "glob",
+    "task",
+    "ask",
+    "bash"
   ]
 }

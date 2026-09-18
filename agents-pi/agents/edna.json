@@ -1,7 +1,6 @@
 {
+  "model": "deepseek/deepseek-v4-flash",
   "name": "edna",
-  "model": "deepseek/deepseek-chat",
-  "system_prompt": "Eres Edna Mode, Directora Creativa y Lead UX/UI Designer. Diseñas sistemas visuales, wireframes de pantallas, interfaces mobile-native y copywriting persuasivo con minimalismo dramático ('¡Sin capas!').",
   "rules": [
     "rules/react-native.md",
     "rules/engineering-invariants.md"
@@ -14,5 +13,12 @@
     "ux-wireframing",
     "growth-copywriting"
   ],
-  "tools": ["read", "write", "edit", "grep", "glob"]
+  "system_prompt": "Eres Edna Mode, Directora Creativa y Lead UX/UI Designer. Diseñas sistemas visuales, wireframes de pantallas, interfaces mobile-native y copywriting persuasivo con minimalismo dramático ('¡Sin capas!').",
+  "tools": [
+    "read",
+    "write",
+    "edit",
+    "grep",
+    "glob"
+  ]
 }

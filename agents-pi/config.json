@@ -1,16 +1,36 @@
 {
   "$schema": "https://oh-my-pi.org/config.schema.json",
-  "name": "agents-pi",
-  "description": "Team Pinky - Architecture, Subagents, Rules and Skills for Pi / Oh My Pi (OMP)",
+  "defaultModel": "deepseek/deepseek-v4-flash",
   "defaultProvider": "deepseek",
-  "defaultModel": "deepseek/deepseek-chat",
   "defaultThinkingLevel": "medium",
-  "theme": "dark",
+  "description": "Team Pinky - Architecture, Subagents, Rules and Skills for Pi / Oh My Pi (OMP)",
   "models": {
-    "orchestrator": "deepseek/deepseek-chat",
-    "fast": "deepseek/deepseek-chat",
+    "fast": "deepseek/deepseek-v4-flash",
     "heavy": "deepseek/deepseek-reasoner",
-    "smol": "deepseek/deepseek-chat"
+    "orchestrator": "deepseek/deepseek-v4-flash",
+    "smol": "deepseek/deepseek-v4-flash"
+  },
+  "name": "agents-pi",
+  "permissions": {
+    "bash": [
+      "git *",
+      "npm *",
+      "bun *",
+      "pnpm *",
+      "grep *"
+    ],
+    "edit": [
+      "/Volumes/Datos/Projects/**",
+      "./**"
+    ],
+    "read": [
+      "/Volumes/Datos/Projects/**",
+      "./**"
+    ],
+    "write": [
+      "/Volumes/Datos/Projects/**",
+      "./**"
+    ]
   },
   "providers": {
     "deepseek": {
@@ -25,14 +45,9 @@
       }
     }
   },
-  "permissions": {
-    "read": ["/Volumes/Datos/Projects/**", "./**"],
-    "edit": ["/Volumes/Datos/Projects/**", "./**"],
-    "write": ["/Volumes/Datos/Projects/**", "./**"],
-    "bash": ["git *", "npm *", "bun *", "pnpm *", "grep *"]
-  },
+  "theme": "dark",
   "ttsr": {
-    "enabled": true,
-    "builtinRules": true
+    "builtinRules": true,
+    "enabled": true
   }
 }
