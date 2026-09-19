@@ -81,7 +81,17 @@ src/ (or src/modules/<Feature>/)
 
 ---
 
-## 5. Self-Review Checklist Before Emitting Code
+## 5. Modal vs. Page Decision Tree (Prevent Modal Overlapping)
+
+- **Zero Modal Stacking**: Strictly prohibit overlapping or stacking two native modal components simultaneously (e.g., an alert or decision dialog opening on top of an existing modal view). This causes focus traps, backdrop flickering, and iOS/Android rendering glitches.
+- **Decision Criteria**:
+  - **Use a Navigation Page / Screen**: When a flow involves multi-step forms, complex data entry, deep scrolling, or may trigger secondary alerts, confirmations, or date pickers.
+  - **Use a Modal / Bottom Sheet**: ONLY for atomic, single-step selections, quick actions, or bottom sheets that do not invoke nested dialogs.
+  - **Global Alert Provider**: Alert and confirmation dialogs must be rendered through a single root dialog provider to prevent backdrop collisions.
+
+---
+
+## 6. Self-Review Checklist Before Emitting Code
 
 Before outputting or approving any React Native code, verify:
 - [ ] Is this screen repeating a gradient, background, safe area, or back button that exists elsewhere? -> Refactor to shared layout.

@@ -1,5 +1,0 @@
-{
-  "name": "astro",
-  "description": "Skill for building with the Astro web framework. Helps create Astro components and pages, configure SSR adapters, set up content collections, deploy static sites, and manage project structure and CLI commands.",
-  "instructions": "instructions.md"
-}

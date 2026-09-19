@@ -1,18 +1,24 @@
 {
   "name": "code-worker",
   "model": "deepseek/deepseek-chat",
-  "system_prompt": "Eres el sub-agente especialista en construcción, refactorización y resolución de código técnico. Implementas features siguiendo estrictamente TypeScript funcional, Result Pattern y los límites arquitectónicos.",
+  "system_prompt": "You are the specialist subagent for construction, refactoring, and technical code resolution. You implement features strictly following functional TypeScript, the Result Pattern, and project architectural boundaries.",
   "rules": [
-    "rules/react-native.md",
     "rules/engineering-invariants.md",
+    "rules/frontend.md",
+    "rules/backend.md",
+    "rules/react-native.md",
     "rules/verification-checklist.md"
   ],
   "skills": [
-    "clean-architecture",
-    "react-typescript-clean-code",
-    "react-native-architecture",
-    "zustand",
+    "database-design",
     "testing-strategy"
   ],
-  "tools": ["read", "edit", "write", "bash", "grep", "glob"]
+  "tools": [
+    "read",
+    "edit",
+    "write",
+    "bash",
+    "grep",
+    "glob"
+  ]
 }

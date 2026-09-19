@@ -1,13 +1,14 @@
 ---
-description: Universal engineering invariants, pure functional TypeScript, Result Pattern, zero any, zero class
+description: Universal engineering invariants, cross-language standards, Screaming Architecture, and anti-pattern prevention
 globs:
   - "**/*.ts"
   - "**/*.tsx"
+  - "**/*.go"
+  - "**/*.py"
+  - "**/*.rs"
 scope:
-  - "tool:edit(*.ts)"
-  - "tool:edit(*.tsx)"
-  - "tool:write(*.ts)"
-  - "tool:write(*.tsx)"
+  - "tool:edit(*)"
+  - "tool:write(*)"
 condition:
   - ":\\s*any\\b|as\\s+any\\b"
   - "\\bclass\\s+[A-Z]"
@@ -15,34 +16,47 @@ condition:
 
 # Universal Engineering Invariants
 
-Mandatory engineering standards for all agents.
-Apply these principles regardless of language, framework, or technology.
+Mandatory engineering standards for all agents across all languages (TypeScript, Go, Python, Rust).
+Apply these principles universally to eliminate technical debt and prevent anti-patterns.
 
-## Core Principles
+---
 
-1. **Pure Functional TypeScript & Paradigm Rigor**
-   Strictly prohibit `class` and `this`. Prefer composable pure functions, closures, and explicit parameter passing. Zero `React.FC`.
+## 1. Paradigm Rigor & Functional Simplicity
 
-2. **Zero `any` Policy**
-   Never use `any` in TypeScript annotations or assertions. Use `unknown`, explicit generics, or parse schemas (Zod, Valibot) at trust boundaries.
+- **Pure Functional Core**: Strictly avoid unnecessary state mutation and object-oriented boilerplate (`class`, `this`). Prefer pure functions, composition, and explicit parameters.
+- **Zero `any` Policy**: Never use `any` in TypeScript. Use strict types, `unknown`, or validation schemas (Zod, Valibot) at system boundaries.
+- **Explicit Error Handling (Result Pattern)**:
+  - Services must never throw unhandled exceptions or panic across boundaries.
+  - Return typed Result shapes `{ success: true, data } | { success: false, error }` in TypeScript, or idiomatic `(data, error)` in Go.
 
-3. **Result Pattern**
-   Domain services and API actions must return typed Result shapes: `{ success: true, data } | { success: false, error }`. Never throw unhandled exceptions across architectural boundaries.
+---
 
-4. **Vertical Slicing (Feature Folders)**
-   Organize domain logic in `src/modules/<FeatureName>/` (components, hooks, services). Do not create horizontal dumping grounds.
+## 2. Screaming Architecture & Vertical Slicing
 
-5. **Provider Adapter Pattern (DIP)**
-   Domain services must import only agnostic contracts from `src/providers/<domain>/`, never vendor-specific functions or DTOs directly.
+- The directory structure must **scream the business domain**, not the technical framework:
+  - Structure by feature modules: `src/modules/<FeatureName>/` (containing feature-specific components, hooks, services, types).
+  - Avoid horizontal dumping grounds (e.g. monolithic `controllers/`, `services/`, `views/` containing unrelated domains).
+- Inter-module communication occurs strictly through the public API defined in the module's root `index.ts`. Never deep-import private module internals.
 
-6. **Single Source of Truth (SSOT)**
-   Zero hardcoded magic numbers, URLs, ports, or environment strings. All configuration lives in central configs (`envs.ts`, design tokens).
+---
 
-7. **Simplicity First**
-   Prefer the simplest solution that satisfies requirements. Remove unnecessary complexity before adding abstractions.
+## 3. Decoupling, Line Limits & Pure Utilities
 
-8. **Single Responsibility**
-   Keep modules, functions, components, and services focused on one clear responsibility.
+- **Hard Limit of 250 LOC**: No source code file may exceed **250 lines of code**. If an implementation approaches this limit, immediately decouple it into subcomponents, hooks, or helper modules.
+- **Pure Utilities in `utils/`**:
+  - Any logic performing date manipulation, currency conversion, string formatting, or stateless mathematical calculation that does not depend on closures, React hooks, or external state **must be extracted to `utils/`**.
 
-9. **Security by Default**
-   Treat external input as untrusted. Validate boundaries, minimize privileges, protect secrets, and avoid exposing sensitive information.
+---
+
+## 4. Single Source of Truth (SSOT) & Dependency Inversion (DIP)
+
+- **Zero Hardcoded Constants**: URLs, ports, environment strings, timeouts, and magic numbers must reside in a single authoritative config (`env.ts`, `constants.ts`, or design tokens).
+- **Provider Adapter Pattern (DIP)**: High-level domain logic must depend only on agnostic provider interfaces (`src/providers/<domain>/`), never on third-party vendor SDKs directly.
+
+---
+
+## 5. Dependency Management & Zero Deprecated APIs
+
+- **Latest Stable Versions**: When installing or proposing new libraries, research and verify the latest stable release. Pin exact versions in `package.json`.
+- **Zero Deprecated APIs**: Never write code using deprecated functions, methods, props, or options. Before completing a task, verify that all used APIs are current and supported.
+- **Canonical Tooling**: Use Biome (`biome.json`) for deterministic linting and formatting across the project.

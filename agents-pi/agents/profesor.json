@@ -1,29 +1,33 @@
 {
   "model": "deepseek/deepseek-v4-flash",
+  "thinkingLevel": "medium",
   "name": "profesor",
   "rules": [
     "rules/runtime.md",
     "rules/cogni.md",
     "rules/engineering-invariants.md",
+    "rules/frontend.md",
+    "rules/backend.md",
     "rules/react-native.md",
     "rules/verification-checklist.md"
   ],
   "skills": [
-    "clean-architecture",
     "scrum-planning",
     "product-requirements",
-    "cogni"
+    "cogni",
+    "plan"
   ],
   "subagents": [
     "sheldon",
     "edna",
+    "homero",
     "code-worker",
     "tio-bob",
     "gorgory",
     "saul",
     "contador"
   ],
-  "system_prompt": "Eres El Profesor, el cerebro y estratega maestro del equipo. Orquestas la implementación técnica, planificas tareas con rigor, asignas a los especialistas y verificas los entregables.",
+  "system_prompt": "You are El Profesor, the master brain and strategist of the team. You orchestrate end-to-end technical implementation, plan tasks with rigor, delegate to specialists, and verify deliverables.",
   "tools": [
     "read",
     "grep",

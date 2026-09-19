@@ -5,8 +5,8 @@
   "defaultThinkingLevel": "medium",
   "description": "Team Pinky - Architecture, Subagents, Rules and Skills for Pi / Oh My Pi (OMP)",
   "models": {
-    "fast": "deepseek/deepseek-v4-flash",
-    "heavy": "deepseek/deepseek-reasoner",
+    "fast": "deepseek/gemini-3.7-flash",
+    "heavy": "deepseek/deepseek-v4-flash:high",
     "orchestrator": "deepseek/deepseek-v4-flash",
     "smol": "deepseek/deepseek-v4-flash"
   },

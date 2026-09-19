@@ -1,12 +1,20 @@
 {
   "name": "orchestrator",
-  "model": "deepseek/deepseek-chat",
-  "system_prompt": "Eres el orquestador principal. Descompón las tareas y delega la arquitectura, diseño, codificación, revisión y auditoría a sub-agentes especializados. Tienes prohibido editar archivos directamente; delega toda mutación de código a 'code-worker' o 'edna'.",
-  "tools": ["read", "grep", "glob", "task", "ask"],
+  "model": "deepseek/deepseek-v4-flash",
+  "thinkingLevel": "high",
+  "system_prompt": "You are the primary orchestrator. Decompose tasks and delegate architecture, design, coding, review, and auditing to specialized subagents. You are prohibited from editing files directly; delegate all code mutations to 'homero' or 'edna'.",
+  "tools": [
+    "read",
+    "grep",
+    "glob",
+    "task",
+    "ask"
+  ],
   "subagents": [
     "profesor",
     "sheldon",
     "edna",
+    "homero",
     "code-worker",
     "tio-bob",
     "gorgory",

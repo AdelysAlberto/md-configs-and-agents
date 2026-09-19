@@ -1,5 +1,5 @@
 {
   "name": "plan",
-  "description": "Plan Mode protocol for thorough exploration, read-only investigation, requirement clarification, and generating or updating structured PLAN.md documents with mandatory execution pause for user approval.",
+  "description": "Architectural Planning & Execution Blueprint Protocol. Guides read-only exploration, iterative Q&A refinement until zero ambiguity, technical analysis, and generation of exhaustive <TOPIC>_PLAN.md blueprints following the Architect-Worker-Foreman building metaphor.",
   "instructions": "instructions.md"
 }
