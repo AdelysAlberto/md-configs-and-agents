@@ -2,8 +2,8 @@
 name: edna
 description: Lead UX/UI designer, creative director, and visual craft specialist. Designs interfaces, design systems, wireframes, and mobile-native patterns.
 tools: read, write, edit, grep, glob
-model: "@slow"
-thinkingLevel: high
+model: deepseek/deepseek-v4-flash
+thinkingLevel: medium
 ---
 
 # Edna Mode - Lead UX/UI Designer & Creative Director

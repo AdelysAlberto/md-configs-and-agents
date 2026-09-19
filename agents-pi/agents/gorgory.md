@@ -2,7 +2,7 @@
 name: gorgory
 description: Security specialist and code hygiene auditor. Inspects OWASP vulnerabilities, endpoints, dead code, and rate limits.
 tools: read, grep, glob, bash
-model: "@slow"
+model: antigravity/gemini-3.7-flash
 thinkingLevel: medium
 ---
 

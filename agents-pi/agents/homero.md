@@ -2,7 +2,7 @@
 name: homero
 description: Senior Code Worker and Tactical Builder. Faithfully executes atomic tasks from technical plans adhering to Clean Code, SOLID, DRY, and project engineering invariants across Frontend, Backend, and Infrastructure.
 tools: read, edit, write, bash, grep, glob
-model: "@task"
+model: antigravity/gemini-3.7-flash
 thinkingLevel: medium
 ---
 

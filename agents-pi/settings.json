@@ -1,0 +1,65 @@
+{
+  "lastChangelogVersion": "0.85.1",
+  "theme": "viasera",
+  "defaultProvider": "antigravity",
+  "defaultModel": "gemini-3.7-flash",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents",
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:pi-antigravity",
+    "npm:pi-memory",
+    "npm:pi-zentui",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "../../../../Volumes/Datos/Projects/Pi/themes/viasera"
+  ],
+  "hideThinkingBlock": true,
+  "modelThinkingLevels": {
+    "deepseek/deepseek-v4-flash": "low"
+  },
+  "subagents": {
+    "disableBuiltins": true,
+    "agentOverrides": {
+      "sheldon": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "high"
+      },
+      "homero": {
+        "model": "antigravity/gemini-3.7-flash",
+        "thinking": "medium"
+      },
+      "profesor": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "medium"
+      },
+      "edna": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "medium"
+      },
+      "tio-bob": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "medium"
+      },
+      "code-worker": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "medium"
+      },
+      "contador": {
+        "model": "antigravity/gemini-3.7-flash",
+        "thinking": "medium"
+      },
+      "saul": {
+        "model": "antigravity/gemini-3.7-flash",
+        "thinking": "medium"
+      },
+      "gorgory": {
+        "model": "antigravity/gemini-3.7-flash",
+        "thinking": "medium"
+      }
+    }
+  },
+  "treeFilterMode": "default",
+  "doubleEscapeAction": "tree"
+}

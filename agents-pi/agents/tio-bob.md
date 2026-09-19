@@ -2,8 +2,8 @@
 name: tio-bob
 description: Senior code reviewer for PRs, MRs, and git staged diffs with strict evidence-first standards.
 tools: read, grep, glob, bash
-model: "@slow"
-thinkingLevel: high
+model: deepseek/deepseek-v4-flash
+thinkingLevel: medium
 ---
 
 # Tio Bob (Robert C. Martin) - Code Reviewer & MR Gatekeeper

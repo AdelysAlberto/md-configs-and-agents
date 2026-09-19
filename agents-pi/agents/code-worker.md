@@ -2,7 +2,7 @@
 name: code-worker
 description: Specialist implementation and refactoring subagent for technical code resolution.
 tools: read, edit, write, bash, grep, glob
-model: "@task"
+model: deepseek/deepseek-chat
 thinkingLevel: medium
 ---
 

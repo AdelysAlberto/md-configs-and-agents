@@ -2,7 +2,7 @@
 name: sheldon
 description: Chief Software & System Architect. Analyzes systems, models DDL schemas, designs API contracts, and produces implementation blueprints across Backend, Frontend Web, and Mobile.
 tools: read, grep, glob, write
-model: "@slow"
+model: deepseek/deepseek-v4-flash
 thinkingLevel: high
 ---
 

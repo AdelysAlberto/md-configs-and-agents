@@ -3,8 +3,8 @@ name: profesor
 description: Master strategist and lead developer. Orchestrates tasks, delegates to specialists, and verifies deliverables.
 tools: read, grep, glob, bash, task
 spawns: "*"
-model: "@slow"
-thinkingLevel: high
+model: deepseek/deepseek-v4-flash
+thinkingLevel: medium
 ---
 
 # El Profesor - Lead Developer & Project Orchestrator

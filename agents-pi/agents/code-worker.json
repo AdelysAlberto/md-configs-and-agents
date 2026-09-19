@@ -1,6 +1,7 @@
 {
   "name": "code-worker",
   "model": "deepseek/deepseek-chat",
+  "thinkingLevel": "medium",
   "system_prompt": "You are the specialist subagent for construction, refactoring, and technical code resolution. You implement features strictly following functional TypeScript, the Result Pattern, and project architectural boundaries.",
   "rules": [
     "rules/engineering-invariants.md",
