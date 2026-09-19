@@ -22,28 +22,31 @@ Instructions:
 
 ### Core Universal Rules
 - For reasoning budget, tool limits, and execution policy: `@rules/runtime.rules.md`
+- For frontend standards (React 19+, Zustand, TanStack Query, <250 LOC, CSS Modules, pure utils): `@rules/frontend.rules.md`
+- For backend workflow (Bun, Fastify/Express, Service-Repository, Bruno collections): `@rules/backend.rules.md`
 - For TypeScript standards, Result Pattern, and code invariants: `@rules/engineering-invariants.rules.md`
-- For React Native UI architecture (< 250 LOC, DRY ScreenLayout, hook extraction): `@rules/react-native.rules.md`
+- For React Native UI architecture (< 250 LOC, DRY ScreenLayout, hook extraction, Modal vs Page): `@rules/react-native.rules.md`
 - For semantic memory retrieval and persistence: `@rules/cogni.rules.md`
 - For Conventional Commits and branch Ticket ID extraction: `@rules/commits.rules.md`
 - For deterministic verification before completing tasks: `@rules/verification-checklist.rules.md`
 
 ## Política Estricta de Delegación de Subagentes
 Queda PROHIBIDO invocar subtareas genéricas o anónimas (`general`). Toda delegación mediante la herramienta `task` debe especificar el nombre exacto del subagente registrado:
+- `task(agent="sheldon", ...)` -> Para esquemas DDL, arquitectura full-stack, contratos de API y planes.
+- `task(agent="homero", ...)` -> Para construcción políglota (Frontend, Backend, Mobile, Go, Rust, Python, Infra).
 - `task(agent="edna", ...)` -> Para UX/UI, wireframes, diseño visual, tokens o componentes.
-- `task(agent="sheldon", ...)` -> Para esquemas DDL, arquitectura, contratos de API.
 - `task(agent="bob", ...)` -> Para revisión de PR/MR y diffs.
 - `task(agent="gorgory", ...)` -> Para seguridad, dead code y OWASP.
 - `task(agent="saul", ...)` -> Para cumplimiento legal, GDPR y términos.
 - `task(agent="contador", ...)` -> Para fiscalidad, IRPF y cálculos contables.
 
-
 ## 2. Subagent Delegation Policy
 
 Primary orchestrators (`@profesor`) must delegate specialized tasks to subagents via the `task` tool to preserve context hygiene:
-- **`@sheldon`** (`agents/sheldon.md`): Delegate when structural architecture, DDL schema modeling, module boundaries, API contract design, or AST indexing maps are required.
-- **`@edna`** (`agents/edna.md`): Delegate when UX/UI design, screen wireframes, design tokens, or visual copy is required.
-- **`@tio-bob`** (`agents/tio-bob.md`): Delegate when the user asks for code review, PR/MR inspection, or staged diff checks.
+- **`@sheldon`** (`agents/sheldon.md`): The Architect. Delegate when structural architecture, DDL schema modeling, module boundaries, API contract design, or implementation blueprints (`<TOPIC>_PLAN.md`) are required.
+- **`@homero`** (`agents/homero.md`): The Senior Worker. Delegate when technical code construction across Frontend, Backend, Mobile, Go, Rust, Python, or Infrastructure is required.
+- **`@edna`** (`agents/edna.md`): The UI/UX Specialist. Delegate when UX/UI design, screen wireframes, design tokens, or visual copy is required.
+- **`@tio-bob`** (`agents/tio-bob.md`): The Inspector. Delegate when code review, PR/MR inspection, or staged diff checks are required.
 - **`@gorgory`** (`agents/gorgory.md`): Delegate when the user asks for security audits, OWASP checks, endpoint hygiene, repository health, or dead code detection.
 - **`@saul`** (`agents/saul.md`): Delegate when the user asks for legal audits, terms & conditions review, startup/corporate incorporation (Spain/EU), tax/pluriactivity compliance, trademark registration, software copyright (LPI), or GDPR/privacy analysis.
 - **`@contador`** (`agents/contador.md`): Delegate when the user asks for financial calculations, IRPF brackets, RETA quotas, corporate tax (IS), tax deductions, accounting optimization, or tax models (130, 303, 111, 115, 200, 349, 369).
@@ -56,10 +59,10 @@ Agents do not carry heavy technical manuals in their base prompt. Instead, they 
 
 | Category | Skill Reference | Domain Knowledge |
 | :--- | :--- | :--- |
+| **Planning** | `@skills/plan/SKILL.md` | Interactive technical planning, `<TOPIC>_PLAN.md` with PENDING status, Q&A loop, and best practices. |
 | **Tax & Accounting** | `@skills/tax-accounting/SKILL.md` | Spanish & EU tax, IRPF brackets, RETA tiers, Corporate Tax (IS), legal deductions, VAT/OSS. |
 | **Legal & Compliance** | `@skills/legal-compliance/SKILL.md` | Spanish & EU law, Ley de Startups 28/2022, pluriactivity/RETA, S.L. Crea y Crece, IP/LPI, trademarks, GDPR/ePrivacy, PSD2, AI Act. |
-| **Architecture** | `@skills/clean-architecture/SKILL.md` | Vertical Slicing (`src/modules/`), Result Pattern, Pure Functional TS, DIP adapters. |
-| **Architecture** | `@skills/backend-architecture/SKILL.md` | Fastify / Express / Bun, public/private route isolation, structured Pino logs, Bruno tests. |
+| **Backend** | `@skills/backend-architecture/SKILL.md` | Fastify / Express / Bun, public/private route isolation, structured Pino logs, Bruno tests. |
 | **Database** | `@skills/database-design/SKILL.md` | PostgreSQL, Drizzle ORM, physical migrations, indexing (B-Tree, GIN), Redis caching, ACID. |
 | **Styling** | `@skills/css-architecture/SKILL.md` | CSS Modules (`*.module.css`), strict BEM naming, Design Tokens (CSS vars), GPU animations. |
 | **UI Design** | `@skills/ux-wireframing/SKILL.md` | Screen anatomy wireframes, dramatic minimalism ("No capes!"), user journeys, state transitions. |
@@ -75,8 +78,12 @@ Agents do not carry heavy technical manuals in their base prompt. Instead, they 
 | **Security** | `@skills/security-hardening/SKILL.md` | OWASP Top 10 defenses, endpoint rate limiting, secure cookie flags, token handling. |
 | **Audit** | `@skills/auditor/SKILL.md` | Static codebase discovery, architecture mapping, technical debt evaluation. |
 | **i18n** | `@skills/i18n-localization/SKILL.md` | react-i18next namespaces, translation key hygiene, pluralization, RTL logical properties. |
-| **Runtime & Ops**| `@skills/bun/SKILL.md` | Bun runtime APIs, test runner, bundler, Bun.serve, shell scripts. |
-| **Runtime & Ops**| `@skills/cloudflare/SKILL.md` | Workers, Pages, KV, D1, R2, Vectorize. |
+| **Memory** | `@skills/cogni/SKILL.md` | Autonomous memory system for semantic signatures in local/global SQLite. |
+| **Writing** | `@skills/finch/SKILL.md` | Natural human tone technical writing for documentation and proposals. |
+| **Social / Tech** | `@skills/linkedin/SKILL.md` | Authentic engineering reflections (Finch + Edna style, no emojis, no cliches). |
+| **Visual Craft** | `@skills/visual-craft/SKILL.md` | Color psychology, intentional typography, concentric radii, surfaces, GPU animations, system-fit, anti-AI-cliche detection. |
+| **UX Decision** | `@skills/ux-decision/SKILL.md` | Problem framing, state completeness sweep, blindspot detection, accessibility behavior, content design, evidence-based critique. |
+| **Mobile Native** | `@skills/mobile-native/SKILL.md` | iOS HIG, Material Design 3, cross-platform patterns, gesture-driven interaction, React Native / Expo anti-patterns. |
 | **Memory** | `@skills/cogni/SKILL.md` | Autonomous memory system for semantic signatures in local/global SQLite. |
 | **Writing** | `@skills/finch/SKILL.md` | Natural human tone technical writing for documentation and proposals. |
 | **Social / Tech** | `@skills/linkedin/SKILL.md` | Authentic engineering reflections (Finch + Edna style, no emojis, no cliches). |

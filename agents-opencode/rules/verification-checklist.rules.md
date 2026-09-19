@@ -37,7 +37,7 @@ After completing any code implementation or technical task, and before deliverin
 - **Zustand Selector Hygiene**: Never destructure entire global Zustand stores. Use `useShallow` or atomic selectors.
 - **Styles**: Use CSS Modules exclusively (`*.module.css`) for web, and StyleSheet/Design Tokens for mobile. No inline styles or TailwindCSS unless explicitly instructed.
 - **Internationalization**: All user-facing text must use `t('key')` keys.
-- **Pinned Exact Versions**: In all `package.json` files, wildcards like `^` or `~` are strictly forbidden. Always pin exact, deterministic versions.
-- **Mandatory Latest Stable Investigation**: Before installing or updating any package, actively query npm/bun registries to use the latest stable GA release available.
-- **Unified Biome 2.5.x Standard**: All modules must include their official `biome.json` config and execute Biome for linting and formatting.
+- **TanStack Query & Custom Hooks**: All queries and mutations must be encapsulated in dedicated custom hooks with isolated loading components.
+- **Mandatory Bruno Collections**: Every backend endpoint created or modified must have a corresponding `.bru` collection file with tests and docs.
+- **Zero Deprecated APIs**: No deprecated methods or obsolete libraries allowed.
 - **Simplification First**: Fixes should make the system simpler, not more complex. Prefer removing or consolidating code over adding a new layer, flag, or special case.

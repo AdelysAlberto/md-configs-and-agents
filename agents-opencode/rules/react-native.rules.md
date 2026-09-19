@@ -67,6 +67,15 @@ src/ (or src/modules/<Feature>/)
 - **UI Thread Animations**: Gestures and animations must use `react-native-reanimated` and `react-native-gesture-handler`.
 - **Zustand State**: Access stores strictly with atomic selectors or `useShallow` (never full store destructuring).
 
+### 4.1 Modal vs. Page Decision Tree (Zero Nested Modal Stacking)
+- **Use a Modal ONLY for:**
+  - Quick, single-purpose interactive interruptions (Confirmation dialogs, single field edits, picker sheets, action menus).
+  - Content that takes less than 50% screen height or transient bottom sheets (`@gorhom/bottom-sheet`).
+- **Use a Screen / Route Navigation for:**
+  - Multi-step flows (Checkout, Onboarding, Wizard forms).
+  - Any view requiring its own sub-alerts or further dialogs (prevents nested modal backdrop stacking bugs).
+  - Any view with complex form validation or rich media.
+
 ---
 
 ## 5. Self-Review Checklist Before Emitting Code

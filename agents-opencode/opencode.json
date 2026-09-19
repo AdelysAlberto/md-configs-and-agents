@@ -14,7 +14,7 @@
       "git *": "allow",
       "npm *": "allow",
       "grep *": "allow"
-    },
+    }
   },
   "instructions": [
     "/Users/adelysalberto/.config/opencode/AGENTS.md"
@@ -29,14 +29,21 @@
     },
     "sheldon": {
       "color": "#05D5FA",
-      "description": "Arquitecto de software, diseño de schemas DDL, contratos y planificación",
+      "description": "Full-Stack Software Architect, DDL schemas, APIs, and planning blueprints",
       "instructions": "./agents/sheldon.md",
       "mode": "all",
       "name": "Sheldon Cooper"
     },
+    "homero": {
+      "color": "#FED90F",
+      "description": "Senior Polyglot Software Worker (Frontend, Backend, Mobile, Go, Rust, Python, Infra)",
+      "instructions": "./agents/homero.md",
+      "mode": "all",
+      "name": "Homero Simpson"
+    },
     "edna": {
       "color": "#FF007F",
-      "description": "Directora creativa, UX/UI, branding, wireframes y copywriting de conversión",
+      "description": "Lead UX/UI Designer, visual craft, layout wireframes, and design tokens",
       "instructions": "./agents/edna.md",
       "mode": "all",
       "name": "Edna Mode",

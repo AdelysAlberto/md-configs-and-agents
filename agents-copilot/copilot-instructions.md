@@ -37,11 +37,12 @@ Invoke by name in the agent picker, or ask the orchestrator to delegate. `argume
 | Specialist | Role | File |
 | :--- | :--- | :--- |
 | `profesor-orchestrator` | Overall strategy & orchestration | [profesor-orchestrator.agent.md](agents/profesor-orchestrator.agent.md) |
+| `homero-worker` | Senior Polyglot Software Worker & Craftsman | [homero-worker.agent.md](agents/homero-worker.agent.md) |
 | `sherlock-analyst` | Market & competitor research | [sherlock-analyst.agent.md](agents/sherlock-analyst.agent.md) |
 | `roz-product` | Product requirements & PRD | [roz-product.agent.md](agents/roz-product.agent.md) |
-| `edna-ux` | UX/UI design & visual system | [edna-ux.agent.md](agents/edna-ux.agent.md) |
-| `saul-goodman` | CSS Modules, BEM & Tokens Legal Defense | [saul-goodman.agent.md](agents/saul-goodman.agent.md) |
-| `sheldon-architect` | System architecture, DDL & APIs | [sheldon-architect.agent.md](agents/sheldon-architect.agent.md) |
+| `edna-ux` | UX/UI design, visual craft & wireframing | [edna-ux.agent.md](agents/edna-ux.agent.md) |
+| `saul-goodman` | Senior Legal Counsel & Startup Compliance Attorney | [saul-goodman.agent.md](agents/saul-goodman.agent.md) |
+| `sheldon-architect` | Full-Stack System Architecture, DDL & APIs | [sheldon-architect.agent.md](agents/sheldon-architect.agent.md) |
 | `doc-database` | Database, ORM, Redis & indexes | [doc-database.agent.md](agents/doc-database.agent.md) |
 | `gorgory-security` | Security, OWASP & API shielding | [gorgory-security.agent.md](agents/gorgory-security.agent.md) |
 | `andrew-martin` | Clean Architecture & Scaffolding | [andrew-martin.agent.md](agents/andrew-martin.agent.md) |
@@ -59,11 +60,9 @@ Loaded automatically when relevant, or invoked as `/skill-name` in chat.
 
 | Skill | Purpose | File |
 | :--- | :--- | :--- |
+| `plan` | Interactive technical planning, `<TOPIC>_PLAN.md`, Q&A alignment, and best practices | [plan/SKILL.md](skills/plan/SKILL.md) |
 | `cogni` | Autonomous local memory (SQLite) | [cogni/SKILL.md](skills/cogni/SKILL.md) |
 | `commit` | Conventional commit generation from git diff | [commit/SKILL.md](skills/commit/SKILL.md) |
-| `astro` | Astro framework guidance | [astro/SKILL.md](skills/astro/SKILL.md) |
-| `bun` | Bun runtime/toolchain guidance | [bun/SKILL.md](skills/bun/SKILL.md) |
-| `cloudflare` | Cloudflare platform guidance | [cloudflare/SKILL.md](skills/cloudflare/SKILL.md) |
 | `react-native-architecture` | React Native app architecture | [react-native-architecture/SKILL.md](skills/react-native-architecture/SKILL.md) |
 | `react-typescript-clean-code` | React + TypeScript engineering standards | [react-typescript-clean-code/SKILL.md](skills/react-typescript-clean-code/SKILL.md) |
 | `zustand` | Zustand state management patterns | [zustand/SKILL.md](skills/zustand/SKILL.md) |

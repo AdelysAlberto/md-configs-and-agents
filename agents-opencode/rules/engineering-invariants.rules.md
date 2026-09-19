@@ -56,6 +56,15 @@
 17. **Observability**
     Important failures and operationally relevant events must be diagnosable without exposing sensitive data.
 
+18. **Single Source of Truth (SSOT) & Zero Hardcoded Constants**
+    All configurable values (file paths, URLs, ports, magic numbers, timeouts, credentials, UI tokens, colors) must reside in a single authoritative source of truth (`env.config.ts`, `constants.ts`, design tokens, or `.env`). Never hardcode magic strings or environment-dependent paths directly inside business or domain logic.
+
+19. **Zero Deprecated APIs Policy**
+    Always use current, non-deprecated APIs and library methods. Check official documentation and typescript compiler warnings to prevent introducing obsolete functions or lifecycle methods.
+
+20. **Screaming Architecture & Pure Utilities**
+    Organize modules so directory names reflect the business domain. Functions that perform deterministic transformations without component closures or side effects MUST be pure functions placed in `utils/`.
+
 ## Technology & Evidence
 
  1. **Language and Framework Standards**

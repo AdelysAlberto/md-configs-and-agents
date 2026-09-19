@@ -47,8 +47,7 @@ Antes de ejecutar `ask_question`, pausar para aprobación de un plan, solicitar 
 | `/legal`, `/compliance`, `/saul` | `saul-goodman` | Senior Legal Counsel & Startup Compliance Attorney | [`config/agents/saul-goodman.md`](config/agents/saul-goodman.md) |
 | `/contador`, `/tax`, `/irpf` | `contador` | Senior Tax Accountant & Financial Strategist (Christian Wolff) | [`config/agents/contador.md`](config/agents/contador.md) |
 | `/arch`, `/tech`, `/sheldon` | `sheldon-architect` | System architecture, DDL & APIs | [`config/agents/sheldon-architect.md`](config/agents/sheldon-architect.md) |
-| `/db`, `/doc` | `doc-database` | Database, ORM, Redis & indexes | [`config/agents/doc-database.md`](config/agents/doc-database.md) |
-| `/security`, `/gorgory` | `gorgory-security` | Security, OWASP & API shielding | [`config/agents/gorgory-security.md`](config/agents/gorgory-security.md) |
+| `/homero`, `/worker`, `/build` | `homero-worker` | Senior Polyglot Software Worker & Craftsman | [`config/agents/homero-worker.md`](config/agents/homero-worker.md) |
 | `/standards`, `/andrew` | `andrew-martin` | Clean Architecture & Scaffolding | [`config/agents/andrew-martin.md`](config/agents/andrew-martin.md) |
 | `/testing`, `/house` | `house-testing` | Unit, integration & MSW tests | [`config/agents/house-testing.md`](config/agents/house-testing.md) |
 | `/audit`, `/gadget` | `gadget-auditor` | Dead code & API discrepancies | [`config/agents/gadget-auditor.md`](config/agents/gadget-auditor.md) |
@@ -58,10 +57,11 @@ Antes de ejecutar `ask_question`, pausar para aprobación de un plan, solicitar 
 | `/readme` | `readme` | README Designer & GitHub Layout Specialist | [`config/agents/readme.md`](config/agents/readme.md) |
 | `/growth`, `/belfort`, `/wolf`, `/landing-copy` | `jordan-belfort` | Chief Growth Officer, High-Conversion Copy & Sales Persuasion | [`config/agents/jordan-belfort.md`](config/agents/jordan-belfort.md) |
 
-### Design & UX Domain Knowledge Skills (`config/skills/*`)
+### Procedural Skills (`config/skills/*`)
 
 | Skill | Role & Scope | Exact Skill Path |
 | :--- | :--- | :--- |
+| `plan` | Interactive technical planning, `<TOPIC>_PLAN.md`, Q&A alignment, and best practices | [`config/skills/plan/SKILL.md`](config/skills/plan/SKILL.md) |
 | `visual-craft` | Color psychology, typography, concentric radii, shadows, GPU animations, anti-AI-cliches | [`config/skills/visual-craft/SKILL.md`](config/skills/visual-craft/SKILL.md) |
 | `ux-decision` | Problem framing, premise interrogation, 11-transition state sweep, blindspots, accessibility, content design | [`config/skills/ux-decision/SKILL.md`](config/skills/ux-decision/SKILL.md) |
 | `mobile-native` | iOS HIG, Material Design 3, cross-platform gestures, safe areas, touch targets, React Native anti-patterns | [`config/skills/mobile-native/SKILL.md`](config/skills/mobile-native/SKILL.md) |
