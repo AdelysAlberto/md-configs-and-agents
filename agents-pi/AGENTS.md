@@ -65,3 +65,11 @@ bun run biome:check && bun run check && bun test
 # OR (when using pnpm)
 pnpm biome:check && pnpm typecheck --noEmit && pnpm test
 ```
+
+<!-- cogni:protocol:start -->
+## Autonomous Semantic Memory (Cogni)
+- Before designing or implementing non-trivial features, architecture changes, or bugfixes, search existing memory: `cogni search "<tags_or_query>"` or MCP `cogni_search(query: "...")`.
+- Retrieve full technical signature with `cogni get <id_or_topic_key>` or MCP `cogni_get`.
+- Save high-signal architectural decisions, invariants, gotchas and bugfixes: `cogni save ...` or MCP `cogni_save`.
+- Detailed operational guidelines available in skill: `cogni` (`skills/cogni/SKILL.md`).
+<!-- cogni:protocol:end -->
